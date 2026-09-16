@@ -27,7 +27,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Инженерное заключение + опросный лист",
     duration: "1–2 дня",
-    icon: "/icons/process/01_audit_pid.png",
+    icon: "/icons/process/01_audit_pid.webp",
   },
   {
     num: "02",
@@ -41,7 +41,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Комплект проектной документации Э3",
     duration: "3–7 дней",
-    icon: "/icons/process/02_eplan_design.png",
+    icon: "/icons/process/02_eplan_design.webp",
   },
   {
     num: "03",
@@ -55,7 +55,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Собранный шкаф с заводским паспортом",
     duration: "5–10 дней",
-    icon: "/icons/process/03_assembly_marking.png",
+    icon: "/icons/process/03_assembly_marking.webp",
   },
   {
     num: "04",
@@ -69,7 +69,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Протокол стендовых испытаний и ОТК",
     duration: "48 часов",
-    icon: "/icons/process/04_stand_test_48h.png",
+    icon: "/icons/process/04_stand_test_48h.webp",
   },
   {
     num: "05",
@@ -83,7 +83,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Акт комплексного опробования и пуска",
     duration: "2–5 дней",
-    icon: "/icons/process/05_field_pnr.png",
+    icon: "/icons/process/05_field_pnr.webp",
   },
   {
     num: "06",
@@ -97,7 +97,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Полные исходники ПО + гарантия 12 мес.",
     duration: "1 день",
-    icon: "/icons/process/06_handover_open_source.png",
+    icon: "/icons/process/06_handover_open_source.webp",
   },
 ];
 

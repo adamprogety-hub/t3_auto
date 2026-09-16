@@ -27,7 +27,7 @@ const problems: ProblemItem[] = [
     impact: "Удорожание шкафа до +30% и простой монтажников на объекте",
     solution: "Сквозной аудит адресации I/O до сборки и закупки кабелей",
     hardwareAffected: "Модули ввода-вывода ПЛК, клеммные ряды",
-    icon: "/icons/problems/01_schematics.png",
+    icon: "/icons/problems/01_schematics.webp",
   },
   {
     id: "p2",
@@ -39,7 +39,7 @@ const problems: ProblemItem[] = [
     impact: "Преждевременный износ горелок и перерасход топлива до 15%",
     solution: "ПИД-регулирование с каскадной модуляцией мощности",
     hardwareAffected: "Горелочные автоматы, насосные группы с ПЧ",
-    icon: "/icons/problems/02_boiler_pump.png",
+    icon: "/icons/problems/02_boiler_pump.webp",
   },
   {
     id: "p3",
@@ -51,7 +51,7 @@ const problems: ProblemItem[] = [
     impact: "Месяцы перекладывания вины между сторонними подрядчиками",
     solution: "Единая сквозная ответственность и гарантия ACEngine",
     hardwareAffected: "Стыковка силовых и слаботочных цепей",
-    icon: "/icons/problems/03_assembly_test.png",
+    icon: "/icons/problems/03_assembly_test.webp",
   },
   {
     id: "p4",
@@ -63,7 +63,7 @@ const problems: ProblemItem[] = [
     impact: "Слепые зоны АРМ диспетчера во время технологических аварий",
     solution: "Аппаратный Watchdog-сброс + локальный кольцевой буфер",
     hardwareAffected: "GSM/LTE шлюзы, каналы связи Modbus TCP",
-    icon: "/icons/problems/04_scada_telemetry.png",
+    icon: "/icons/problems/04_scada_telemetry.webp",
   },
   {
     id: "p5",
@@ -75,7 +75,7 @@ const problems: ProblemItem[] = [
     impact: "Невозможность оперативного ремонта дежурным персоналом",
     solution: "Полный комплект схем Э3 по ГОСТ 21.408 + открытые исходники",
     hardwareAffected: "Контроллерное ПО, принципиальные электросхемы",
-    icon: "/icons/problems/05_documentation.png",
+    icon: "/icons/problems/05_documentation.webp",
   },
   {
     id: "p6",
@@ -87,7 +87,7 @@ const problems: ProblemItem[] = [
     impact: "Срыв сроков сдачи объекта и штрафы Ростехнадзора",
     solution: "48-часовой стендовый прогон сигналов на базе в Москве",
     hardwareAffected: "Интеграция ПЛК, датчиков и частотных приводов",
-    icon: "/icons/problems/06_commissioning.png",
+    icon: "/icons/problems/06_commissioning.webp",
   },
 ];
 

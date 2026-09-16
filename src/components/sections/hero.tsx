@@ -119,7 +119,7 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-divider/25 via-transparent to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
             <img
-              src="/hero_team.png"
+              src="/hero_team.webp"
               alt="Инженерная группа ACEngine"
               className="w-full h-auto object-contain object-bottom drop-shadow-[0_20px_50px_rgba(19,18,16,0.12)] [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)]"
               draggable={false}

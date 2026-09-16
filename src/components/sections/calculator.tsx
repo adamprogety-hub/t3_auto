@@ -31,7 +31,7 @@ const objectTypes: ObjectTypeConfig[] = [
     minQty: 1,
     maxQty: 6,
     basePricePerUnit: 140000,
-    icon: "/icons/objects/01_boiler.png",
+    icon: "/icons/objects/01_boiler.webp",
     subsystems: [
       { id: "cascade", label: "Каскадное регулирование котлов и горелок", price: 75000, default: true },
       { id: "pumps_fc", label: "Насосные группы с частотными приводами (ПЧ)", price: 90000, default: true },
@@ -48,7 +48,7 @@ const objectTypes: ObjectTypeConfig[] = [
     minQty: 1,
     maxQty: 8,
     basePricePerUnit: 110000,
-    icon: "/icons/objects/02_itp.png",
+    icon: "/icons/objects/02_itp.webp",
     subsystems: [
       { id: "weather_comp", label: "Погодозависимое регулирование отопления", price: 50000, default: true },
       { id: "gvs_circ", label: "Контур ГВС с рециркуляцией и клапаном", price: 45000, default: true },
@@ -64,7 +64,7 @@ const objectTypes: ObjectTypeConfig[] = [
     minQty: 1,
     maxQty: 8,
     basePricePerUnit: 95000,
-    icon: "/icons/objects/03_vzu.png",
+    icon: "/icons/objects/03_vzu.webp",
     subsystems: [
       { id: "pump_rotation", label: "Ротация насосов по наработке моточасов", price: 50000, default: true },
       { id: "pid_pressure", label: "Поддержание давления в сети (ПИД-регулятор)", price: 65000, default: true },
@@ -80,7 +80,7 @@ const objectTypes: ObjectTypeConfig[] = [
     minQty: 1,
     maxQty: 6,
     basePricePerUnit: 130000,
-    icon: "/icons/objects/04_kns_blower.png",
+    icon: "/icons/objects/04_kns_blower.webp",
     subsystems: [
       { id: "kns_pumps", label: "Автоматическая ротация и пуск насосов КНС", price: 60000, default: true },
       { id: "aeration", label: "Регулирование аэрации и воздуходувок (O2)", price: 70000, default: false },
@@ -96,7 +96,7 @@ const objectTypes: ObjectTypeConfig[] = [
     minQty: 1,
     maxQty: 10,
     basePricePerUnit: 120000,
-    icon: "/icons/objects/05_production.png",
+    icon: "/icons/objects/05_production.webp",
     subsystems: [
       { id: "speed_sync", label: "Синхронизация скоростей приводов (ПЧ)", price: 85000, default: true },
       { id: "pid_temp", label: "Многозонный нагрев/охлаждение (ПИД)", price: 75000, default: true },

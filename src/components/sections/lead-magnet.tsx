@@ -169,7 +169,7 @@ export function LeadMagnet() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              src="/asu_cabinet_transparent.png"
+              src="/asu_cabinet_transparent.webp"
               alt="Шкаф АСУ ТП"
               className="w-[500px] xl:w-[570px] 2xl:w-[630px] h-auto object-contain -scale-x-100 drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
               draggable={false}
