@@ -11,6 +11,7 @@ interface ProcessStep {
   details: string[];
   deliverable: string;
   duration: string;
+  icon: string;
 }
 
 const steps: ProcessStep[] = [
@@ -26,6 +27,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Инженерное заключение + опросный лист",
     duration: "1–2 дня",
+    icon: "/icons/process/01_audit_pid.png",
   },
   {
     num: "02",
@@ -39,6 +41,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Комплект проектной документации Э3",
     duration: "3–7 дней",
+    icon: "/icons/process/02_eplan_design.png",
   },
   {
     num: "03",
@@ -52,6 +55,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Собранный шкаф с заводским паспортом",
     duration: "5–10 дней",
+    icon: "/icons/process/03_assembly_marking.png",
   },
   {
     num: "04",
@@ -65,6 +69,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Протокол стендовых испытаний и ОТК",
     duration: "48 часов",
+    icon: "/icons/process/04_stand_test_48h.png",
   },
   {
     num: "05",
@@ -78,6 +83,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Акт комплексного опробования и пуска",
     duration: "2–5 дней",
+    icon: "/icons/process/05_field_pnr.png",
   },
   {
     num: "06",
@@ -91,6 +97,7 @@ const steps: ProcessStep[] = [
     ],
     deliverable: "Полные исходники ПО + гарантия 12 мес.",
     duration: "1 день",
+    icon: "/icons/process/06_handover_open_source.png",
   },
 ];
 
@@ -144,7 +151,7 @@ export function Process() {
 
         {/* Synchronous 3D Carousel Stage */}
         <div
-          className="mt-12 relative w-full flex items-center justify-center py-4 select-none min-h-[540px] md:min-h-[570px]"
+          className="mt-12 relative w-full flex items-center justify-center py-4 select-none min-h-[580px] md:min-h-[620px]"
           style={{ perspective: 1200 }}
         >
           {steps.map((step, i) => {
@@ -246,7 +253,7 @@ export function Process() {
                   transformStyle: "preserve-3d",
                   transformOrigin: offset < 0 ? "right center" : offset > 0 ? "left center" : "center center",
                 }}
-                className={`absolute w-[92vw] max-w-[450px] h-[520px] md:h-[550px] p-8 md:p-10 rounded-[14px] bg-white shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex flex-col justify-end overflow-hidden ${
+                className={`absolute w-[92vw] max-w-[450px] h-[550px] md:h-[580px] px-8 pb-8 pt-4 md:px-9 md:pb-9 md:pt-5 rounded-[14px] bg-white shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex flex-col justify-between overflow-hidden ${
                   isCenter
                     ? "cursor-grab active:cursor-grabbing pointer-events-auto"
                     : isVisible
@@ -261,20 +268,32 @@ export function Process() {
                   className="absolute inset-0 bg-graphite/20 backdrop-blur-[0.5px] pointer-events-none z-30"
                 />
 
-                {/* Step Content — anchored in the bottom half of the slide */}
+                {/* Upper Half: 3D Process Icon */}
+                <div className="relative z-10 w-full flex-1 flex items-center justify-center min-h-0 mb-6 md:mb-7">
+                  <div className="relative w-full h-full max-h-[220px] md:max-h-[240px] flex items-center justify-center">
+                    <img
+                      src={step.icon}
+                      alt={step.title}
+                      className="max-h-full max-w-full object-contain pointer-events-none select-none drop-shadow-[0_16px_32px_rgba(19,18,16,0.08)]"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+
+                {/* Lower Half: Step Content */}
                 <div className="relative z-10 flex flex-col justify-end">
                   {/* Headline */}
-                  <h3 className="text-graphite text-2xl md:text-[26px] font-extrabold tracking-tight leading-snug">
+                  <h3 className="text-graphite text-2xl md:text-[25px] font-extrabold tracking-tight leading-snug">
                     {step.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="mt-4 text-iron text-[14.5px] leading-relaxed">
+                  <p className="mt-3.5 text-iron text-[14px] md:text-[14.5px] leading-relaxed">
                     {step.description}
                   </p>
 
                   {/* Bullet Points */}
-                  <div className="mt-5 space-y-2.5">
+                  <div className="mt-4 space-y-2">
                     {step.details.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-[12.5px] text-graphite/90">
                         <span className="text-pewter shrink-0 font-light select-none">—</span>
