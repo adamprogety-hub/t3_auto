@@ -348,7 +348,7 @@ export function Projects() {
     <section id="projects" className="py-20 md:py-28 bg-surface">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
-        <div className="max-w-3xl pb-10">
+        <div className="max-w-3xl mx-auto pb-10 text-center">
           <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
             Реализованные конфигурации и технологические узлы
           </h2>

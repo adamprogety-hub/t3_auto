@@ -136,7 +136,7 @@ export function Process() {
     <section id="process" className="py-20 md:py-28 bg-surface overflow-hidden">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mx-auto mb-12 text-center">
           <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
             Технологический цикл внедрения АСУ ТП
           </h2>

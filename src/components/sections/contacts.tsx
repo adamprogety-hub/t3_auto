@@ -17,7 +17,7 @@ export function Contacts() {
     <section id="contacts" className="py-20 md:py-28 bg-surface-warm">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
             Обсудить проект или отправить ТЗ
           </h2>

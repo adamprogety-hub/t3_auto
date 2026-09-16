@@ -188,7 +188,7 @@ export function Calculator() {
   return (
     <section id="calculator" className="py-20 md:py-28 bg-surface-warm">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
-        <div>
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-graphite text-[clamp(1.75rem,2.8vw,2.6rem)] font-extrabold leading-[1.12] tracking-tight">
             Калькулятор стоимости шкафа управления
           </h2>
