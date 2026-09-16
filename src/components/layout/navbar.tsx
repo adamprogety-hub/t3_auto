@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Send } from "lucide-react";
 
@@ -13,9 +13,24 @@ const navLinks = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 12);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-divider bg-surface/90 backdrop-blur-sm">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-sm transition-colors duration-200 border-b ${
+        isScrolled || isOpen ? "border-divider" : "border-transparent"
+      }`}
+    >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-20">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
