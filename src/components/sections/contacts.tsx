@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Paperclip, X, ShieldCheck, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Paperclip, X, ShieldCheck, Send, Check } from "lucide-react";
 import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
 export function Contacts() {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
+  const [isAgreed, setIsAgreed] = useState(true);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -219,25 +220,52 @@ export function Contacts() {
                 )}
               </div>
 
+              {/* Privacy Consent Checkbox */}
+              <label className="flex items-start gap-2.5 cursor-pointer select-none pt-1 group">
+                <input
+                  type="checkbox"
+                  checked={isAgreed}
+                  onChange={(e) => setIsAgreed(e.target.checked)}
+                  className="sr-only peer"
+                />
+                <div className="w-4 h-4 rounded-[4px] border border-divider peer-checked:bg-graphite peer-checked:border-graphite peer-focus-visible:ring-2 peer-focus-visible:ring-graphite/30 flex items-center justify-center shrink-0 mt-0.5 transition-all bg-white group-hover:border-graphite/60">
+                  <Check
+                    className={`w-3 h-3 text-white transition-opacity ${
+                      isAgreed ? "opacity-100" : "opacity-0"
+                    }`}
+                    strokeWidth={2.5}
+                  />
+                </div>
+                <span className="text-[12px] text-iron leading-[1.45]">
+                  Согласен на обработку персональных данных в соответствии с{" "}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      openPrivacyModal();
+                    }}
+                    className="text-graphite font-semibold underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
+                  >
+                    Политикой конфиденциальности
+                  </button>
+                </span>
+              </label>
+
               <button
                 type="submit"
-                className="mt-4 w-full h-14 inline-flex items-center justify-center gap-3 bg-accent text-white text-[13px] font-semibold tracking-normal transition-all duration-200 hover:bg-accent-hover active:scale-[0.99] rounded-[8px] cursor-pointer"
+                disabled={!isAgreed}
+                className={`mt-2 w-full h-14 inline-flex items-center justify-center gap-3 text-white text-[13px] font-semibold tracking-normal transition-all duration-200 rounded-[8px] ${
+                  isAgreed
+                    ? "bg-accent hover:bg-accent-hover active:scale-[0.99] cursor-pointer shadow-xs"
+                    : "bg-pewter/40 cursor-not-allowed opacity-60"
+                }`}
               >
                 Отправить ТЗ на инженерный расчёт
               </button>
 
-              <div className="space-y-1.5 text-[11px] text-pewter text-center">
-                <p>Ответим с предварительной сметой и вопросами по алгоритмам в течение 1 рабочего дня</p>
-                <p className="text-pewter/80">
-                  Отправляя форму, вы соглашаетесь с{" "}
-                  <button
-                    type="button"
-                    onClick={openPrivacyModal}
-                    className="text-graphite font-medium underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
-                  >
-                    Политикой конфиденциальности
-                  </button>
-                </p>
+              <div className="text-[11px] text-pewter text-center">
+                <span>Ответим с предварительной сметой и вопросами по алгоритмам в течение 1 рабочего дня</span>
               </div>
             </form>
           </motion.div>

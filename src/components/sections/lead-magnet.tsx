@@ -96,6 +96,7 @@ export function LeadMagnet() {
   const [channel, setChannel] = useState<"phone" | "email">("phone");
   const [contact, setContact] = useState("");
   const [isDownloaded, setIsDownloaded] = useState(false);
+  const [isAgreed, setIsAgreed] = useState(true);
 
   const selectedItem = MATERIALS.find((m) => m.id === selectedId) || null;
   const otherItems = selectedId
@@ -107,6 +108,7 @@ export function LeadMagnet() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
 
   const isValid = channel === "phone" ? isValidPhone(contact) : isValidEmail(contact);
+  const isFormValid = isValid && isAgreed;
 
   const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsDownloaded(false);
@@ -119,7 +121,7 @@ export function LeadMagnet() {
 
   const handleDownloadSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isValid || !selectedItem) return;
+    if (!isFormValid || !selectedItem) return;
 
     // Trigger file download
     const link = document.createElement("a");
@@ -308,12 +310,44 @@ export function LeadMagnet() {
                     />
                   </div>
 
+                  {/* Privacy Checkbox */}
+                  <label className="flex items-start gap-2 cursor-pointer select-none pt-0.5 group">
+                    <input
+                      type="checkbox"
+                      checked={isAgreed}
+                      onChange={(e) => setIsAgreed(e.target.checked)}
+                      className="sr-only peer"
+                    />
+                    <div className="w-3.5 h-3.5 rounded-[3px] border border-divider peer-checked:bg-graphite peer-checked:border-graphite peer-focus-visible:ring-2 peer-focus-visible:ring-graphite/30 flex items-center justify-center shrink-0 mt-0.5 transition-all bg-white group-hover:border-graphite/60">
+                      <Check
+                        className={`w-2.5 h-2.5 text-white transition-opacity ${
+                          isAgreed ? "opacity-100" : "opacity-0"
+                        }`}
+                        strokeWidth={2.5}
+                      />
+                    </div>
+                    <span className="text-[11px] text-pewter leading-[1.35]">
+                      Согласен с{" "}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          openPrivacyModal();
+                        }}
+                        className="text-graphite font-semibold underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
+                      >
+                        Политикой конфиденциальности
+                      </button>
+                    </span>
+                  </label>
+
                   {/* Dynamic Action Button */}
                   <button
                     type="submit"
-                    disabled={!isValid}
+                    disabled={!isFormValid}
                     className={`w-full py-3 px-4 rounded-[8px] text-[13px] font-semibold flex items-center justify-center gap-2 transition-all duration-200 ${
-                      isValid
+                      isFormValid
                         ? "bg-graphite hover:bg-gunmetal text-white cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-[0.99]"
                         : "bg-surface-warm text-pewter/50 border border-divider/30 cursor-not-allowed"
                     }`}
@@ -327,24 +361,18 @@ export function LeadMagnet() {
                       <>
                         <Download className="w-4 h-4" strokeWidth={1.5} />
                         <span>
-                          {isValid
-                            ? `Скачать ${selectedItem.actionLabel}`
-                            : "Заполните контакт для скачивания"}
+                          {!isValid
+                            ? "Заполните контакт для скачивания"
+                            : !isAgreed
+                            ? "Подтвердите согласие с политикой"
+                            : `Скачать ${selectedItem.actionLabel}`}
                         </span>
                       </>
                     )}
                   </button>
 
                   <p className="text-[10.5px] text-pewter text-center leading-tight">
-                    Прямая ссылка откроется сразу. Нажимая кнопку, вы соглашаетесь с{" "}
-                    <button
-                      type="button"
-                      onClick={openPrivacyModal}
-                      className="text-graphite font-medium underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
-                    >
-                      Политикой конфиденциальности
-                    </button>
-                    .
+                    Прямая ссылка откроется сразу после отправки. Без спама.
                   </p>
                 </motion.form>
 

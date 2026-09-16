@@ -185,14 +185,11 @@ export function PrivacyModal() {
             </div>
 
             {/* Footer (Sticky) */}
-            <div className="px-6 py-4 border-t border-divider/60 bg-surface/90 flex items-center justify-between gap-4 shrink-0">
-              <span className="text-pewter text-[11px] hidden sm:inline">
-                Нажимая кнопки форм на сайте, вы подтверждаете согласие с данным документом
-              </span>
+            <div className="px-6 py-4 border-t border-divider/60 bg-surface/90 flex items-center justify-end shrink-0">
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="ml-auto px-5 py-2.5 bg-graphite hover:bg-gunmetal text-white text-[12.5px] font-semibold rounded-[8px] transition-all cursor-pointer shadow-xs active:scale-[0.98]"
+                className="px-5 py-2.5 bg-graphite hover:bg-gunmetal text-white text-[12.5px] font-semibold rounded-[8px] transition-all cursor-pointer shadow-xs active:scale-[0.98]"
               >
                 Понятно, закрыть
               </button>
