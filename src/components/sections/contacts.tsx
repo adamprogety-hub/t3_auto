@@ -17,28 +17,16 @@ export function Contacts() {
     <section id="contacts" className="py-20 md:py-28 bg-surface-warm">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-6">
-          <div>
-            <h2 className="text-graphite text-[clamp(1.5rem,2.4vw,2.35rem)] font-extrabold leading-[1.1] tracking-tight">
-              Обсудить проект
-              <br />
-              или отправить ТЗ
-            </h2>
-          </div>
-          <div className="text-left md:text-right">
-            <span className="text-iron text-[13px] font-medium block">
-              Сметный расчёт за 1 рабочий день
-            </span>
-            <span className="text-pewter text-[12px] block mt-0.5">
-              Связь напрямую с ведущим инженером
-            </span>
-          </div>
+        <div className="max-w-3xl">
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
+            Обсудить проект или отправить ТЗ
+          </h2>
         </div>
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-[440px_1fr] gap-12 items-start">
           {/* Left — contacts */}
           <div>
-            <div className="rounded-[12px] bg-white p-6 md:p-8 space-y-6 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
+            <div className="rounded-[14px] bg-white p-6 md:p-8 space-y-6 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
               <div>
                 <span className="text-pewter text-[11px] font-medium uppercase tracking-wider block">
                   Телефон и мессенджеры
