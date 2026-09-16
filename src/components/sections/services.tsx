@@ -82,7 +82,7 @@ const services: ServiceCard[] = [
  */
 function RenderStage({ service }: { service: ServiceCard }) {
   return (
-    <div className="relative w-full h-[150px] lg:h-[160px] rounded-[4px] border border-white/10 bg-white/[0.015] group-hover:border-white/25 group-hover:bg-white/[0.03] transition-all flex items-center justify-center p-3 overflow-hidden">
+    <div className="relative w-full h-[150px] lg:h-[160px] rounded-[6px] border border-white/10 bg-white/[0.015] flex items-center justify-center p-3 overflow-hidden">
       {/* Corner calibration ticks */}
       <div className="absolute top-2 left-2 text-white/20 text-[9px] font-mono leading-none select-none">⌜</div>
       <div className="absolute top-2 right-2 text-white/20 text-[9px] font-mono leading-none select-none">⌝</div>
@@ -90,7 +90,7 @@ function RenderStage({ service }: { service: ServiceCard }) {
       <div className="absolute bottom-2 right-2 text-white/20 text-[9px] font-mono leading-none select-none">⌟</div>
 
       {/* Blueprint Drawing */}
-      <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.04]">
+      <div className="w-full h-full flex items-center justify-center">
         {service.id === "cabinet" && <CabinetIsometricBlueprint />}
         {service.id === "plc_hmi" && <PlcHmiIsometricBlueprint />}
         {service.id === "pnr_vfd" && <PnrVfdIsometricBlueprint />}
@@ -127,7 +127,6 @@ export function Services() {
         {/* Swiss Industrial Table — Full Width Architectural Register */}
         <div className="divide-y divide-white/10 border-b border-white/10">
           {services.map((service, idx) => {
-            const num = `0${idx + 1}`;
             return (
               <motion.div
                 key={service.id}
@@ -135,35 +134,21 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className="group py-8 lg:py-10 transition-colors duration-200 hover:bg-white/[0.015]"
+                className="py-8 lg:py-10"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-                  {/* Col 1-2: Monospace Index & Shortcode */}
-                  <div className="lg:col-span-2 flex flex-row lg:flex-col justify-between lg:justify-start items-baseline lg:items-start gap-2.5">
-                    <span className="font-mono text-3xl lg:text-4xl font-light text-white/25 group-hover:text-white transition-colors duration-200">
-                      {num}
-                    </span>
-                    <span className="text-[10.5px] font-mono text-white/45 tracking-wider uppercase px-2 py-0.5 border border-white/10 rounded-[3px] bg-white/[0.02]">
-                      {service.id === "cabinet" && "ШУ / ША / ВРУ"}
-                      {service.id === "plc_hmi" && "ПЛК · HMI"}
-                      {service.id === "pnr_vfd" && "ПНР · ПЧВ"}
-                      {service.id === "scada" && "SCADA 4D"}
-                      {service.id === "retrofit" && "РЕТРОФИТ"}
-                    </span>
-                  </div>
-
-                  {/* Col 3-6: Title & Engineering Description */}
-                  <div className="lg:col-span-4 flex flex-col justify-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+                  {/* Col 1-5: Title & Engineering Description */}
+                  <div className="lg:col-span-5 flex flex-col justify-center pr-0 lg:pr-4">
                     <h3 className="text-white text-lg lg:text-xl font-bold tracking-tight leading-snug">
                       {service.title}
                     </h3>
-                    <p className="mt-2.5 text-white/60 text-[13px] leading-relaxed">
+                    <p className="mt-2.5 text-white/60 text-[13.5px] leading-relaxed">
                       {service.description}
                     </p>
                   </div>
 
-                  {/* Col 7-9: Technical Spec Sheet (ТТХ) */}
-                  <div className="lg:col-span-3 border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6">
+                  {/* Col 6-9: Technical Spec Sheet (ТТХ) */}
+                  <div className="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-8">
                     <div className="text-[10px] font-mono uppercase tracking-wider text-white/40 mb-2.5">
                       Регламент и спецификация:
                     </div>
@@ -171,7 +156,7 @@ export function Services() {
                       {service.specs.map((spec) => (
                         <div
                           key={spec.label}
-                          className="grid grid-cols-[100px_1fr] gap-2 text-[12px] items-baseline"
+                          className="grid grid-cols-[115px_1fr] gap-2 text-[12px] items-baseline"
                         >
                           <span className="text-white/40 font-mono text-[11px] truncate">
                             {spec.label}
@@ -205,7 +190,7 @@ function CabinetIsometricBlueprint() {
   return (
     <svg
       viewBox="0 0 200 240"
-      className="w-full h-full max-h-[220px] text-white/35 group-hover:text-white/60 transition-colors"
+      className="w-full h-full max-h-[220px] text-white/45"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.2"
@@ -257,7 +242,7 @@ function PlcHmiIsometricBlueprint() {
   return (
     <svg
       viewBox="0 0 240 140"
-      className="w-full h-full max-h-[140px] text-white/35 group-hover:text-white/60 transition-colors"
+      className="w-full h-full max-h-[140px] text-white/45"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.2"
@@ -310,7 +295,7 @@ function PnrVfdIsometricBlueprint() {
   return (
     <svg
       viewBox="0 0 200 130"
-      className="w-full h-full max-h-[130px] text-white/35 group-hover:text-white/60 transition-colors"
+      className="w-full h-full max-h-[130px] text-white/45"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.2"
@@ -355,7 +340,7 @@ function ScadaIsometricBlueprint() {
   return (
     <svg
       viewBox="0 0 200 130"
-      className="w-full h-full max-h-[130px] text-white/35 group-hover:text-white/60 transition-colors"
+      className="w-full h-full max-h-[130px] text-white/45"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.2"
@@ -400,7 +385,7 @@ function RetrofitIsometricBlueprint() {
   return (
     <svg
       viewBox="0 0 200 130"
-      className="w-full h-full max-h-[130px] text-white/35 group-hover:text-white/60 transition-colors"
+      className="w-full h-full max-h-[130px] text-white/45"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.2"

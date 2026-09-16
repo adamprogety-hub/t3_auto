@@ -163,12 +163,105 @@ const projects: ProjectItem[] = [
 function getTileClass(size: string) {
   switch (size) {
     case "large":
-      return "col-span-2 row-span-2";
+      return "col-span-1 sm:col-span-2 sm:row-span-2";
     case "wide":
-      return "col-span-2 row-span-1";
+      return "col-span-1 sm:col-span-2 sm:row-span-1";
     default:
       return "col-span-1 row-span-1";
   }
+}
+
+const graphiteShadesMedium = [
+  "bg-[#212529]",
+  "bg-[#2B3036]",
+  "bg-[#1A1D20]",
+  "bg-[#343A40]",
+  "bg-[#25292E]",
+  "bg-[#3D434A]",
+];
+
+const graphiteShadesWide = [
+  "bg-[#2B3036]",
+  "bg-[#1E2226]",
+  "bg-[#343A40]",
+  "bg-[#212529]",
+  "bg-[#282C32]",
+  "bg-[#1A1D20]",
+];
+
+interface GraphiteLiveTileProps {
+  id: string;
+  size: "medium" | "wide";
+  tileIndex: number;
+}
+
+function GraphiteLiveTile({ id, size, tileIndex }: GraphiteLiveTileProps) {
+  const shades = size === "wide" ? graphiteShadesWide : graphiteShadesMedium;
+  const [shadeIndex, setShadeIndex] = useState(0);
+  const [flipDirection, setFlipDirection] = useState<"up" | "down">("down");
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Stagger initial delay so tiles flip asynchronously
+    const initialDelay = 1800 + (tileIndex * 1150) % 4800 + Math.random() * 1200;
+
+    const scheduleNextFlip = (delayMs: number) => {
+      timerRef.current = setTimeout(() => {
+        setFlipDirection(Math.random() > 0.5 ? "down" : "up");
+        setShadeIndex((prev) => (prev + 1) % shades.length);
+
+        const nextInterval = 4800 + (tileIndex % 4) * 1100 + Math.random() * 1800;
+        scheduleNextFlip(nextInterval);
+      }, delayMs);
+    };
+
+    scheduleNextFlip(initialDelay);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [tileIndex, shades.length]);
+
+  const isUp = flipDirection === "up";
+  const initialRotate = isUp ? -90 : 90;
+  const exitRotate = isUp ? 90 : -90;
+
+  const tileClass =
+    size === "wide"
+      ? "hidden sm:block col-span-1 sm:col-span-2 sm:row-span-1"
+      : "hidden sm:block col-span-1 row-span-1";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.99 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.35, delay: tileIndex * 0.04 }}
+      className={`${tileClass} relative overflow-hidden min-h-[220px] md:min-h-[250px] select-none`}
+      style={{ perspective: 1200 }}
+    >
+      {/* 3D Flipping Graphite Rectangle (Windows Phone Metro Turnstile Animation) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ perspective: 1200 }}>
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.div
+            key={`${id}-${shadeIndex}`}
+            initial={{ rotateX: initialRotate, opacity: 0.25, scale: 1.02 }}
+            animate={{ rotateX: 0, opacity: 1, scale: 1 }}
+            exit={{ rotateX: exitRotate, opacity: 0.2, scale: 0.98 }}
+            transition={{
+              duration: 0.75,
+              ease: [0.16, 1, 0.3, 1], // Signature Metro deceleration curve
+            }}
+            style={{
+              transformStyle: "preserve-3d",
+              backfaceVisibility: "hidden",
+            }}
+            className={`absolute inset-0 w-full h-full ${shades[shadeIndex]}`}
+          />
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
 }
 
 interface LiveTileProps {
@@ -356,7 +449,7 @@ export function Projects() {
 
         {/* Windows Phone Metro Live Grid */}
         <div className="rounded-[14px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10),0_4px_12px_rgba(0,0,0,0.03)] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[2px] bg-divider/40">
-          {projects.map((project, i) => (
+          {projects.slice(0, 7).map((project, i) => (
             <LiveTile
               key={project.id}
               project={project}
@@ -364,6 +457,29 @@ export function Projects() {
               onOpenLightbox={openLightbox}
             />
           ))}
+
+          {/* Graphite Live Tile 1 — Fills Row 3, Col 4 */}
+          <GraphiteLiveTile
+            id="graphite-tile-1"
+            size="medium"
+            tileIndex={7}
+          />
+
+          {/* Project 7: retrofit (wide 2x1) — Fills Row 4, Cols 1-2 */}
+          {projects[7] && (
+            <LiveTile
+              project={projects[7]}
+              tileIndex={8}
+              onOpenLightbox={openLightbox}
+            />
+          )}
+
+          {/* Graphite Live Tile 2 — Fills Row 4, Cols 3-4 */}
+          <GraphiteLiveTile
+            id="graphite-tile-2"
+            size="wide"
+            tileIndex={9}
+          />
         </div>
       </div>
 
