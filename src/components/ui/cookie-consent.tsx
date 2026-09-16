@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
 export function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
@@ -64,7 +65,15 @@ export function CookieConsent() {
             </div>
 
             <p className="mt-2 text-iron text-[12.5px] leading-relaxed">
-              Мы используем файлы cookie для корректной работы калькулятора, сохранения параметров конфигуратора и сбора аналитики.
+              Мы используем файлы cookie для корректной работы калькулятора, сохранения параметров конфигуратора и аналитики. Подробнее в{" "}
+              <button
+                type="button"
+                onClick={openPrivacyModal}
+                className="text-graphite font-semibold underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
+              >
+                Политике конфиденциальности
+              </button>
+              .
             </p>
 
             <div className="mt-4 flex items-center gap-2.5">

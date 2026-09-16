@@ -1,3 +1,7 @@
+"use client";
+
+import { openPrivacyModal } from "@/components/ui/privacy-modal";
+
 export function Footer() {
   return (
     <footer className="py-8 bg-graphite">
@@ -23,11 +27,18 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-          <span className="text-white/30 text-[11px]">
+        <div className="mt-6 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[11px]">
+          <span className="text-white/30">
             © {new Date().getFullYear()} ACEngine
           </span>
-          <span className="text-white/20 text-[11px]">
+          <button
+            type="button"
+            onClick={openPrivacyModal}
+            className="text-white/40 hover:text-white/90 transition-colors underline underline-offset-3 cursor-pointer text-left md:text-center"
+          >
+            Политика конфиденциальности
+          </button>
+          <span className="text-white/20">
             Инженерная интеграция полного цикла
           </span>
         </div>

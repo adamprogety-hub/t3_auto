@@ -13,6 +13,7 @@ import {
   X,
   ArrowRight,
 } from "lucide-react";
+import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
 interface MaterialItem {
   id: string;
@@ -335,7 +336,15 @@ export function LeadMagnet() {
                   </button>
 
                   <p className="text-[10.5px] text-pewter text-center leading-tight">
-                    Прямая ссылка откроется сразу. Без спама и скрытых подписок.
+                    Прямая ссылка откроется сразу. Нажимая кнопку, вы соглашаетесь с{" "}
+                    <button
+                      type="button"
+                      onClick={openPrivacyModal}
+                      className="text-graphite font-medium underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
+                    >
+                      Политикой конфиденциальности
+                    </button>
+                    .
                   </p>
                 </motion.form>
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Paperclip, X, ShieldCheck, Send } from "lucide-react";
+import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
 export function Contacts() {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
@@ -220,13 +221,23 @@ export function Contacts() {
 
               <button
                 type="submit"
-                className="mt-4 w-full h-14 inline-flex items-center justify-center gap-3 bg-accent text-white text-[13px] font-semibold tracking-normal transition-all duration-200 hover:bg-accent-hover active:scale-[0.99] rounded-[8px]"
+                className="mt-4 w-full h-14 inline-flex items-center justify-center gap-3 bg-accent text-white text-[13px] font-semibold tracking-normal transition-all duration-200 hover:bg-accent-hover active:scale-[0.99] rounded-[8px] cursor-pointer"
               >
                 Отправить ТЗ на инженерный расчёт
               </button>
 
-              <div className="flex items-center justify-center gap-2 text-[11px] text-pewter text-center">
-                <span>Ответим с предварительной сметой и вопросами по алгоритмам в течение 1 рабочего дня</span>
+              <div className="space-y-1.5 text-[11px] text-pewter text-center">
+                <p>Ответим с предварительной сметой и вопросами по алгоритмам в течение 1 рабочего дня</p>
+                <p className="text-pewter/80">
+                  Отправляя форму, вы соглашаетесь с{" "}
+                  <button
+                    type="button"
+                    onClick={openPrivacyModal}
+                    className="text-graphite font-medium underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
+                  >
+                    Политикой конфиденциальности
+                  </button>
+                </p>
               </div>
             </form>
           </motion.div>
