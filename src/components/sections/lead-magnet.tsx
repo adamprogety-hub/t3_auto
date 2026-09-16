@@ -188,34 +188,23 @@ export function LeadMagnet() {
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-10 h-10 rounded-[6px] flex items-center justify-center shrink-0 ${
-                          selectedItem.isDark
-                            ? "bg-white/10 text-white"
-                            : "bg-surface-warm text-graphite"
-                        }`}
-                      >
-                        <selectedItem.icon className="w-5 h-5" strokeWidth={1.5} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h4
-                            className={`text-[14px] font-bold ${
-                              selectedItem.isDark ? "text-white" : "text-graphite"
-                            }`}
-                          >
-                            {selectedItem.title}
-                          </h4>
-                        </div>
-                        <span
-                          className={`text-[12px] block mt-0.5 ${
-                            selectedItem.isDark ? "text-white/60" : "text-pewter"
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h4
+                          className={`text-[14px] font-bold ${
+                            selectedItem.isDark ? "text-white" : "text-graphite"
                           }`}
                         >
-                          {selectedItem.desc}
-                        </span>
+                          {selectedItem.title}
+                        </h4>
                       </div>
+                      <span
+                        className={`text-[12px] block mt-0.5 ${
+                          selectedItem.isDark ? "text-white/60" : "text-pewter"
+                        }`}
+                      >
+                        {selectedItem.desc}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
@@ -366,17 +355,8 @@ export function LeadMagnet() {
                         }}
                         className="w-full p-3 bg-white/80 hover:bg-white rounded-[8px] border border-divider/60 hover:border-graphite/40 transition-all text-left flex items-center justify-between group shadow-2xs cursor-pointer"
                       >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div
-                            className={`w-7 h-7 rounded-[5px] flex items-center justify-center shrink-0 ${
-                              item.isDark
-                                ? "bg-graphite text-white"
-                                : "bg-surface-warm text-graphite"
-                            }`}
-                          >
-                            <item.icon className="w-3.5 h-3.5" strokeWidth={1.5} />
-                          </div>
-                          <span className="text-[12.5px] font-semibold text-graphite truncate group-hover:text-iron">
+                        <div className="min-w-0">
+                          <span className="text-[12.5px] font-semibold text-graphite truncate block group-hover:text-iron">
                             {item.title}
                           </span>
                         </div>
@@ -405,17 +385,12 @@ export function LeadMagnet() {
                         onClick={() => setSelectedId(item.id)}
                         className="p-4 sm:px-5 sm:py-4 bg-graphite hover:bg-gunmetal text-white rounded-[10px] shadow-[0_4px_20px_-2px_rgba(19,18,16,0.18)] hover:-translate-y-0.5 active:scale-[0.99] transition-all duration-200 flex items-center justify-between group cursor-pointer border border-white/10"
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-[6px] bg-white/10 flex items-center justify-center text-white shrink-0">
-                            <item.icon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                        <div>
+                          <div className="text-[13.5px] font-bold text-white group-hover:text-white transition-colors leading-snug">
+                            {item.title}
                           </div>
-                          <div>
-                            <div className="text-[13.5px] font-bold text-white group-hover:text-white transition-colors leading-snug">
-                              {item.title}
-                            </div>
-                            <div className="text-[11.5px] text-white/60">
-                              {item.desc}
-                            </div>
+                          <div className="text-[11.5px] text-white/60 mt-0.5">
+                            {item.desc}
                           </div>
                         </div>
                         <div className="flex items-center gap-2.5 shrink-0 ml-2">
@@ -438,18 +413,13 @@ export function LeadMagnet() {
                       className="p-5 bg-white rounded-[10px] shadow-[0_4px_20px_-4px_rgba(19,18,16,0.06),0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_28px_-4px_rgba(19,18,16,0.10)] hover:-translate-y-0.5 transition-all duration-200 group cursor-pointer border border-divider/30"
                     >
                       <div className="flex items-start justify-between gap-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-[6px] bg-surface-warm flex items-center justify-center text-graphite shrink-0">
-                            <item.icon className="w-5 h-5" strokeWidth={1.5} />
-                          </div>
-                          <div>
-                            <h4 className="text-graphite text-[14px] font-bold group-hover:text-iron transition-colors">
-                              {item.title}
-                            </h4>
-                            <span className="text-pewter text-[12px] block mt-0.5">
-                              {item.desc}
-                            </span>
-                          </div>
+                        <div>
+                          <h4 className="text-graphite text-[14px] font-bold group-hover:text-iron transition-colors">
+                            {item.title}
+                          </h4>
+                          <span className="text-pewter text-[12px] block mt-0.5">
+                            {item.desc}
+                          </span>
                         </div>
                         <span className="text-[11px] font-mono text-pewter shrink-0 px-2 py-0.5 bg-surface-warm rounded-[4px]">
                           {item.format}
