@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
 
 export function openPrivacyModal() {
   if (typeof window !== "undefined") {
@@ -76,15 +75,6 @@ export function PrivacyModal() {
                   Соответствие ФЗ-152 РФ · Редакция от 2026 г.
                 </span>
               </div>
-
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-[6px] text-pewter hover:text-graphite hover:bg-surface-warm transition-colors cursor-pointer"
-                aria-label="Закрыть окно"
-              >
-                <X className="w-5 h-5" strokeWidth={1.5} />
-              </button>
             </div>
 
             {/* Content (Scrollable) */}
