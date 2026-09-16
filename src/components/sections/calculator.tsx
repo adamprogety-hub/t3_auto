@@ -199,12 +199,9 @@ export function Calculator() {
           <div className="space-y-10">
             {/* Step 1: Object Type */}
             <div>
-              <div className="flex items-baseline justify-between">
+              <div>
                 <span className="text-pewter text-[12px] font-medium">
                   1. Тип объекта
-                </span>
-                <span className="text-iron text-[12px]">
-                  Отраслевая специфика
                 </span>
               </div>
               <div className="mt-4 rounded-[14px] overflow-hidden isolate bg-divider/30 shadow-[0_4px_24px_-4px_rgba(19,18,16,0.05),0_1px_3px_rgba(0,0,0,0.02)] grid grid-cols-2 sm:grid-cols-5 gap-[1px] segmented-control">
@@ -272,12 +269,9 @@ export function Calculator() {
 
             {/* Step 3: Automated Subsystems (Dynamic per object) */}
             <div>
-              <div className="flex items-baseline justify-between">
+              <div>
                 <span className="text-pewter text-[12px] font-medium">
                   2. Автоматизируемые подсистемы ({currentObject.label})
-                </span>
-                <span className="text-iron text-[12px]">
-                  Технологические узлы
                 </span>
               </div>
 
@@ -335,12 +329,9 @@ export function Calculator() {
 
             {/* Step 4: Dispatching Level */}
             <div>
-              <div className="flex items-baseline justify-between">
+              <div>
                 <span className="text-pewter text-[12px] font-medium">
                   3. Диспетчеризация и удалённый контроль
-                </span>
-                <span className="text-iron text-[12px]">
-                  Верхний уровень
                 </span>
               </div>
 
@@ -388,12 +379,9 @@ export function Calculator() {
 
             {/* Step 5: Scope of Supply / Works */}
             <div>
-              <div className="flex items-baseline justify-between">
+              <div>
                 <span className="text-pewter text-[12px] font-medium">
                   4. Состав поставки и работ
-                </span>
-                <span className="text-iron text-[12px]">
-                  Этапы реализации
                 </span>
               </div>
 
