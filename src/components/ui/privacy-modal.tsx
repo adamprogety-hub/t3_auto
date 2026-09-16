@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { X } from "lucide-react";
 
 export function openPrivacyModal() {
   if (typeof window !== "undefined") {
@@ -64,22 +64,17 @@ export function PrivacyModal() {
             aria-labelledby="privacy-modal-title"
           >
             {/* Header (Sticky) */}
-            <div className="px-6 py-5 border-b border-divider/60 flex items-center justify-between bg-surface/80 backdrop-blur-xs shrink-0">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-[8px] bg-graphite text-white flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-4.5 h-4.5" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <h3
-                    id="privacy-modal-title"
-                    className="text-graphite text-[16px] sm:text-[17px] font-bold tracking-tight leading-tight"
-                  >
-                    Политика конфиденциальности
-                  </h3>
-                  <span className="text-pewter text-[11px] block mt-0.5 font-mono">
-                    Соответствие ФЗ-152 РФ · Редакция от 2026 г.
-                  </span>
-                </div>
+            <div className="px-6 sm:px-8 py-5 border-b border-divider/60 flex items-center justify-between bg-surface/80 backdrop-blur-xs shrink-0">
+              <div>
+                <h3
+                  id="privacy-modal-title"
+                  className="text-graphite text-[16px] sm:text-[18px] font-bold tracking-tight leading-tight"
+                >
+                  Политика конфиденциальности
+                </h3>
+                <span className="text-pewter text-[11px] block mt-0.5 font-mono">
+                  Соответствие ФЗ-152 РФ · Редакция от 2026 г.
+                </span>
               </div>
 
               <button
@@ -138,18 +133,16 @@ export function PrivacyModal() {
                   Цели обработки персональных данных
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-                  <div className="p-3 bg-surface rounded-[8px] border border-divider/60">
-                    <div className="font-semibold text-graphite text-[12.5px] mb-1 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-graphite" strokeWidth={1.5} />
+                  <div className="p-3.5 bg-surface rounded-[8px] border border-divider/60">
+                    <div className="font-semibold text-graphite text-[12.5px] mb-1">
                       Инженерный расчет
                     </div>
                     <span className="text-[11.5px] text-pewter">
                       Подготовка сметной документации, подбор оборудования шкафов управления и расчет стоимости ПНР.
                     </span>
                   </div>
-                  <div className="p-3 bg-surface rounded-[8px] border border-divider/60">
-                    <div className="font-semibold text-graphite text-[12.5px] mb-1 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-graphite" strokeWidth={1.5} />
+                  <div className="p-3.5 bg-surface rounded-[8px] border border-divider/60">
+                    <div className="font-semibold text-graphite text-[12.5px] mb-1">
                       Отправка материалов
                     </div>
                     <span className="text-[11.5px] text-pewter">
