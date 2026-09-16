@@ -138,39 +138,43 @@ export function LeadMagnet() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-[1fr_490px] gap-0 rounded-[14px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10)] border border-divider/40"
+          className="grid grid-cols-1 lg:grid-cols-[1fr_430px] gap-0 rounded-[14px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10)] border border-divider/40 relative"
         >
           {/* Left: Description & Checklist */}
-          <div className="p-10 md:p-14 bg-graphite text-white flex flex-col justify-center">
-            <div>
-              <h2 className="text-white text-[clamp(1.35rem,2vw,1.95rem)] font-extrabold leading-[1.15] tracking-tight">
+          <div className="p-8 md:p-12 xl:p-14 bg-graphite text-white flex flex-col justify-between relative overflow-hidden min-h-[460px]">
+            {/* Top: Heading */}
+            <div className="relative z-20 max-w-[340px] xl:max-w-[380px]">
+              <h2 className="text-white text-[clamp(1.35rem,2vw,2rem)] font-extrabold leading-[1.12] tracking-tight">
                 Опросные листы
                 <br />
                 и чек-лист проверки схем Э3
               </h2>
-              <p className="mt-5 text-white/70 text-[14px] leading-relaxed max-w-xl">
+            </div>
+
+            {/* Bottom: Description smaller and at bottom */}
+            <div className="relative z-20 max-w-[320px] xl:max-w-[360px] mt-auto pt-10">
+              <p className="text-white/60 text-[12.5px] sm:text-[13px] leading-[1.65]">
                 Рабочие шаблоны сбора исходных данных для главных энергетиков, проектировщиков и инженеров КИПиА. Помогают формализовать требования к шкафам управления и исключить ошибки в перечне сигналов I/O.
               </p>
-
-              <div className="mt-8 space-y-3">
-                <div className="flex items-baseline gap-3 text-[13px] text-white/80">
-                  <span className="text-divider font-mono font-bold select-none shrink-0">—</span>
-                  <span>Таблица адресации сигналов I/O под ПЛК ОВЕН, Segnetics, Inovance</span>
-                </div>
-                <div className="flex items-baseline gap-3 text-[13px] text-white/80">
-                  <span className="text-divider font-mono font-bold select-none shrink-0">—</span>
-                  <span>Чек-лист схем Э3 по ГОСТ 21.408 (корпуса DKC, аппаратура КЭАЗ)</span>
-                </div>
-                <div className="flex items-baseline gap-3 text-[13px] text-white/80">
-                  <span className="text-divider font-mono font-bold select-none shrink-0">—</span>
-                  <span>Карта регистров Modbus RTU/TCP для интеграции в MasterSCADA 4D</span>
-                </div>
-              </div>
             </div>
           </div>
 
+          {/* 3D Cabinet Render peeking out from under the right white background */}
+          <div className="absolute right-[240px] xl:right-[280px] 2xl:right-[310px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block">
+            <motion.img
+              initial={{ opacity: 0, x: 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              src="/asu_cabinet_transparent.png"
+              alt="Шкаф АСУ ТП"
+              className="w-[500px] xl:w-[570px] 2xl:w-[630px] h-auto object-contain -scale-x-100 drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
+              draggable={false}
+            />
+          </div>
+
           {/* Right: Dynamic Interactive Download Column */}
-          <div className="p-6 sm:p-8 md:p-10 bg-surface-warm/60 flex flex-col justify-center min-h-[460px]">
+          <div className="relative z-20 p-6 sm:p-8 md:p-10 bg-surface-warm/95 lg:bg-[#EAEEF2] flex flex-col justify-center min-h-[460px] border-t lg:border-t-0 lg:border-l border-divider/40">
             {selectedItem ? (
               /* Selected State: Active Card on Top + Form + Other options switcher */
               <div className="space-y-3.5">
