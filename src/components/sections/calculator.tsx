@@ -189,18 +189,9 @@ export function Calculator() {
     <section id="calculator" className="py-20 md:py-28 bg-surface-warm">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         <div>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <div>
-              <h2 className="text-graphite text-[clamp(1.5rem,2.4vw,2.35rem)] font-extrabold leading-[1.1] tracking-tight">
-                Сконфигурируйте
-                <br />
-                решение
-              </h2>
-            </div>
-            <p className="text-iron text-[14px] max-w-md">
-              Выберите тип объекта, технологические подсистемы и уровень диспетчеризации для предварительной оценки стоимости.
-            </p>
-          </div>
+          <h2 className="text-graphite text-[clamp(1.75rem,2.8vw,2.6rem)] font-extrabold leading-[1.12] tracking-tight">
+            Калькулятор стоимости шкафа управления
+          </h2>
         </div>
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 items-start">
