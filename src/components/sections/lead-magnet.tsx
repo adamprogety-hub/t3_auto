@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileSpreadsheet, FileText } from "lucide-react";
+import { FileSpreadsheet, FileText, Archive, Download } from "lucide-react";
 
 export function LeadMagnet() {
   return (
@@ -11,10 +11,10 @@ export function LeadMagnet() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-[1fr_460px] gap-0 rounded-[12px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10)]"
+          className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-0 rounded-[14px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10)] border border-divider/40"
         >
           {/* Left: Description & Checklist */}
-          <div className="p-10 md:p-14 bg-graphite text-white flex flex-col justify-between">
+          <div className="p-10 md:p-14 bg-graphite text-white flex flex-col justify-center">
             <div>
               <h2 className="text-white text-[clamp(1.35rem,2vw,1.95rem)] font-extrabold leading-[1.15] tracking-tight">
                 Опросные листы
@@ -40,21 +40,19 @@ export function LeadMagnet() {
                 </div>
               </div>
             </div>
-
-            <div className="mt-8 pt-6 border-t border-white/10 text-white/40 text-[12px]">
-              Прямое скачивание в 1 клик · Без ввода почты и рекламных рассылок
-            </div>
           </div>
 
           {/* Right: Direct 1-click Download Cards */}
-          <div className="p-8 md:p-12 bg-surface-warm/60 flex flex-col justify-center gap-4">
+          <div className="p-8 md:p-10 bg-surface-warm/60 flex flex-col justify-center gap-3.5">
+            {/* Card 1: XLSX */}
             <a
-              href="#contacts"
-              className="p-6 bg-white rounded-[10px] shadow-[0_6px_24px_-4px_rgba(19,18,16,0.06),0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_-4px_rgba(19,18,16,0.10)] hover:-translate-y-0.5 transition-all duration-200 group block"
+              href="/docs/oprosnyj-list-shu-acengine.xlsx"
+              download="Опросный_лист_подбора_ШУ_ACEngine.xlsx"
+              className="p-5 bg-white rounded-[10px] shadow-[0_4px_20px_-4px_rgba(19,18,16,0.06),0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_28px_-4px_rgba(19,18,16,0.10)] hover:-translate-y-0.5 transition-all duration-200 group block border border-divider/30"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-[6px] bg-surface-warm flex items-center justify-center text-graphite">
+                  <div className="w-10 h-10 rounded-[6px] bg-surface-warm flex items-center justify-center text-graphite shrink-0">
                     <FileSpreadsheet className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <div>
@@ -70,19 +68,23 @@ export function LeadMagnet() {
                   XLSX · 420 КБ
                 </span>
               </div>
-              <div className="mt-4 pt-3 border-t border-divider/60 flex items-center justify-between text-[12px]">
+              <div className="mt-3.5 pt-3 border-t border-divider/50 flex items-center justify-between text-[12px]">
                 <span className="text-iron font-medium">Скачать шаблон опросника</span>
-                <span className="text-graphite font-semibold group-hover:underline">↓ Скачать</span>
+                <span className="text-graphite font-semibold group-hover:underline flex items-center gap-1">
+                  ↓ Скачать
+                </span>
               </div>
             </a>
 
+            {/* Card 2: PDF */}
             <a
-              href="#contacts"
-              className="p-6 bg-white rounded-[10px] shadow-[0_6px_24px_-4px_rgba(19,18,16,0.06),0_1px_3px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_-4px_rgba(19,18,16,0.10)] hover:-translate-y-0.5 transition-all duration-200 group block"
+              href="/docs/chek-list-audit-skhem-e3-acengine.pdf"
+              download="Чек-лист_аудита_схем_Э3_ACEngine.pdf"
+              className="p-5 bg-white rounded-[10px] shadow-[0_4px_20px_-4px_rgba(19,18,16,0.06),0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_28px_-4px_rgba(19,18,16,0.10)] hover:-translate-y-0.5 transition-all duration-200 group block border border-divider/30"
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-[6px] bg-surface-warm flex items-center justify-center text-graphite">
+                  <div className="w-10 h-10 rounded-[6px] bg-surface-warm flex items-center justify-center text-graphite shrink-0">
                     <FileText className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <div>
@@ -98,13 +100,44 @@ export function LeadMagnet() {
                   PDF · 1.8 МБ
                 </span>
               </div>
-              <div className="mt-4 pt-3 border-t border-divider/60 flex items-center justify-between text-[12px]">
+              <div className="mt-3.5 pt-3 border-t border-divider/50 flex items-center justify-between text-[12px]">
                 <span className="text-iron font-medium">Скачать чек-лист ГОСТ</span>
-                <span className="text-graphite font-semibold group-hover:underline">↓ Скачать</span>
+                <span className="text-graphite font-semibold group-hover:underline flex items-center gap-1">
+                  ↓ Скачать
+                </span>
               </div>
             </a>
 
-            <p className="text-pewter text-[11px] text-center mt-2 leading-relaxed">
+            {/* Card 3: Download Both Materials (Bundle) */}
+            <a
+              href="/docs/materialy-acengine-oprosnik-i-chek-list.zip"
+              download="Материалы_ACEngine_опросник_и_чек-лист.zip"
+              className="p-4 sm:px-5 sm:py-4 bg-graphite hover:bg-gunmetal text-white rounded-[10px] shadow-[0_4px_20px_-2px_rgba(19,18,16,0.18)] hover:-translate-y-0.5 active:scale-[0.99] transition-all duration-200 flex items-center justify-between group block"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-[6px] bg-white/10 flex items-center justify-center text-white shrink-0">
+                  <Archive className="w-4.5 h-4.5" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <div className="text-[13.5px] font-bold text-white group-hover:text-white transition-colors leading-snug">
+                    Скачать сразу оба материала
+                  </div>
+                  <div className="text-[11.5px] text-white/60">
+                    Опросный лист + чек-лист в одном архиве
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2.5 shrink-0 ml-2">
+                <span className="text-[11px] font-mono text-white/80 bg-white/15 px-2 py-0.5 rounded-[4px]">
+                  ZIP · 2.2 МБ
+                </span>
+                <span className="text-[13px] font-bold text-white group-hover:translate-y-0.5 transition-transform flex items-center gap-1">
+                  ↓
+                </span>
+              </div>
+            </a>
+
+            <p className="text-pewter text-[11px] text-center mt-1 leading-relaxed">
               Заполненный опросный лист можно прикрепить к форме заявки ниже для точного расчета сметы.
             </p>
           </div>
@@ -113,3 +146,4 @@ export function LeadMagnet() {
     </section>
   );
 }
+
