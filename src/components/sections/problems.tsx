@@ -126,18 +126,10 @@ export function Problems() {
     <section className="py-20 md:py-28 bg-surface overflow-hidden">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <h2 className="text-graphite text-[clamp(1.4rem,2.2vw,2.15rem)] font-extrabold leading-[1.15] tracking-tight">
-              С какими сбоями приходят объекты
-              <br />
-              на модернизацию и наладку
-            </h2>
-          </div>
-
-          <p className="text-iron text-[14px] max-w-sm">
-            Типичные инженерные и схемотехнические коллизии, которые мы выявляем и устраняем на объектах.
-          </p>
+        <div className="max-w-3xl mb-12">
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.15] tracking-tight">
+            С какими сбоями приходят объекты на модернизацию и наладку
+          </h2>
         </div>
 
         {/* Synchronous 3D Carousel Stage */}

@@ -136,17 +136,10 @@ export function Process() {
     <section id="process" className="py-20 md:py-28 bg-surface overflow-hidden">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <h2 className="text-graphite text-[clamp(1.5rem,2.4vw,2.35rem)] font-extrabold leading-[1.12] tracking-tight">
-              Технологический цикл
-              <br />
-              внедрения АСУ ТП
-            </h2>
-          </div>
-          <p className="text-iron text-[14px] max-w-md">
-            От входной экспертизы P&ID схем и прогона на испытательном стенде до выезда на объект и сдачи открытых исходных кодов.
-          </p>
+        <div className="max-w-3xl mb-12">
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
+            Технологический цикл внедрения АСУ ТП
+          </h2>
         </div>
 
         {/* Synchronous 3D Carousel Stage */}

@@ -348,21 +348,14 @@ export function Projects() {
     <section id="projects" className="py-20 md:py-28 bg-surface">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-12">
-          <div>
-            <h2 className="text-graphite text-[clamp(1.5rem,2.4vw,2.35rem)] font-extrabold leading-[1.12] tracking-tight">
-              Реализованные конфигурации
-              <br />
-              и технологические узлы
-            </h2>
-          </div>
-          <span className="text-pewter text-[13px] max-w-sm leading-relaxed">
-            Фотографии реальных шкафов, HMI мнемосхем и смонтированных насосных станций с объектов в Москве, Твери, СПб и Смоленске.
-          </span>
+        <div className="max-w-3xl pb-10">
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
+            Реализованные конфигурации и технологические узлы
+          </h2>
         </div>
 
         {/* Windows Phone Metro Live Grid */}
-        <div className="rounded-[12px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10),0_4px_12px_rgba(0,0,0,0.03)] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[2px] bg-divider/40">
+        <div className="rounded-[14px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10),0_4px_12px_rgba(0,0,0,0.03)] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[2px] bg-divider/40">
           {projects.map((project, i) => (
             <LiveTile
               key={project.id}

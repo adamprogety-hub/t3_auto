@@ -115,19 +115,12 @@ export function Services() {
     <section id="services" className="py-20 md:py-28 bg-graphite text-white">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
-        <div className="pb-10 grid grid-cols-1 md:grid-cols-[1fr_380px] gap-8 items-end">
-          <div>
-            <div className="text-[11px] font-mono uppercase tracking-widest text-white/40 mb-3">
-              Инженерные компетенции · Реестр решений
-            </div>
-            <h2 className="text-white text-[clamp(1.6rem,2.5vw,2.5rem)] font-extrabold leading-[1.08] tracking-tight">
-              Полный цикл
-              <br />
-              автоматизации
-            </h2>
-          </div>
-          <p className="text-white/60 text-[14px] leading-relaxed">
-            От разработки принципиальных электрических схем до программирования ПЛК, сборки шкафов и интеграции в распределённую SCADA.
+        <div className="pb-10 max-w-3xl">
+          <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.6rem)] font-extrabold leading-[1.12] tracking-tight">
+            Полный цикл автоматизации технологических процессов
+          </h2>
+          <p className="mt-4 text-white/60 text-[14px] leading-relaxed max-w-2xl">
+            От разработки принципиальных схем Э3 до программирования ПЛК, сборки шкафов и интеграции в распределённую SCADA.
           </p>
         </div>
 
