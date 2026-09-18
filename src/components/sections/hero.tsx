@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ParabolicMarquee } from "@/components/ui/parabolic-marquee";
 
 interface VendorSlide {
   id: string;
@@ -283,8 +282,34 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Interactive Parabolic Lens Marquee of Real Portfolio Photos */}
-        <ParabolicMarquee items={portfolioMarquee} />
+        {/* Infinite Looping Collage Marquee of Pavel's Real Portfolio Photos — Seamless & Flush */}
+        <div className="overflow-hidden relative">
+          <div className="animate-marquee flex gap-1.5">
+            {portfolioMarquee.concat(portfolioMarquee).map((item, idx) => (
+              <a
+                key={idx}
+                href="#projects"
+                title={`${item.title} — ${item.subtitle}`}
+                className="relative shrink-0 h-28 md:h-36 w-44 md:w-56 overflow-hidden bg-carbon group select-none block"
+              >
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.05] group-hover:scale-105 group-hover:brightness-100 transition-all duration-300"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon/90 via-carbon/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-2.5 pointer-events-none">
+                  <span className="text-[11px] font-mono text-white/95 truncate leading-tight font-medium">
+                    {item.title}
+                  </span>
+                  <span className="text-[10px] font-mono text-white/65 truncate">
+                    {item.subtitle}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </motion.div>
     </section>
   );
