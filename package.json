@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate-docs": "python3 scripts/generate_docs.py"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
