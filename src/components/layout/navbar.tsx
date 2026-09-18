@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { TelegramIcon, PhoneFilledIcon } from "@/components/ui/brand-icons";
 
+import { Logo } from "@/components/ui/logo";
+
 const navLinks = [
   { label: "Услуги", href: "#services" },
   { label: "Проекты", href: "#projects" },
@@ -108,12 +110,10 @@ export function Navbar() {
             }`}
           >
             {/* Logo */}
-            <a
-              href="#"
-              className="text-graphite font-heading text-lg font-black tracking-tight"
-            >
-              ACEngine
-            </a>
+            <Logo
+              iconSize={isScrolled ? 22 : 24}
+              onClick={() => setIsOpen(false)}
+            />
 
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-1">

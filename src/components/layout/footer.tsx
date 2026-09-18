@@ -1,6 +1,7 @@
 "use client";
 
 import { openPrivacyModal } from "@/components/ui/privacy-modal";
+import { Logo } from "@/components/ui/logo";
 
 export function Footer() {
   return (
@@ -9,9 +10,7 @@ export function Footer() {
         <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="flex items-center gap-8">
-              <span className="text-white text-base font-black tracking-tight font-heading">
-                ACEngine
-              </span>
+              <Logo theme="light" iconSize={22} />
               <span className="text-white/40 text-[12px]">
                 Промышленная автоматизация
               </span>
@@ -30,7 +29,7 @@ export function Footer() {
           </div>
           <div className="mt-6 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[11px]">
             <span className="text-white/30">
-              © {new Date().getFullYear()} ACEngine
+              © {new Date().getFullYear()} АЦИнжиниринг
             </span>
             <button
               type="button"
