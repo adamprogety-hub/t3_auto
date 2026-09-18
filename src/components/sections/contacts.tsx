@@ -89,9 +89,16 @@ export function Contacts() {
             </div>
 
             {/* NDA Trust badge */}
-            <div className="mt-4 p-4 md:p-5 rounded-[10px] bg-white shadow-[0_4px_20px_-4px_rgba(19,18,16,0.04),0_1px_3px_rgba(0,0,0,0.02)] grid grid-cols-3 gap-4 items-center">
-              {/* Left 1/3 (reserved for visual element) */}
-              <div className="col-span-1 min-h-[50px] flex items-center justify-center" />
+            <div className="mt-4 p-4 md:p-5 rounded-[10px] bg-white shadow-[0_4px_20px_-4px_rgba(19,18,16,0.04),0_1px_3px_rgba(0,0,0,0.02)] grid grid-cols-3 gap-3 md:gap-4 items-center">
+              {/* Left 1/3 — 3D NDA padlock */}
+              <div className="col-span-1 flex items-center justify-center">
+                <img
+                  src="/icons/nda/nda_padlock.webp"
+                  alt="Соглашение о конфиденциальности (NDA)"
+                  className="w-full max-h-[85px] md:max-h-[96px] object-contain drop-shadow-[0_6px_16px_rgba(19,18,16,0.08)] hover:scale-105 transition-transform duration-300 select-none"
+                  loading="lazy"
+                />
+              </div>
 
               {/* Right 2/3 (text content) */}
               <div className="col-span-2">
@@ -267,7 +274,7 @@ export function Contacts() {
                     : "bg-pewter/40 cursor-not-allowed opacity-60"
                 }`}
               >
-                Отправить ТЗ на инженерный расчёт
+                Отправить на расчёт
               </button>
 
               <div className="text-[11px] text-pewter text-center">
