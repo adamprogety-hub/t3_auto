@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Paperclip, X, ShieldCheck, Check } from "lucide-react";
+import { Phone, Mail, MapPin, Paperclip, X, Check } from "lucide-react";
 import { TelegramIcon, MailFilledIcon, PhoneFilledIcon } from "@/components/ui/brand-icons";
 import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
@@ -89,11 +89,16 @@ export function Contacts() {
             </div>
 
             {/* NDA Trust badge */}
-            <div className="mt-4 p-4 rounded-[10px] bg-white shadow-[0_4px_20px_-4px_rgba(19,18,16,0.04),0_1px_3px_rgba(0,0,0,0.02)] flex items-start gap-3">
-              <ShieldCheck className="w-5 h-5 text-graphite shrink-0 mt-0.5" strokeWidth={1.5} />
-              <p className="text-[12px] text-iron leading-relaxed">
-                <strong className="text-graphite font-semibold">Соглашение о конфиденциальности (NDA):</strong> подписываем соглашение о неразглашении до передачи технологических схем и чертежей объекта.
-              </p>
+            <div className="mt-4 p-4 md:p-5 rounded-[10px] bg-white shadow-[0_4px_20px_-4px_rgba(19,18,16,0.04),0_1px_3px_rgba(0,0,0,0.02)] grid grid-cols-3 gap-4 items-center">
+              {/* Left 1/3 (reserved for visual element) */}
+              <div className="col-span-1 min-h-[50px] flex items-center justify-center" />
+
+              {/* Right 2/3 (text content) */}
+              <div className="col-span-2">
+                <p className="text-[12px] text-iron leading-relaxed">
+                  <strong className="text-graphite font-semibold">Соглашение о конфиденциальности (NDA):</strong> подписываем соглашение о неразглашении до передачи технологических схем и чертежей объекта.
+                </p>
+              </div>
             </div>
           </div>
 
