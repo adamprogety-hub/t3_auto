@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Paperclip, X, ShieldCheck, Send, Check } from "lucide-react";
+import { Phone, Mail, MapPin, Paperclip, X, ShieldCheck, Check } from "lucide-react";
+import { TelegramIcon, MailFilledIcon, PhoneFilledIcon } from "@/components/ui/brand-icons";
 import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
 export function Contacts() {
@@ -48,9 +49,9 @@ export function Contacts() {
                     href="https://t.me/acengine"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3.5 py-2 bg-surface text-graphite text-[12px] font-medium rounded-[6px] hover:bg-graphite hover:text-white transition-colors"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 bg-surface text-graphite text-[12px] font-medium rounded-[6px] hover:bg-graphite hover:text-white transition-colors group"
                   >
-                    <Send className="w-3.5 h-3.5 text-graphite" strokeWidth={1.5} />
+                    <TelegramIcon className="w-3.5 h-3.5 text-graphite group-hover:text-white transition-colors" />
                     <span>Telegram-диалог</span>
                   </a>
                 </div>

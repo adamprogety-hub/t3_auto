@@ -7,12 +7,11 @@ import {
   FileText,
   Archive,
   Download,
-  Phone,
-  Mail,
   Check,
   X,
   ArrowRight,
 } from "lucide-react";
+import { PhoneFilledIcon, MailFilledIcon } from "@/components/ui/brand-icons";
 import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
 interface MaterialItem {
@@ -135,18 +134,23 @@ export function LeadMagnet() {
   };
 
   return (
-    <section id="lead-magnet" className="py-20 md:py-28 bg-surface">
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
+    <div className="bg-surface-warm">
+      <section
+        id="lead-magnet"
+        className="py-20 md:py-28 bg-surface rounded-b-[28px] md:rounded-b-[36px] lg:rounded-b-[44px]"
+      >
+        <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-[1fr_430px] gap-0 rounded-[14px] overflow-hidden shadow-[0_20px_50px_-10px_rgba(19,18,16,0.10)] border border-divider/40 relative"
+          transition={{ duration: 0.5 }}
+          className="bg-graphite text-white rounded-[20px] md:rounded-[24px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-3 sm:p-5 md:p-6 lg:p-7 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_450px] gap-6 lg:gap-8 items-stretch relative"
         >
           {/* Left: Description & Checklist */}
-          <div className="p-8 md:p-12 xl:p-14 bg-graphite text-white flex flex-col justify-between relative overflow-hidden min-h-[460px]">
+          <div className="p-4 sm:p-6 md:p-8 xl:p-10 flex flex-col lg:justify-between relative z-20 min-h-0 lg:min-h-[460px]">
             {/* Top: Heading */}
-            <div className="relative z-20 max-w-[340px] xl:max-w-[380px]">
+            <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[400px]">
               <h2 className="text-white text-[clamp(1.35rem,2vw,2rem)] font-extrabold leading-[1.12] tracking-tight">
                 Опросные листы
                 <br />
@@ -154,16 +158,16 @@ export function LeadMagnet() {
               </h2>
             </div>
 
-            {/* Bottom: Description smaller and at bottom */}
-            <div className="relative z-20 max-w-[320px] xl:max-w-[360px] mt-auto pt-10">
+            {/* Bottom: Description right under heading on mobile, at bottom on desktop for 3D render */}
+            <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[380px] mt-4 sm:mt-5 lg:mt-auto lg:pt-10">
               <p className="text-white/60 text-[12.5px] sm:text-[13px] leading-[1.65]">
                 Рабочие шаблоны сбора исходных данных для главных энергетиков, проектировщиков и инженеров КИПиА. Помогают формализовать требования к шкафам управления и исключить ошибки в перечне сигналов I/O.
               </p>
             </div>
           </div>
 
-          {/* 3D Cabinet Render peeking out from under the right white background */}
-          <div className="absolute right-[240px] xl:right-[280px] 2xl:right-[310px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block">
+          {/* 3D Cabinet Render peeking out from behind the light cloud */}
+          <div className="absolute right-[220px] xl:right-[260px] 2xl:right-[300px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block">
             <motion.img
               initial={{ opacity: 0, x: 25 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -176,8 +180,8 @@ export function LeadMagnet() {
             />
           </div>
 
-          {/* Right: Dynamic Interactive Download Column */}
-          <div className="relative z-20 p-6 sm:p-8 md:p-10 bg-surface-warm/95 lg:bg-[#EAEEF2] flex flex-col justify-center min-h-[460px] border-t lg:border-t-0 lg:border-l border-divider/40">
+          {/* Right: Dynamic Interactive Download Column inside a floating light cloud card */}
+          <div className="relative z-20 p-5 sm:p-7 md:p-8 bg-[#EAEEF2] rounded-[16px] md:rounded-[20px] shadow-[0_16px_40px_-8px_rgba(0,0,0,0.30)] flex flex-col justify-center min-h-[460px] border border-white/40">
             {selectedItem ? (
               /* Selected State: Active Card on Top + Form + Other options switcher */
               <div className="space-y-3.5">
@@ -291,9 +295,9 @@ export function LeadMagnet() {
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-pewter">
                       {channel === "phone" ? (
-                        <Phone className="w-4 h-4" strokeWidth={1.5} />
+                        <PhoneFilledIcon className="w-4 h-4" />
                       ) : (
-                        <Mail className="w-4 h-4" strokeWidth={1.5} />
+                        <MailFilledIcon className="w-4 h-4" />
                       )}
                     </div>
                     <input
@@ -481,6 +485,7 @@ export function LeadMagnet() {
         </motion.div>
       </div>
     </section>
+  </div>
   );
 }
 

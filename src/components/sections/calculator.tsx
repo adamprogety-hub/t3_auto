@@ -239,17 +239,17 @@ export function Calculator() {
                   </div>
                 </div>
 
-                <div className="inline-flex items-center rounded-[8px] overflow-hidden divide-x divide-divider/40 bg-surface shadow-xs">
+                <div className="w-full sm:w-48 flex items-center rounded-[8px] overflow-hidden divide-x divide-divider/40 bg-surface shadow-xs">
                   <button
                     type="button"
                     onClick={() => setUnitsQty(Math.max(currentObject.minQty, unitsQty - 1))}
                     disabled={unitsQty <= currentObject.minQty}
                     aria-label="Уменьшить количество"
-                    className="!rounded-none w-12 h-11 flex items-center justify-center text-lg font-bold text-iron hover:bg-surface-warm hover:text-graphite active:bg-divider/40 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                    className="!rounded-none w-14 sm:w-12 h-11 shrink-0 flex items-center justify-center text-xl font-bold text-iron hover:bg-surface-warm hover:text-graphite active:bg-divider/40 disabled:opacity-30 disabled:pointer-events-none transition-colors"
                   >
                     −
                   </button>
-                  <div className="w-16 h-11 flex items-center justify-center bg-white select-none">
+                  <div className="flex-1 h-11 flex items-center justify-center bg-white select-none">
                     <span className="text-graphite text-xl font-extrabold font-heading">
                       {unitsQty}
                     </span>
@@ -259,7 +259,7 @@ export function Calculator() {
                     onClick={() => setUnitsQty(Math.min(currentObject.maxQty, unitsQty + 1))}
                     disabled={unitsQty >= currentObject.maxQty}
                     aria-label="Увеличить количество"
-                    className="!rounded-none w-12 h-11 flex items-center justify-center text-lg font-bold text-iron hover:bg-surface-warm hover:text-graphite active:bg-divider/40 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                    className="!rounded-none w-14 sm:w-12 h-11 shrink-0 flex items-center justify-center text-xl font-bold text-iron hover:bg-surface-warm hover:text-graphite active:bg-divider/40 disabled:opacity-30 disabled:pointer-events-none transition-colors"
                   >
                     +
                   </button>

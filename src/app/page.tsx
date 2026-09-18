@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { FloatingActions } from "@/components/layout/floating-actions";
 import { Hero } from "@/components/sections/hero";
 import { Problems } from "@/components/sections/problems";
 import { Services } from "@/components/sections/services";
@@ -28,6 +29,7 @@ export default function Home() {
         <Contacts />
       </main>
       <Footer />
+      <FloatingActions />
     </>
   );
 }

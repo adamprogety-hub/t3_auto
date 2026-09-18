@@ -112,8 +112,12 @@ function RenderStage({ service }: { service: ServiceCard }) {
 
 export function Services() {
   return (
-    <section id="services" className="py-20 md:py-28 bg-graphite text-white">
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
+    <div className="bg-surface">
+      <section
+        id="services"
+        className="py-20 md:py-28 bg-graphite text-white rounded-t-[28px] md:rounded-t-[36px] lg:rounded-t-[44px]"
+      >
+        <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
         <div className="pb-10 max-w-3xl">
           <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.6rem)] font-extrabold leading-[1.12] tracking-tight">
@@ -180,6 +184,7 @@ export function Services() {
         </div>
       </div>
     </section>
+  </div>
   );
 }
 

@@ -343,41 +343,41 @@ function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
             <img
               src={currentPhoto.src}
               alt={currentPhoto.caption}
-              className="w-full h-full object-cover object-center filter brightness-100 transition-all duration-500 ease-out group-hover:scale-105"
+              className="w-full h-full object-cover object-center filter brightness-100 transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-[0.85]"
               loading="lazy"
             />
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Industrial Dark Vignette Overlay - Only on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-carbon/95 via-carbon/65 to-carbon/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
+      {/* Soft Ambient Dimming Veil on Hover */}
+      <div className="absolute inset-0 bg-carbon/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
 
-      {/* Foreground Content - Only on Hover */}
-      <div className="absolute inset-0 p-5 md:p-6 flex flex-col justify-end text-white z-20 pointer-events-none opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
-        <div>
-          <h3 className="text-white text-lg md:text-xl font-bold tracking-tight leading-tight drop-shadow-md">
+      {/* Light Rounded Cloud with Project Description - Only on Hover */}
+      <div className="absolute inset-0 p-3 sm:p-4 md:p-5 flex flex-col justify-end z-20 pointer-events-none">
+        <div className="bg-white/95 backdrop-blur-md rounded-xl md:rounded-[14px] p-3.5 sm:p-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] text-graphite opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
+          <h3 className="text-graphite text-sm sm:text-base md:text-[17px] font-extrabold tracking-tight leading-tight font-heading">
             {project.title}
           </h3>
 
-          <div className="mt-1.5 text-[11px] font-mono text-white/70">
+          <div className="mt-1 text-[11px] font-mono text-pewter line-clamp-1">
             {project.hardware}
           </div>
 
-          <p className="mt-2 text-[12px] text-white/90 leading-snug line-clamp-2">
+          <p className="mt-1.5 text-[12px] text-iron leading-snug line-clamp-2">
             {project.details}
           </p>
 
           {project.location && (
-            <div className="mt-3 text-[11px] font-mono text-white/60">
-              {project.location}
+            <div className="mt-2 pt-2 border-t border-divider/30 flex items-center justify-between text-[11px] font-mono text-pewter">
+              <span>{project.location}</span>
+              {project.result && (
+                <span className="text-graphite font-semibold">{project.result}</span>
+              )}
             </div>
           )}
         </div>
       </div>
-
-      {/* Hover lighting sheen */}
-      <div className="absolute inset-0 bg-white/0 transition-colors duration-200 group-hover:bg-white/[0.04] z-20 pointer-events-none" />
     </motion.div>
   );
 }
@@ -438,8 +438,12 @@ export function Projects() {
   }, [lightboxState.isOpen, lightboxState.project]);
 
   return (
-    <section id="projects" className="py-20 md:py-28 bg-surface">
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
+    <div className="bg-surface-warm">
+      <section
+        id="projects"
+        className="py-20 md:py-28 bg-surface rounded-t-[28px] md:rounded-t-[36px] lg:rounded-t-[44px]"
+      >
+        <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
         <div className="max-w-3xl mx-auto pb-10 text-center">
           <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
@@ -483,7 +487,7 @@ export function Projects() {
         </div>
       </div>
 
-      {/* Brutalist Engineer Lightbox Modal */}
+      {/* Light Theme Engineer Lightbox Modal */}
       <AnimatePresence>
         {lightboxState.isOpen && lightboxState.project && (
           <motion.div
@@ -492,44 +496,14 @@ export function Projects() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={closeLightbox}
-            className="fixed inset-0 z-50 bg-carbon/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-50 bg-graphite/40 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 md:p-8"
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl bg-surface-raised border border-white/10 rounded-[10px] overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
+              className="relative w-full max-w-5xl bg-surface border border-divider/60 rounded-2xl md:rounded-[20px] overflow-hidden shadow-2xl flex flex-col max-h-[92vh] p-3 sm:p-4 md:p-5 gap-3 md:gap-4"
             >
-              {/* Modal Header */}
-              <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-carbon">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400">
-                      {lightboxState.project.type}
-                    </span>
-                    <span className="text-white/40">·</span>
-                    <span className="text-[11px] font-mono text-white/60">
-                      {lightboxState.project.location}
-                    </span>
-                  </div>
-                  <h3 className="text-white text-lg font-bold">
-                    {lightboxState.project.title}
-                  </h3>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-white/60">
-                    {lightboxState.photoIndex + 1} / {lightboxState.project.images.length}
-                  </span>
-                  <button
-                    onClick={closeLightbox}
-                    className="p-1.5 rounded-[4px] bg-white/5 hover:bg-white/15 text-white/80 hover:text-white transition-colors"
-                  >
-                    <X strokeWidth={1.5} className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Main Image Viewport with Nav Arrows */}
-              <div className="relative flex-1 min-h-[380px] md:min-h-[500px] bg-black/40 flex items-center justify-center p-4 overflow-hidden">
+              {/* Main Image Viewport (Clean, no card background) */}
+              <div className="relative flex-1 min-h-[340px] sm:min-h-[420px] md:min-h-[480px] flex items-center justify-center p-2 sm:p-4 overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={lightboxState.photoIndex}
@@ -538,58 +512,88 @@ export function Projects() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.02 }}
-                    transition={{ duration: 0.25 }}
-                    className="max-h-[65vh] w-auto max-w-full object-contain rounded-[4px] shadow-lg"
+                    transition={{ duration: 0.22 }}
+                    className="max-h-[58vh] md:max-h-[62vh] w-auto max-w-full object-contain rounded-xl shadow-md"
                   />
                 </AnimatePresence>
-
-                {/* Lightbox Nav Buttons */}
-                <button
-                  onClick={prevLightboxPhoto}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-[4px] bg-carbon/80 backdrop-blur-md border border-white/20 text-white hover:bg-carbon hover:border-white/40 transition-all active:scale-95"
-                >
-                  <ChevronLeft strokeWidth={1.5} className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={nextLightboxPhoto}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-[4px] bg-carbon/80 backdrop-blur-md border border-white/20 text-white hover:bg-carbon hover:border-white/40 transition-all active:scale-95"
-                >
-                  <ChevronRight strokeWidth={1.5} className="w-5 h-5" />
-                </button>
               </div>
 
-              {/* Modal Footer / Info & Thumbnails */}
-              <div className="px-6 py-4 bg-carbon border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <div className="text-xs text-white/90 font-mono">
+              {/* Single Unified Bottom Cloud (No border, light site shadow) */}
+              <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6 w-full">
+                {/* Left: Title & Description */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-graphite font-heading text-lg md:text-xl font-bold tracking-tight">
+                    {lightboxState.project.title}
+                  </h3>
+                  <p className="text-iron text-[13px] leading-relaxed mt-1">
                     {lightboxState.project.images[lightboxState.photoIndex].caption}
-                  </div>
-                  <div className="text-[11px] text-white/50 mt-1">
-                    Оборудование: {lightboxState.project.hardware}
-                  </div>
+                    {lightboxState.project.hardware && (
+                      <span className="text-pewter block sm:inline sm:ml-2 text-[12px]">
+                        — Оборудование: {lightboxState.project.hardware}
+                      </span>
+                    )}
+                  </p>
                 </div>
 
-                {/* Thumbnails row */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
-                  {lightboxState.project.images.map((img, idx) => (
+                {/* Right: Controls & Thumbnails */}
+                <div className="flex flex-col gap-2.5 shrink-0 items-start md:items-end w-full md:w-auto">
+                  {/* Segmented Controller + Separate Close */}
+                  <div className="flex items-center gap-2">
+                    {/* Monolithic Segmented Pill */}
+                    <div className="bg-surface rounded-[8px] p-0.5 border border-divider/50 flex items-center shadow-2xs">
+                      <button
+                        onClick={prevLightboxPhoto}
+                        aria-label="Предыдущий слайд"
+                        className="w-8 h-8 flex items-center justify-center rounded-[6px] text-graphite hover:bg-white hover:shadow-xs transition-all active:scale-95 cursor-pointer"
+                      >
+                        <ChevronLeft strokeWidth={1.5} className="w-4 h-4" />
+                      </button>
+
+                      <div className="px-2.5 text-xs font-mono font-semibold text-graphite select-none tracking-wider min-w-[42px] text-center">
+                        {lightboxState.photoIndex + 1} / {lightboxState.project.images.length}
+                      </div>
+
+                      <button
+                        onClick={nextLightboxPhoto}
+                        aria-label="Следующий слайд"
+                        className="w-8 h-8 flex items-center justify-center rounded-[6px] text-graphite hover:bg-white hover:shadow-xs transition-all active:scale-95 cursor-pointer"
+                      >
+                        <ChevronRight strokeWidth={1.5} className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Independent Close Button */}
                     <button
-                      key={idx}
-                      onClick={() =>
-                        setLightboxState((prev) => ({ ...prev, photoIndex: idx }))
-                      }
-                      className={`relative w-12 h-12 rounded-[4px] overflow-hidden border transition-all shrink-0 ${
-                        idx === lightboxState.photoIndex
-                          ? "border-emerald-400 ring-2 ring-emerald-400/30"
-                          : "border-white/20 opacity-50 hover:opacity-100"
-                      }`}
+                      onClick={closeLightbox}
+                      aria-label="Закрыть окно"
+                      className="w-9 h-9 flex items-center justify-center rounded-[8px] bg-surface hover:bg-graphite hover:text-white text-graphite border border-divider/50 transition-all hover:border-graphite active:scale-95 cursor-pointer shadow-2xs"
                     >
-                      <img
-                        src={img.src}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
+                      <X strokeWidth={1.5} className="w-4 h-4" />
                     </button>
-                  ))}
+                  </div>
+
+                  {/* Thumbnails row */}
+                  <div className="flex items-center gap-2 overflow-x-auto py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    {lightboxState.project.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() =>
+                          setLightboxState((prev) => ({ ...prev, photoIndex: idx }))
+                        }
+                        className={`relative w-11 h-11 md:w-12 md:h-12 rounded-[8px] overflow-hidden border transition-all shrink-0 cursor-pointer ${
+                          idx === lightboxState.photoIndex
+                            ? "border-graphite ring-2 ring-graphite/25 opacity-100 shadow-xs"
+                            : "border-divider/50 opacity-60 hover:opacity-100 hover:border-iron"
+                        }`}
+                      >
+                        <img
+                          src={img.src}
+                          alt={img.caption || ""}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -597,5 +601,6 @@ export function Projects() {
         )}
       </AnimatePresence>
     </section>
+  </div>
   );
 }
