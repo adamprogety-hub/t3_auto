@@ -30,18 +30,18 @@ interface MaterialItem {
 const MATERIALS: MaterialItem[] = [
   {
     id: "oprosnik",
-    title: "Опросный лист подбора ШУ",
+    title: "Опросный лист подбора\u00A0ШУ",
     shortTitle: "опросник (XLSX)",
     actionLabel: "опросный лист",
     format: "XLSX · 420 КБ",
-    desc: "Excel-таблица с расчетом I/O сигналов",
+    desc: "Excel-таблица с\u00A0расчетом сигналов\u00A0I/O",
     file: "/docs/oprosnyj-list-shu-acengine.xlsx",
     fileName: "Опросный_лист_подбора_ШУ_ACEngine.xlsx",
     icon: FileSpreadsheet,
   },
   {
     id: "checklist",
-    title: "Чек-лист аудита схем Э3",
+    title: "Чек-лист аудита схем\u00A0Э3",
     shortTitle: "чек-лист (PDF)",
     actionLabel: "чек-лист аудита",
     format: "PDF · 1.8 МБ",
@@ -52,11 +52,11 @@ const MATERIALS: MaterialItem[] = [
   },
   {
     id: "bundle",
-    title: "Скачать сразу оба материала",
+    title: "Скачать оба\u00A0материала",
     shortTitle: "оба материала (ZIP)",
     actionLabel: "оба материала сразу",
     format: "ZIP · 2.2 МБ",
-    desc: "Опросный лист + чек-лист в одном архиве",
+    desc: "Опросный лист и\u00A0чек-лист в\u00A0одном архиве",
     file: "/docs/materialy-acengine-oprosnik-i-chek-list.zip",
     fileName: "Материалы_ACEngine_опросник_и_чек-лист.zip",
     icon: Archive,
@@ -154,14 +154,14 @@ export function LeadMagnet() {
               <h2 className="text-white text-[clamp(1.35rem,2vw,2rem)] font-extrabold leading-[1.12] tracking-tight">
                 Опросные листы
                 <br />
-                и чек-лист проверки схем Э3
+                и{"\u00A0"}чек-лист проверки схем{"\u00A0"}Э3
               </h2>
             </div>
 
             {/* Bottom: Description right under heading on mobile, at bottom on desktop for 3D render */}
             <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[380px] mt-4 sm:mt-5 lg:mt-auto lg:pt-10">
               <p className="text-white/60 text-[12.5px] sm:text-[13px] leading-[1.65]">
-                Рабочие шаблоны сбора исходных данных для главных энергетиков, проектировщиков и инженеров КИПиА. Помогают формализовать требования к шкафам управления и исключить ошибки в перечне сигналов I/O.
+                Рабочие шаблоны сбора исходных данных для{"\u00A0"}главных энергетиков, проектировщиков и{"\u00A0"}инженеров КИПиА. Помогают формализовать требования к{"\u00A0"}шкафам управления и{"\u00A0"}исключить ошибки в{"\u00A0"}перечне сигналов{"\u00A0"}I/O.
               </p>
             </div>
           </div>
@@ -215,15 +215,6 @@ export function LeadMagnet() {
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
-                      <span
-                        className={`text-[11px] font-mono px-2 py-0.5 rounded-[4px] ${
-                          selectedItem.isDark
-                            ? "bg-white/15 text-white/80"
-                            : "bg-surface-warm text-pewter"
-                        }`}
-                      >
-                        {selectedItem.format}
-                      </span>
                       <button
                         type="button"
                         onClick={() => {
@@ -363,7 +354,7 @@ export function LeadMagnet() {
                       </>
                     ) : (
                       <>
-                        <Download className="w-4 h-4" strokeWidth={1.5} />
+                        <Download className="w-4 h-4" strokeWidth={2.2} />
                         <span>
                           {!isValid
                             ? "Заполните контакт для скачивания"
@@ -376,7 +367,7 @@ export function LeadMagnet() {
                   </button>
 
                   <p className="text-[10.5px] text-pewter text-center leading-tight">
-                    Прямая ссылка откроется сразу после отправки. Без спама.
+                    Прямая ссылка откроется сразу после отправки. Без{"\u00A0"}спама.
                   </p>
                 </motion.form>
 
@@ -402,9 +393,6 @@ export function LeadMagnet() {
                           </span>
                         </div>
                         <div className="flex items-center gap-2 shrink-0 ml-2">
-                          <span className="text-[10.5px] font-mono text-pewter bg-surface-warm px-1.5 py-0.5 rounded-[4px]">
-                            {item.format}
-                          </span>
                           <span className="text-[11px] text-graphite font-medium group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
                             Выбрать <ArrowRight className="w-3 h-3" strokeWidth={1.5} />
                           </span>
@@ -424,23 +412,21 @@ export function LeadMagnet() {
                         key={item.id}
                         layoutId={`card-${item.id}`}
                         onClick={() => setSelectedId(item.id)}
-                        className="p-4 sm:px-5 sm:py-4 bg-graphite hover:bg-gunmetal text-white rounded-[10px] shadow-[0_4px_20px_-2px_rgba(19,18,16,0.18)] hover:-translate-y-0.5 active:scale-[0.99] transition-all duration-200 flex items-center justify-between group cursor-pointer border border-white/10"
+                        className="p-5 bg-graphite hover:bg-gunmetal text-white rounded-[10px] shadow-[0_6px_24px_-4px_rgba(19,18,16,0.22)] hover:shadow-[0_12px_32px_-4px_rgba(19,18,16,0.3)] hover:-translate-y-0.5 transition-all duration-200 group cursor-pointer border border-white/10"
                       >
                         <div>
-                          <div className="text-[13.5px] font-bold text-white group-hover:text-white transition-colors leading-snug">
+                          <h4 className="text-white text-[14px] font-bold group-hover:text-white transition-colors">
                             {item.title}
-                          </div>
-                          <div className="text-[11.5px] text-white/60 mt-0.5">
+                          </h4>
+                          <span className="text-white/60 text-[12px] block mt-0.5">
                             {item.desc}
-                          </div>
+                          </span>
                         </div>
-                        <div className="flex items-center gap-2.5 shrink-0 ml-2">
-                          <span className="text-[11px] font-mono text-white/80 bg-white/15 px-2 py-0.5 rounded-[4px]">
-                            {item.format}
+                        <div className="mt-3.5 pt-3 border-t border-white/15 flex items-center justify-between text-[12.5px]">
+                          <span className="text-white font-semibold group-hover:text-white transition-colors">
+                            Нажмите, чтобы скачать
                           </span>
-                          <span className="text-[12px] text-white font-medium group-hover:translate-y-0.5 transition-transform flex items-center gap-1">
-                            ↓ Скачать
-                          </span>
+                          <Download className="w-4 h-4 text-white group-hover:translate-y-0.5 transition-all" strokeWidth={2.2} />
                         </div>
                       </motion.div>
                     );
@@ -453,31 +439,26 @@ export function LeadMagnet() {
                       onClick={() => setSelectedId(item.id)}
                       className="p-5 bg-white rounded-[10px] shadow-[0_4px_20px_-4px_rgba(19,18,16,0.06),0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_28px_-4px_rgba(19,18,16,0.10)] hover:-translate-y-0.5 transition-all duration-200 group cursor-pointer border border-divider/30"
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <h4 className="text-graphite text-[14px] font-bold group-hover:text-iron transition-colors">
-                            {item.title}
-                          </h4>
-                          <span className="text-pewter text-[12px] block mt-0.5">
-                            {item.desc}
-                          </span>
-                        </div>
-                        <span className="text-[11px] font-mono text-pewter shrink-0 px-2 py-0.5 bg-surface-warm rounded-[4px]">
-                          {item.format}
+                      <div>
+                        <h4 className="text-graphite text-[14px] font-bold group-hover:text-iron transition-colors">
+                          {item.title}
+                        </h4>
+                        <span className="text-pewter text-[12px] block mt-0.5">
+                          {item.desc}
                         </span>
                       </div>
-                      <div className="mt-3.5 pt-3 border-t border-divider/50 flex items-center justify-between text-[12px]">
-                        <span className="text-iron font-medium">Нажмите, чтобы скачать</span>
-                        <span className="text-graphite font-semibold group-hover:underline flex items-center gap-1">
-                          ↓ Скачать
+                      <div className="mt-3.5 pt-3 border-t border-divider/50 flex items-center justify-between text-[12.5px]">
+                        <span className="text-graphite font-semibold group-hover:text-black transition-colors">
+                          Нажмите, чтобы скачать
                         </span>
+                        <Download className="w-4 h-4 text-graphite group-hover:text-black group-hover:translate-y-0.5 transition-all" strokeWidth={2.2} />
                       </div>
                     </motion.div>
                   );
                 })}
 
                 <p className="text-pewter text-[11px] text-center mt-1 leading-relaxed">
-                  Заполненный опросный лист можно прикрепить к форме заявки ниже для точного расчета сметы.
+                  Заполненный опросный лист можно прикрепить к{"\u00A0"}форме заявки ниже для{"\u00A0"}точного расчета сметы.
                 </p>
               </div>
             )}

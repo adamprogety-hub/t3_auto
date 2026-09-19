@@ -139,7 +139,7 @@ export function Hero() {
             <br />
             шкафов управления
             <br />
-            и SCADA-диспетчеризация
+            и{"\u00A0"}SCADA-диспетчеризация
           </motion.h1>
 
           <motion.div
@@ -149,11 +149,11 @@ export function Hero() {
             className="mt-8 max-w-2xl"
           >
             <p className="text-iron text-[15px] leading-[1.75]">
-              Проектируем и собираем шкафы автоматики на собственном участке в Москве,
-              программируем ПЛК и выезжаем на пусконаладку по всей России. Разрабатываем
-              алгоритмы для котельных, ИТП, ВЗУ, очистных сооружений и технологических линий
-              на доступной в РФ компонентной базе (ОВЕН, Segnetics, Weintek, MasterSCADA, Veda MC, КЭАЗ)
-              по ГОСТ 21.408 и нормам Ростехнадзора.
+              Проектируем и{"\u00A0"}собираем шкафы автоматики на{"\u00A0"}собственном участке в{"\u00A0"}Москве,
+              программируем ПЛК и{"\u00A0"}выезжаем на{"\u00A0"}пусконаладку по{"\u00A0"}всей{"\u00A0"}России. Разрабатываем
+              алгоритмы для{"\u00A0"}котельных, ИТП, ВЗУ, очистных сооружений и{"\u00A0"}технологических линий
+              на{"\u00A0"}доступной в{"\u00A0"}РФ компонентной базе (ОВЕН, Segnetics, Weintek, MasterSCADA, Veda MC, КЭАЗ)
+              по{"\u00A0"}ГОСТ{"\u00A0"}21.408 и{"\u00A0"}нормам Ростехнадзора.
             </p>
           </motion.div>
 
@@ -187,7 +187,7 @@ export function Hero() {
             {/* Ticker Header */}
             <div className="flex items-center justify-between gap-4 mb-2">
               <span className="text-pewter text-[11px] font-medium tracking-wide">
-                Элементная база со стабильным складским наличием в РФ:
+                Элементная база со{"\u00A0"}стабильным складским наличием в{"\u00A0"}РФ:
               </span>
               <div className="flex items-center gap-1.5">
                 {vendorSlides.map((slide, i) => (
@@ -272,11 +272,11 @@ export function Hero() {
         <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
           <div className="py-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <span className="text-iron text-[13px]">
-              Котельные · ИТП / ЦТП · ВЗУ · Очистные сооружения · Технологические линии
+              Котельные · ИТП{"\u00A0"}/ ЦТП · ВЗУ · Очистные сооружения · Технологические линии
             </span>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-[12px]">
               <span className="text-graphite font-medium">
-                Сборочный участок: Москва · ПНР по всей России
+                Сборочный участок: Москва · ПНР по{"\u00A0"}всей{"\u00A0"}России
               </span>
             </div>
           </div>

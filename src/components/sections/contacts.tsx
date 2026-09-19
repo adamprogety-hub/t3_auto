@@ -22,7 +22,7 @@ export function Contacts() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
-            Обсудить проект или отправить ТЗ
+            Обсудить проект или{"\u00A0"}отправить ТЗ
           </h2>
         </div>
 
@@ -32,7 +32,7 @@ export function Contacts() {
             <div className="rounded-[14px] bg-white p-6 md:p-8 space-y-6 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
               <div>
                 <span className="text-pewter text-[11px] font-medium uppercase tracking-wider block">
-                  Телефон и мессенджеры
+                  Телефон и{"\u00A0"}мессенджеры
                 </span>
                 <a
                   href="tel:+79001234567"
@@ -59,7 +59,7 @@ export function Contacts() {
 
               <div className="pt-6 border-t border-divider">
                 <span className="text-pewter text-[11px] font-medium uppercase tracking-wider block">
-                  Почта для документации
+                  Почта для{"\u00A0"}документации
                 </span>
                 <a
                   href="mailto:info@acengine.ru"
@@ -68,22 +68,22 @@ export function Contacts() {
                   info@acengine.ru
                 </a>
                 <span className="text-pewter text-[12px] block mt-0.5">
-                  Для проектных спецификаций, P&ID схем и ТЗ
+                  Для проектных спецификаций, P&ID схем и{"\u00A0"}ТЗ
                 </span>
               </div>
 
               <div className="pt-6 border-t border-divider">
                 <span className="text-pewter text-[11px] font-medium uppercase tracking-wider block">
-                  Производство и логистика
+                  Производство и{"\u00A0"}логистика
                 </span>
                 <div className="mt-2 text-graphite text-[14px] font-semibold">
-                  Сборочный участок и лаборатория: г. Москва
+                  Сборочный участок и{"\u00A0"}лаборатория: г.{"\u00A0"}Москва
                 </div>
                 <div className="text-iron text-[13px] mt-1 font-medium">
-                  Выезды на шефмонтаж и ПНР — по всей России
+                  Выезды на{"\u00A0"}шефмонтаж и{"\u00A0"}ПНР{"\u00A0"}— по{"\u00A0"}всей{"\u00A0"}России
                 </div>
                 <span className="text-pewter text-[12px] block mt-1.5 leading-relaxed">
-                  Доставка готовых шкафов по РФ транспортными компаниями (Деловые Линии, ПЭК) в жесткой защитной упаковке со 100% страховкой груза.
+                  Доставка готовых шкафов по{"\u00A0"}РФ транспортными компаниями (Деловые Линии, ПЭК) в{"\u00A0"}жесткой защитной упаковке со{"\u00A0"}100% страховкой груза.
                 </span>
               </div>
             </div>
@@ -103,7 +103,7 @@ export function Contacts() {
               {/* Right 2/3 (text content) */}
               <div className="col-span-2">
                 <p className="text-[12px] text-iron leading-relaxed">
-                  <strong className="text-graphite font-semibold">Соглашение о конфиденциальности (NDA):</strong> подписываем соглашение о неразглашении до передачи технологических схем и чертежей объекта.
+                  <strong className="text-graphite font-semibold">Соглашение о{"\u00A0"}конфиденциальности (NDA):</strong> подписываем соглашение о{"\u00A0"}неразглашении до{"\u00A0"}передачи технологических схем и{"\u00A0"}чертежей объекта.
                 </p>
               </div>
             </div>
@@ -183,7 +183,7 @@ export function Contacts() {
               {/* File Attachment Dropzone */}
               <div>
                 <label className="text-pewter text-[12px] font-medium block mb-2">
-                  Прикрепить ТЗ, схему или опросный лист
+                  Прикрепить ТЗ, схему или{"\u00A0"}опросный лист
                 </label>
                 {attachedFile ? (
                   <div className="flex items-center justify-between p-3.5 bg-surface-warm border border-divider rounded-[6px]">
@@ -213,10 +213,10 @@ export function Contacts() {
                       </div>
                       <div>
                         <span className="text-[13px] font-semibold text-graphite block">
-                          Нажмите для выбора файла или перетащите сюда
+                          Нажмите для{"\u00A0"}выбора файла или{"\u00A0"}перетащите сюда
                         </span>
                         <span className="text-[11px] text-pewter block">
-                          PDF, DWG, XLSX, DOCX, ZIP до 25 МБ
+                          PDF, DWG, XLSX, DOCX, ZIP до{"\u00A0"}25{"\u00A0"}МБ
                         </span>
                       </div>
                     </div>
@@ -250,7 +250,7 @@ export function Contacts() {
                   />
                 </div>
                 <span className="text-[12px] text-iron leading-[1.45]">
-                  Согласен на обработку персональных данных в соответствии с{" "}
+                  Согласен на{"\u00A0"}обработку персональных данных в{"\u00A0"}соответствии с{" "}
                   <button
                     type="button"
                     onClick={(e) => {
@@ -278,7 +278,7 @@ export function Contacts() {
               </button>
 
               <div className="text-[11px] text-pewter text-center">
-                <span>Ответим с предварительной сметой и вопросами по алгоритмам в течение 1 рабочего дня</span>
+                <span>Ответим с{"\u00A0"}предварительной сметой и{"\u00A0"}вопросами по{"\u00A0"}алгоритмам в{"\u00A0"}течение 1{"\u00A0"}рабочего дня</span>
               </div>
             </form>
           </motion.div>

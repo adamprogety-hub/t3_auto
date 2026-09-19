@@ -65,7 +65,7 @@ export function CookieConsent() {
             </div>
 
             <p className="mt-2 text-iron text-[12.5px] leading-relaxed">
-              Мы используем файлы cookie для корректной работы калькулятора, сохранения параметров конфигуратора и аналитики. Подробнее в{" "}
+              Мы{"\u00A0"}используем файлы cookie для{"\u00A0"}корректной работы калькулятора, сохранения параметров конфигуратора и{"\u00A0"}аналитики. Подробнее в{" "}
               <button
                 type="button"
                 onClick={openPrivacyModal}

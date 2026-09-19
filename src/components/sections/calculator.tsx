@@ -33,11 +33,11 @@ const objectTypes: ObjectTypeConfig[] = [
     basePricePerUnit: 140000,
     icon: "/icons/objects/01_boiler.webp",
     subsystems: [
-      { id: "cascade", label: "Каскадное регулирование котлов и горелок", price: 75000, default: true },
-      { id: "pumps_fc", label: "Насосные группы с частотными приводами (ПЧ)", price: 90000, default: true },
-      { id: "weather_comp", label: "Погодозависимые контуры отопления и ГВС", price: 65000, default: true },
-      { id: "hvo_refill", label: "ХВО водоподготовка и автоматическая подпитка", price: 55000, default: false },
-      { id: "gas_safety", label: "Газовая безопасность (СО/CH4) и клапан ПАЗ", price: 70000, default: true },
+      { id: "cascade", label: "Каскадное регулирование котлов и\u00A0горелок", price: 75000, default: true },
+      { id: "pumps_fc", label: "Насосные группы с\u00A0частотными приводами (ПЧ)", price: 90000, default: true },
+      { id: "weather_comp", label: "Погодозависимые контуры отопления и\u00A0ГВС", price: 65000, default: true },
+      { id: "hvo_refill", label: "ХВО водоподготовка и\u00A0автоматическая подпитка", price: 55000, default: false },
+      { id: "gas_safety", label: "Газовая безопасность (СО/CH4) и\u00A0клапан ПАЗ", price: 70000, default: true },
     ],
   },
   {
@@ -51,9 +51,9 @@ const objectTypes: ObjectTypeConfig[] = [
     icon: "/icons/objects/02_itp.webp",
     subsystems: [
       { id: "weather_comp", label: "Погодозависимое регулирование отопления", price: 50000, default: true },
-      { id: "gvs_circ", label: "Контур ГВС с рециркуляцией и клапаном", price: 45000, default: true },
-      { id: "pumps_mixing", label: "Насосы смешения с частотным управлением", price: 60000, default: true },
-      { id: "heat_meter", label: "Интеграция с тепловычислителем (учёт тепла)", price: 35000, default: false },
+      { id: "gvs_circ", label: "Контур ГВС с\u00A0рециркуляцией и\u00A0клапаном", price: 45000, default: true },
+      { id: "pumps_mixing", label: "Насосы смешения с\u00A0частотным управлением", price: 60000, default: true },
+      { id: "heat_meter", label: "Интеграция с\u00A0тепловычислителем (учёт тепла)", price: 35000, default: false },
     ],
   },
   {
@@ -66,10 +66,10 @@ const objectTypes: ObjectTypeConfig[] = [
     basePricePerUnit: 95000,
     icon: "/icons/objects/03_vzu.webp",
     subsystems: [
-      { id: "pump_rotation", label: "Ротация насосов по наработке моточасов", price: 50000, default: true },
-      { id: "pid_pressure", label: "Поддержание давления в сети (ПИД-регулятор)", price: 65000, default: true },
-      { id: "filter_backwash", label: "Автопромывка фильтров по перепаду давления", price: 55000, default: false },
-      { id: "tank_levels", label: "Контроль уровней в резервуарах (РЧВ / баках)", price: 45000, default: true },
+      { id: "pump_rotation", label: "Ротация насосов по\u00A0наработке моточасов", price: 50000, default: true },
+      { id: "pid_pressure", label: "Поддержание давления в\u00A0сети (ПИД-регулятор)", price: 65000, default: true },
+      { id: "filter_backwash", label: "Автопромывка фильтров по\u00A0перепаду давления", price: 55000, default: false },
+      { id: "tank_levels", label: "Контроль уровней в\u00A0резервуарах (РЧВ\u00A0/\u00A0баках)", price: 45000, default: true },
     ],
   },
   {
@@ -82,10 +82,10 @@ const objectTypes: ObjectTypeConfig[] = [
     basePricePerUnit: 130000,
     icon: "/icons/objects/04_kns_blower.webp",
     subsystems: [
-      { id: "kns_pumps", label: "Автоматическая ротация и пуск насосов КНС", price: 60000, default: true },
-      { id: "aeration", label: "Регулирование аэрации и воздуходувок (O2)", price: 70000, default: false },
-      { id: "dosing", label: "Дозирование реагентов и коагулянтов", price: 55000, default: false },
-      { id: "flooding_alarm", label: "Аварийные уровни перелива и дренажа", price: 40000, default: true },
+      { id: "kns_pumps", label: "Автоматическая ротация и\u00A0пуск насосов КНС", price: 60000, default: true },
+      { id: "aeration", label: "Регулирование аэрации и\u00A0воздуходувок (O2)", price: 70000, default: false },
+      { id: "dosing", label: "Дозирование реагентов и\u00A0коагулянтов", price: 55000, default: false },
+      { id: "flooding_alarm", label: "Аварийные уровни перелива и\u00A0дренажа", price: 40000, default: true },
     ],
   },
   {
@@ -100,38 +100,38 @@ const objectTypes: ObjectTypeConfig[] = [
     subsystems: [
       { id: "speed_sync", label: "Синхронизация скоростей приводов (ПЧ)", price: 85000, default: true },
       { id: "pid_temp", label: "Многозонный нагрев/охлаждение (ПИД)", price: 75000, default: true },
-      { id: "safety_interlock", label: "Блокировки безопасности и аварийный стоп", price: 60000, default: true },
-      { id: "recipe_mgmt", label: "Рецептурное управление и дозирование", price: 70000, default: false },
+      { id: "safety_interlock", label: "Блокировки безопасности и\u00A0аварийный стоп", price: 60000, default: true },
+      { id: "recipe_mgmt", label: "Рецептурное управление и\u00A0дозирование", price: 70000, default: false },
     ],
   },
 ];
 
 const scopeOptions = [
-  { id: "docs", label: "Проектирование схем Э3 в EPLAN и кабельный журнал (ГОСТ)", price: 55000, default: true },
-  { id: "cabinet", label: "Сборка шкафа (корпус DKC / КЭАЗ OptiMat) и стенд 48ч", price: 95000, default: true },
-  { id: "plc_code", label: "Разработка алгоритмов ПЛК (ОВЕН/Segnetics) + Weintek HMI", price: 85000, default: true },
-  { id: "pnr", label: "Пусконаладочные работы (ПНР) и шефмонтаж по всей России", price: 75000, default: false },
+  { id: "docs", label: "Проектирование схем\u00A0Э3 в\u00A0EPLAN и\u00A0кабельный журнал (ГОСТ)", price: 55000, default: true },
+  { id: "cabinet", label: "Сборка шкафа (корпус DKC\u00A0/\u00A0КЭАЗ OptiMat) и\u00A0стенд 48ч", price: 95000, default: true },
+  { id: "plc_code", label: "Разработка алгоритмов ПЛК (ОВЕН/Segnetics) + Weintek\u00A0HMI", price: 85000, default: true },
+  { id: "pnr", label: "Пусконаладочные работы (ПНР) и\u00A0шефмонтаж по\u00A0всей\u00A0России", price: 75000, default: false },
 ];
 
 const dispatchLevels = [
   {
     id: "none",
     title: "Локальный контроль",
-    desc: "Сенсорная панель оператора (Weintek cMT / ОВЕН) на двери шкафа без выхода во внешнюю сеть",
+    desc: "Сенсорная панель оператора (Weintek cMT\u00A0/\u00A0ОВЕН) на\u00A0двери шкафа без\u00A0выхода во\u00A0внешнюю сеть",
     price: 0,
     badge: "HMI Weintek 7-10″",
   },
   {
     id: "alerts",
     title: "Телеметрия + Telegram-бот",
-    desc: "ПЛК + GSM-модем (iRZ/ОВЕН), аварийные оповещения дежурному персоналу в Telegram и SMS",
+    desc: "ПЛК + GSM-модем (iRZ/ОВЕН), аварийные оповещения дежурному персоналу в\u00A0Telegram и\u00A0SMS",
     price: 65000,
     badge: "GSM / Telegram",
   },
   {
     id: "scada",
     title: "Web-SCADA система",
-    desc: "Мнемосхемы в MasterSCADA 4D / Simple-Scada, архивация трендов, удаленное управление с ПК и смартфона",
+    desc: "Мнемосхемы в\u00A0MasterSCADA 4D\u00A0/\u00A0Simple-Scada, архивация трендов, удаленное управление с\u00A0ПК и\u00A0смартфона",
     price: 145000,
     badge: "MasterSCADA / Web",
   },
@@ -462,7 +462,7 @@ export function Calculator() {
                   <span className="text-xl font-bold text-pewter ml-1">тыс. ₽</span>
                 </div>
                 <div className="mt-1 text-pewter text-[12px]">
-                  {total.toLocaleString("ru-RU")} ₽ без учёта монтажных материалов
+                  {total.toLocaleString("ru-RU")}{"\u00A0"}₽ без{"\u00A0"}учёта монтажных материалов
                 </div>
 
                 <a
@@ -473,7 +473,7 @@ export function Calculator() {
                 </a>
 
                 <p className="mt-3 text-pewter text-[11px] leading-normal text-center">
-                  Точный расчёт после изучения технологической схемы и ТЗ
+                  Точный расчёт после изучения технологической схемы и{"\u00A0"}ТЗ
                 </p>
               </div>
             </div>
