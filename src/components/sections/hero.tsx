@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, ArrowDown, Search } from "lucide-react";
+import { ArrowUp, ArrowDown, Search, Loader2 } from "lucide-react";
 
 interface VendorSlide {
   id: string;
@@ -77,6 +77,80 @@ const portfolioMarquee = [
   { src: "/portfolio/agro/agro_3.webp", title: "Шкаф управления нарезкой", subtitle: "Синхронизация 6 приводов" },
   { src: "/portfolio/retrofit/retrofit_3.webp", title: "Шкаф фрикулера", subtitle: "Тверь (Модернизация)" },
 ];
+
+function MarqueePhotoItem({
+  item,
+  isItemActive,
+}: {
+  item: typeof portfolioMarquee[0];
+  isItemActive: boolean;
+}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [item.src]);
+
+  return (
+    <a
+      href="#projects"
+      title={`${item.title} — ${item.subtitle}`}
+      className="relative shrink-0 h-28 md:h-36 w-44 md:w-56 overflow-hidden bg-surface-warm group select-none block"
+    >
+      {/* Neat circular preloader on light background */}
+      {!isLoaded && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-surface-warm/95 transition-opacity duration-300">
+          <div className="w-8 h-8 rounded-full bg-white shadow-2xs border border-divider/25 flex items-center justify-center">
+            <Loader2 className="w-4 h-4 text-graphite/70 animate-spin" strokeWidth={1.5} />
+          </div>
+        </div>
+      )}
+
+      <img
+        ref={imgRef}
+        src={item.src}
+        alt={item.title}
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-full object-cover filter transition-all duration-300 ease-out ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        } ${
+          isItemActive
+            ? "brightness-110 scale-105"
+            : "brightness-[0.96] contrast-[1.04] group-hover:scale-105 group-hover:brightness-110"
+        }`}
+        loading="lazy"
+      />
+
+      {/* Lightened Frosted Overlay with Centered Loupe Badge on Hover & Mobile Center Spotlight */}
+      <div
+        className={`absolute inset-0 bg-white/55 backdrop-blur-[2px] transition-opacity duration-200 ease-out flex flex-col items-center justify-center p-3 pointer-events-none z-20 ${
+          isItemActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
+      >
+        <div
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-[8px] bg-graphite text-white shadow-lg border border-white/20 transition-transform duration-200 ease-out ${
+            isItemActive
+              ? "translate-y-0"
+              : "transform translate-y-1 group-hover:translate-y-0"
+          }`}
+        >
+          <Search strokeWidth={1.5} className="w-3.5 h-3.5 text-white shrink-0" />
+          <span className="text-[11px] font-medium tracking-tight whitespace-nowrap">
+            Смотреть кейсы
+          </span>
+        </div>
+
+        {/* Subtle technical caption at bottom */}
+        <span className="absolute bottom-2 left-2 right-2 text-[10px] font-mono text-graphite/75 text-center truncate font-medium">
+          {item.title}
+        </span>
+      </div>
+    </a>
+  );
+}
 
 export function Hero() {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -388,48 +462,11 @@ export function Hero() {
               const isItemActive = centerMarqueeIndex === idx;
 
               return (
-                <a
+                <MarqueePhotoItem
                   key={idx}
-                  href="#projects"
-                  title={`${item.title} — ${item.subtitle}`}
-                  className="relative shrink-0 h-28 md:h-36 w-44 md:w-56 overflow-hidden bg-carbon group select-none block"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className={`w-full h-full object-cover filter transition-all duration-200 ease-out ${
-                      isItemActive
-                        ? "brightness-110 scale-105"
-                        : "brightness-[0.96] contrast-[1.04] group-hover:scale-105 group-hover:brightness-110"
-                    }`}
-                    loading="lazy"
-                  />
-
-                  {/* Lightened Frosted Overlay with Centered Loupe Badge on Hover & Mobile Center Spotlight */}
-                  <div
-                    className={`absolute inset-0 bg-white/55 backdrop-blur-[2px] transition-opacity duration-200 ease-out flex flex-col items-center justify-center p-3 pointer-events-none ${
-                      isItemActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                    }`}
-                  >
-                    <div
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-[8px] bg-graphite text-white shadow-lg border border-white/20 transition-transform duration-200 ease-out ${
-                        isItemActive
-                          ? "translate-y-0"
-                          : "transform translate-y-1 group-hover:translate-y-0"
-                      }`}
-                    >
-                      <Search strokeWidth={1.5} className="w-3.5 h-3.5 text-white shrink-0" />
-                      <span className="text-[11px] font-medium tracking-tight whitespace-nowrap">
-                        Смотреть кейсы
-                      </span>
-                    </div>
-
-                    {/* Subtle technical caption at bottom */}
-                    <span className="absolute bottom-2 left-2 right-2 text-[10px] font-mono text-graphite/75 text-center truncate font-medium">
-                      {item.title}
-                    </span>
-                  </div>
-                </a>
+                  item={item}
+                  isItemActive={isItemActive}
+                />
               );
             })}
           </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X, BookOpen } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, BookOpen, Loader2 } from "lucide-react";
 
 interface ProjectItem {
   id: string;
@@ -264,6 +264,98 @@ function GraphiteLiveTile({ id, size, tileIndex }: GraphiteLiveTileProps) {
   );
 }
 
+function ProjectCardImage({
+  src,
+  caption,
+  isCardActive,
+}: {
+  src: string;
+  caption: string;
+  isCardActive: boolean;
+}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true);
+    } else {
+      setIsLoaded(false);
+    }
+  }, [src]);
+
+  return (
+    <div className="relative w-full h-full bg-surface-warm overflow-hidden">
+      {/* Round circular preloader on light background */}
+      {!isLoaded && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-surface-warm/95 transition-opacity duration-300">
+          <div className="w-8 h-8 rounded-full bg-white shadow-2xs border border-divider/25 flex items-center justify-center">
+            <Loader2 className="w-4 h-4 text-graphite/70 animate-spin" strokeWidth={1.5} />
+          </div>
+        </div>
+      )}
+
+      <img
+        ref={imgRef}
+        src={src}
+        alt={caption}
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-full object-cover object-center filter transition-all duration-300 ease-out ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        } ${
+          isCardActive
+            ? "scale-105 brightness-110"
+            : "brightness-100 group-hover:scale-105 group-hover:brightness-110"
+        }`}
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
+function LightboxPhoto({
+  src,
+  caption,
+}: {
+  src: string;
+  caption: string;
+}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true);
+    } else {
+      setIsLoaded(false);
+    }
+  }, [src]);
+
+  return (
+    <div className="relative flex items-center justify-center w-full h-full">
+      {!isLoaded && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-white shadow-md border border-divider/30 flex items-center justify-center">
+            <Loader2 className="w-5 h-5 text-graphite/70 animate-spin" strokeWidth={1.5} />
+          </div>
+        </div>
+      )}
+
+      <motion.img
+        ref={imgRef}
+        src={src}
+        alt={caption}
+        onLoad={() => setIsLoaded(true)}
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: isLoaded ? 1 : 0, scale: 1 }}
+        exit={{ opacity: 0, scale: 1.02 }}
+        transition={{ duration: 0.22 }}
+        className="max-h-[58vh] md:max-h-[62vh] w-auto max-w-full object-contain rounded-xl shadow-md"
+      />
+    </div>
+  );
+}
+
 interface LiveTileProps {
   project: ProjectItem;
   tileIndex: number;
@@ -344,15 +436,10 @@ function LiveTile({ project, tileIndex, activeMobileId, onOpenLightbox }: LiveTi
             }}
             className="absolute inset-0 w-full h-full"
           >
-            <img
+            <ProjectCardImage
               src={currentPhoto.src}
-              alt={currentPhoto.caption}
-              className={`w-full h-full object-cover object-center filter transition-all duration-200 ease-out ${
-                isCardActive
-                  ? "scale-105 brightness-110"
-                  : "brightness-100 group-hover:scale-105 group-hover:brightness-110"
-              }`}
-              loading="lazy"
+              caption={currentPhoto.caption}
+              isCardActive={isCardActive}
             />
           </motion.div>
         </AnimatePresence>
@@ -563,15 +650,10 @@ export function Projects() {
               {/* Main Image Viewport (Clean, no card background) */}
               <div className="relative flex-1 min-h-[340px] sm:min-h-[420px] md:min-h-[480px] flex items-center justify-center p-2 sm:p-4 overflow-hidden">
                 <AnimatePresence mode="wait">
-                  <motion.img
+                  <LightboxPhoto
                     key={lightboxState.photoIndex}
                     src={lightboxState.project.images[lightboxState.photoIndex].src}
-                    alt={lightboxState.project.images[lightboxState.photoIndex].caption}
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.02 }}
-                    transition={{ duration: 0.22 }}
-                    className="max-h-[58vh] md:max-h-[62vh] w-auto max-w-full object-contain rounded-xl shadow-md"
+                    caption={lightboxState.project.images[lightboxState.photoIndex].caption}
                   />
                 </AnimatePresence>
               </div>
