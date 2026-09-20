@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface ProblemItem {
   id: string;
@@ -252,6 +253,41 @@ export function Problems() {
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0 bg-graphite/20 backdrop-blur-[0.5px] pointer-events-none z-30"
                 />
+
+                {/* Corner Navigation Arrows in Rectangular Rounded Outline */}
+                <div className="absolute top-4 left-4 right-4 md:top-5 md:left-5 md:right-5 z-40 flex items-center justify-between pointer-events-none">
+                  {/* Prev Button (Top-Left) */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prev();
+                    }}
+                    aria-label="Предыдущий слайд"
+                    title="Предыдущий слайд"
+                    className={`group/nav-btn w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-[8px] md:rounded-[9px] border border-divider/45 bg-white/95 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 backdrop-blur-xs transition-all duration-200 shadow-[0_2px_8px_rgba(19,18,16,0.04)] hover:shadow-sm active:scale-95 cursor-pointer ${
+                      isCenter ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-40"
+                    }`}
+                  >
+                    <ArrowLeft strokeWidth={1.5} className="w-4 h-4 transition-transform duration-200 group-hover/nav-btn:-translate-x-0.5" />
+                  </button>
+
+                  {/* Next Button (Top-Right) */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      next();
+                    }}
+                    aria-label="Следующий слайд"
+                    title="Следующий слайд"
+                    className={`group/nav-btn w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-[8px] md:rounded-[9px] border border-divider/45 bg-white/95 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 backdrop-blur-xs transition-all duration-200 shadow-[0_2px_8px_rgba(19,18,16,0.04)] hover:shadow-sm active:scale-95 cursor-pointer ${
+                      isCenter ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-40"
+                    }`}
+                  >
+                    <ArrowRight strokeWidth={1.5} className="w-4 h-4 transition-transform duration-200 group-hover/nav-btn:translate-x-0.5" />
+                  </button>
+                </div>
 
                 {/* Upper Half: 3D Isometric Icon */}
                 <div className="relative z-10 w-full flex-1 flex items-center justify-center min-h-0 mb-7 md:mb-8">

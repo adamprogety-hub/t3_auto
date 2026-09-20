@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, BookOpen } from "lucide-react";
 
 interface ProjectItem {
   id: string;
@@ -267,10 +267,11 @@ function GraphiteLiveTile({ id, size, tileIndex }: GraphiteLiveTileProps) {
 interface LiveTileProps {
   project: ProjectItem;
   tileIndex: number;
+  activeMobileId: string | null;
   onOpenLightbox: (project: ProjectItem, photoIndex: number) => void;
 }
 
-function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
+function LiveTile({ project, tileIndex, activeMobileId, onOpenLightbox }: LiveTileProps) {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [flipDirection, setFlipDirection] = useState<"up" | "down">("down");
@@ -278,6 +279,8 @@ function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
 
   const images = project.images;
   const currentPhoto = images[photoIndex];
+  const isCentered = activeMobileId === project.id;
+  const isCardActive = isHovered || isCentered;
 
   // Windows Phone Live Tile staggered asynchronous cycle
   useEffect(() => {
@@ -288,7 +291,7 @@ function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
 
     const scheduleNextFlip = (delayMs: number) => {
       timerRef.current = setTimeout(() => {
-        if (!isHovered) {
+        if (!isHovered && !isCentered) {
           setFlipDirection(Math.random() > 0.5 ? "down" : "up");
           setPhotoIndex((prev) => (prev + 1) % images.length);
         }
@@ -303,7 +306,7 @@ function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [images.length, tileIndex, isHovered]);
+  }, [images.length, tileIndex, isHovered, isCentered]);
 
   // Turnstile 3D rotation parameters
   const isUp = flipDirection === "up";
@@ -312,6 +315,7 @@ function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
 
   return (
     <motion.div
+      data-tile-id={project.id}
       initial={{ opacity: 0, scale: 0.99 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-20px" }}
@@ -343,38 +347,45 @@ function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
             <img
               src={currentPhoto.src}
               alt={currentPhoto.caption}
-              className="w-full h-full object-cover object-center filter brightness-100 transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-[0.85]"
+              className={`w-full h-full object-cover object-center filter transition-all duration-200 ease-out ${
+                isCardActive
+                  ? "scale-105 brightness-110"
+                  : "brightness-100 group-hover:scale-105 group-hover:brightness-110"
+              }`}
               loading="lazy"
             />
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Soft Ambient Dimming Veil on Hover */}
-      <div className="absolute inset-0 bg-carbon/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
+      {/* Lightened Frosted Overlay with Centered Book Badge on Hover & Mobile Center Scroll */}
+      <div
+        className={`absolute inset-0 bg-white/55 backdrop-blur-[2px] transition-opacity duration-200 ease-out flex flex-col items-center justify-center p-3 pointer-events-none z-20 ${
+          isCardActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
+      >
+        <div
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-[8px] bg-graphite text-white shadow-xl border border-white/20 transition-transform duration-200 ease-out ${
+            isCardActive
+              ? "translate-y-0"
+              : "transform translate-y-1 group-hover:translate-y-0"
+          }`}
+        >
+          <BookOpen strokeWidth={1.5} className="w-4 h-4 text-white shrink-0" />
+          <span className="text-[12px] font-medium tracking-tight whitespace-nowrap">
+            Подробнее
+          </span>
+        </div>
 
-      {/* Light Rounded Cloud with Project Description - Only on Hover */}
-      <div className="absolute inset-0 p-3 sm:p-4 md:p-5 flex flex-col justify-end z-20 pointer-events-none">
-        <div className="bg-white/95 backdrop-blur-md rounded-xl md:rounded-[14px] p-3.5 sm:p-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] text-graphite opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
-          <h3 className="text-graphite text-sm sm:text-base md:text-[17px] font-extrabold tracking-tight leading-tight font-heading">
+        {/* Subtle technical caption at bottom */}
+        <div className="absolute bottom-2.5 left-3 right-3 text-center truncate">
+          <span className="text-[11px] font-mono text-graphite/85 font-medium">
             {project.title}
-          </h3>
-
-          <div className="mt-1 text-[11px] font-mono text-pewter line-clamp-1">
-            {project.hardware}
-          </div>
-
-          <p className="mt-1.5 text-[12px] text-iron leading-snug line-clamp-2">
-            {project.details}
-          </p>
-
-          {project.location && (
-            <div className="mt-2 pt-2 border-t border-divider/30 flex items-center justify-between text-[11px] font-mono text-pewter">
-              <span>{project.location}</span>
-              {project.result && (
-                <span className="text-graphite font-semibold">{project.result}</span>
-              )}
-            </div>
+          </span>
+          {project.type && (
+            <span className="hidden sm:inline text-[10px] font-mono text-pewter ml-2">
+              · {project.type}
+            </span>
           )}
         </div>
       </div>
@@ -383,6 +394,7 @@ function LiveTile({ project, tileIndex, onOpenLightbox }: LiveTileProps) {
 }
 
 export function Projects() {
+  const [activeMobileId, setActiveMobileId] = useState<string | null>(null);
   const [lightboxState, setLightboxState] = useState<{
     isOpen: boolean;
     project: ProjectItem | null;
@@ -437,6 +449,50 @@ export function Projects() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxState.isOpen, lightboxState.project]);
 
+  // Single-card mobile auto-hover coordinator
+  // Strictly guarantees that AT MOST ONE card can have the hover effect at any moment
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const media = window.matchMedia("(max-width: 767px), (hover: none)");
+    if (!media.matches) return;
+
+    // Laser-narrow 10% vertical band at the exact center (top 45% to bottom 45%)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // First, drop active state for any card that exited the center line
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            const id = entry.target.getAttribute("data-tile-id");
+            if (id) {
+              setActiveMobileId((prev) => (prev === id ? null : prev));
+            }
+          }
+        });
+
+        // Whichever single card intersects the center line claims active state
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("data-tile-id");
+            if (id) {
+              setActiveMobileId(id);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0,
+      }
+    );
+
+    const tiles = document.querySelectorAll("[data-tile-id]");
+    tiles.forEach((t) => observer.observe(t));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="bg-surface-warm">
       <section
@@ -458,6 +514,7 @@ export function Projects() {
               key={project.id}
               project={project}
               tileIndex={i}
+              activeMobileId={activeMobileId}
               onOpenLightbox={openLightbox}
             />
           ))}
@@ -474,6 +531,7 @@ export function Projects() {
             <LiveTile
               project={projects[7]}
               tileIndex={8}
+              activeMobileId={activeMobileId}
               onOpenLightbox={openLightbox}
             />
           )}

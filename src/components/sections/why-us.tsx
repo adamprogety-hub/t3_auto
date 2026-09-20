@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 interface ReasonItem {
   title: string;
@@ -143,25 +144,25 @@ export function WhyUs() {
                   targetOpacity = 1;
                   targetZIndex = 20;
                 } else if (isTop) {
-                  targetY = -135;
+                  targetY = -120;
                   targetRotateX = -18;
                   targetScale = 0.88;
                   targetOpacity = 0.4;
                   targetZIndex = 10;
                 } else if (isBottom) {
-                  targetY = 135;
+                  targetY = 120;
                   targetRotateX = 18;
                   targetScale = 0.88;
                   targetOpacity = 0.4;
                   targetZIndex = 10;
                 } else if (offset < -1) {
-                  targetY = -230;
+                  targetY = -210;
                   targetRotateX = -28;
                   targetScale = 0.75;
                   targetOpacity = 0;
                   targetZIndex = 0;
                 } else {
-                  targetY = 230;
+                  targetY = 210;
                   targetRotateX = 28;
                   targetScale = 0.75;
                   targetOpacity = 0;
@@ -176,25 +177,25 @@ export function WhyUs() {
                   targetOpacity = 1;
                   targetZIndex = 20;
                 } else if (isTop) {
-                  targetY = -108;
+                  targetY = -92;
                   targetRotateX = -15;
                   targetScale = 0.88;
                   targetOpacity = 0.4;
                   targetZIndex = 10;
                 } else if (isBottom) {
-                  targetY = 108;
+                  targetY = 92;
                   targetRotateX = 15;
                   targetScale = 0.88;
                   targetOpacity = 0.4;
                   targetZIndex = 10;
                 } else if (offset < -1) {
-                  targetY = -180;
+                  targetY = -160;
                   targetRotateX = -22;
                   targetScale = 0.75;
                   targetOpacity = 0;
                   targetZIndex = 0;
                 } else {
-                  targetY = 180;
+                  targetY = 160;
                   targetRotateX = 22;
                   targetScale = 0.75;
                   targetOpacity = 0;
@@ -236,7 +237,7 @@ export function WhyUs() {
                         ? "center top"
                         : "center center",
                   }}
-                  className={`absolute w-[calc(100vw-36px)] max-w-[560px] md:max-w-[620px] lg:max-w-[640px] h-[180px] sm:h-[195px] md:h-[210px] rounded-[14px] bg-white shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex overflow-hidden ${
+                  className={`absolute w-[calc(100vw-36px)] max-w-[560px] md:max-w-[620px] lg:max-w-[580px] xl:max-w-[640px] h-[145px] sm:h-[160px] md:h-[175px] rounded-[14px] bg-white shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex overflow-hidden ${
                     isCenter
                       ? "cursor-grab active:cursor-grabbing pointer-events-auto"
                       : isVisible
@@ -251,38 +252,66 @@ export function WhyUs() {
                     className="absolute inset-0 bg-graphite/20 backdrop-blur-[0.5px] pointer-events-none z-30"
                   />
 
-                  {/* Left Side: 3D Icon, bottom-anchored */}
-                  <div className="w-[28%] sm:w-[32%] shrink-0 h-full bg-surface-card relative overflow-hidden">
+                  {/* Left Side: 3D Icon, bottom-anchored, enlarged on mobile with slight left bleed */}
+                  <div className="w-[35%] sm:w-[32%] md:w-[30%] shrink-0 h-full bg-surface-card relative overflow-hidden">
                     <img
                       src={reason.icon}
                       alt={reason.title}
                       draggable={false}
-                      className="absolute bottom-0 left-[6%] right-[6%] w-[88%] max-h-[92%] object-contain object-bottom pointer-events-none select-none drop-shadow-[0_8px_20px_rgba(19,18,16,0.08)]"
+                      className="absolute bottom-0 -left-2.5 sm:left-[4%] w-[114%] sm:w-[92%] max-h-[104%] sm:max-h-[92%] object-contain object-bottom pointer-events-none select-none drop-shadow-[0_8px_20px_rgba(19,18,16,0.08)]"
                     />
                   </div>
 
-                  {/* Right Side: Reason Content */}
-                  <div className="flex-1 p-3.5 sm:p-5 md:p-6 flex flex-col justify-center overflow-hidden">
-                    <h3 className="text-graphite text-[14px] sm:text-[16px] md:text-[17px] font-extrabold tracking-tight leading-snug">
+                  {/* Center Area: Reason Content — Only Title with Right Clearance */}
+                  <div className="flex-1 p-3.5 sm:p-5 md:p-6 pr-13 sm:pr-15 md:pr-18 flex flex-col justify-center overflow-hidden">
+                    <h3 className="text-graphite text-[14px] sm:text-[16px] md:text-[19px] font-extrabold tracking-tight leading-snug font-heading">
                       {reason.title}
                     </h3>
-
-                    <p className="mt-1.5 sm:mt-2 text-iron text-[12px] sm:text-[13px] md:text-[13.5px] leading-relaxed line-clamp-3">
-                      {reason.description}
-                    </p>
                   </div>
+
+                  {/* Top-Right Corner Navigation Arrow (Arrow Up) */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prev();
+                    }}
+                    aria-label="Предыдущий слайд"
+                    title="Предыдущий слайд"
+                    className={`group/up-btn absolute top-3 right-3 sm:top-4 sm:right-4 z-40 w-8 h-8 sm:w-8.5 sm:h-8.5 flex items-center justify-center rounded-[8px] border border-divider/45 bg-white/95 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 backdrop-blur-xs transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer ${
+                      isCenter ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+                    }`}
+                  >
+                    <ArrowUp strokeWidth={1.5} className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover/up-btn:-translate-y-0.5" />
+                  </button>
+
+                  {/* Bottom-Right Corner Navigation Arrow (Arrow Down) */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      next();
+                    }}
+                    aria-label="Следующий слайд"
+                    title="Следующий слайд"
+                    className={`group/down-btn absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-40 w-8 h-8 sm:w-8.5 sm:h-8.5 flex items-center justify-center rounded-[8px] border border-divider/45 bg-white/95 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 backdrop-blur-xs transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer ${
+                      isCenter ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+                    }`}
+                  >
+                    <ArrowDown strokeWidth={1.5} className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover/down-btn:translate-y-0.5" />
+                  </button>
                 </motion.div>
               );
             })}
 
             {/* Vertical Dash Stepper (Desktop only) */}
-            <div className="hidden lg:flex absolute right-1 sm:right-2 md:right-3 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-1.5">
+            <div className="hidden lg:flex absolute right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-1.5">
               {reasons.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
                   aria-label={`Перейти к пункту 0${idx + 1}`}
-                  className={`w-1.5 rounded-full transition-all duration-300 ${
+                  className={`w-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     idx === activeIndex
                       ? "h-8 bg-graphite"
                       : "h-2.5 bg-divider hover:bg-pewter"
@@ -293,13 +322,13 @@ export function WhyUs() {
           </div>
 
           {/* Horizontal Dash Stepper (Mobile & Tablet only) */}
-          <div className="flex lg:hidden items-center justify-center gap-2 mt-3 z-30">
+          <div className="flex lg:hidden items-center justify-center gap-2 mt-4 z-30">
             {reasons.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveIndex(idx)}
                 aria-label={`Перейти к пункту 0${idx + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                   idx === activeIndex
                     ? "w-7 bg-graphite"
                     : "w-2 bg-divider hover:bg-pewter"

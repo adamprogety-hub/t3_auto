@@ -166,7 +166,24 @@ export function LeadMagnet() {
             </div>
           </div>
 
-          {/* 3D Cabinet Render peeking out from behind the light cloud */}
+          {/* Mobile 3D Cabinet Overlap Render (Option 1) */}
+          <div className="lg:hidden relative w-full flex justify-center -mt-2 -mb-14 sm:-mb-18 z-10 pointer-events-none select-none">
+            {/* Ambient specular glow */}
+            <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl scale-75 pointer-events-none" />
+
+            <motion.img
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: 0.15 }}
+              src="/asu_cabinet_transparent.webp"
+              alt="Шкаф АСУ ТП"
+              className="w-56 sm:w-68 h-auto object-contain -scale-x-100 drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
+              draggable={false}
+            />
+          </div>
+
+          {/* 3D Cabinet Render peeking out from behind the light cloud (Desktop) */}
           <div className="absolute right-[220px] xl:right-[260px] 2xl:right-[300px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block">
             <motion.img
               initial={{ opacity: 0, x: 25 }}

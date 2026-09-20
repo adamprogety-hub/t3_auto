@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUp, ArrowDown, Search } from "lucide-react";
 
 interface VendorSlide {
   id: string;
@@ -104,6 +105,48 @@ export function Hero() {
 
   const currentSlide = vendorSlides[slideIndex];
 
+  const marqueeTrackRef = useRef<HTMLDivElement>(null);
+  const [centerMarqueeIndex, setCenterMarqueeIndex] = useState<number | null>(null);
+
+  // Auto-spotlight horizontal center card on mobile devices as marquee rotates
+  // O(1) single-element geometry check every 100ms — zero layout thrashing, ultra-light on battery
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const media = window.matchMedia("(max-width: 767px), (hover: none)");
+    if (!media.matches) return;
+
+    let timer: NodeJS.Timeout | null = null;
+
+    const checkCenter = () => {
+      const track = marqueeTrackRef.current;
+      if (!track || !track.firstElementChild) return;
+
+      const firstItem = track.firstElementChild as HTMLElement;
+      const itemWidth = firstItem.offsetWidth;
+      // Tailwind gap-1.5 is 6px
+      const step = itemWidth + 6;
+      const trackRect = track.getBoundingClientRect();
+      const screenCenterX = window.innerWidth / 2;
+
+      // Relative offset from current track visual left to horizontal screen center
+      const offset = screenCenterX - trackRect.left;
+      const totalItems = portfolioMarquee.length * 2;
+      const index = Math.floor(offset / step);
+
+      if (index >= 0 && index < totalItems) {
+        setCenterMarqueeIndex((prev) => (prev === index ? prev : index));
+      } else {
+        setCenterMarqueeIndex(null);
+      }
+    };
+
+    timer = setInterval(checkCenter, 100);
+
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex flex-col justify-between pt-16 overflow-hidden">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20 relative">
@@ -129,11 +172,31 @@ export function Hero() {
 
         {/* Foreground Content — 100% natural, independent flow (z-10) */}
         <div className="relative z-10 max-w-3xl">
+          {/* Mobile / Tablet Engineering Team Photo — Positioned first before H1 with balanced optical padding */}
+          <motion.div
+            initial={{ opacity: 0, y: 16, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden relative w-full pt-6 sm:pt-8 mb-6 sm:mb-8 flex justify-center select-none overflow-visible"
+          >
+            {/* Subtle atmospheric ambient glow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-divider/25 via-transparent to-transparent rounded-full blur-3xl pointer-events-none -z-10 scale-125" />
+
+            <div className="relative w-[118%] -mx-[9%] sm:w-[108%] sm:-mx-[4%] max-w-[560px]">
+              <img
+                src="/hero_team.webp"
+                alt="Инженерная группа ACEngine"
+                className="w-full h-auto object-contain object-bottom scale-105 sm:scale-100 origin-bottom [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                draggable={false}
+              />
+            </div>
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            className="pt-10 md:pt-16 text-graphite text-[clamp(1.85rem,3.4vw,3.25rem)] font-extrabold leading-[1.08] tracking-tight max-w-4xl"
+            className="pt-0 lg:pt-16 text-graphite text-[clamp(1.85rem,3.4vw,3.25rem)] font-extrabold leading-[1.08] tracking-tight max-w-4xl"
           >
             Алгоритмизация
             <br />
@@ -161,17 +224,17 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="mt-8 flex flex-col sm:flex-row gap-3"
+            className="mt-8 flex flex-col sm:flex-row gap-3 w-full max-w-[500px] sm:w-[500px]"
           >
             <a
               href="#calculator"
-              className="inline-flex items-center justify-center h-13 px-8 bg-graphite text-white text-[13px] font-semibold tracking-normal transition-all duration-200 hover:bg-carbon active:scale-[0.98] shadow-sm"
+              className="w-full sm:flex-1 inline-flex items-center justify-center h-12 sm:h-[50px] min-h-[48px] px-6 py-3.5 bg-graphite text-white text-[13px] sm:text-[14px] font-semibold tracking-normal transition-all duration-200 hover:bg-carbon active:scale-[0.98] shadow-sm text-center rounded-[8px]"
             >
               Сконфигурировать решение
             </a>
             <a
               href="#services"
-              className="inline-flex items-center justify-center h-13 px-8 border border-divider bg-white/60 text-graphite text-[13px] font-semibold tracking-normal transition-all duration-200 hover:bg-white hover:border-graphite active:scale-[0.98]"
+              className="w-full sm:flex-1 inline-flex items-center justify-center h-12 sm:h-[50px] min-h-[48px] px-6 py-3.5 border border-divider bg-white text-graphite text-[13px] sm:text-[14px] font-semibold tracking-normal transition-all duration-200 hover:bg-surface hover:border-graphite active:scale-[0.98] text-center rounded-[8px]"
             >
               Инженерные компетенции
             </a>
@@ -182,7 +245,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.45 }}
-            className="mt-10 max-w-[530px]"
+            className="mt-10 w-full max-w-[500px] sm:w-[500px]"
           >
             {/* Ticker Header */}
             <div className="flex items-center justify-between gap-4 mb-2">
@@ -197,7 +260,7 @@ export function Hero() {
                       setDirection(i > slideIndex ? 1 : -1);
                       setSlideIndex(i);
                     }}
-                    className={`h-1 transition-all duration-300 rounded-full ${
+                    className={`h-1 transition-all duration-300 rounded-full cursor-pointer ${
                       i === slideIndex ? "w-5 bg-graphite" : "w-1.5 bg-divider hover:bg-pewter"
                     }`}
                     aria-label={`Группа ${i + 1}`}
@@ -206,57 +269,93 @@ export function Hero() {
               </div>
             </div>
 
-            {/* 3D Live Tile Stage */}
+            {/* 3D Live Tile Stage — Constant Fixed Width identical to CTA buttons */}
             <div
-              className="relative h-12 w-full rounded-[8px] bg-white shadow-[0_12px_32px_-8px_rgba(19,18,16,0.08),0_4px_12px_-2px_rgba(19,18,16,0.03)] hover:shadow-[0_16px_36px_-6px_rgba(19,18,16,0.12),0_6px_16px_-2px_rgba(19,18,16,0.04)] transition-shadow overflow-hidden select-none cursor-pointer"
-              style={{ perspective: 1200 }}
+              className="relative h-12 sm:h-[50px] w-full rounded-[8px] bg-white border border-divider/35 shadow-[0_12px_32px_-8px_rgba(19,18,16,0.08),0_4px_12px_-2px_rgba(19,18,16,0.03)] hover:shadow-[0_16px_36px_-6px_rgba(19,18,16,0.12),0_6px_16px_-2px_rgba(19,18,16,0.04)] transition-shadow flex items-center justify-between pl-4 sm:pl-5 pr-2 select-none overflow-hidden"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              onClick={nextSlide}
-              title="Нажмите для переключения"
             >
-              <AnimatePresence mode="popLayout" custom={direction}>
-                <motion.div
-                  key={currentSlide.id}
-                  custom={direction}
-                  variants={liveTileVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  drag="y"
-                  dragConstraints={{ top: 0, bottom: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={(_, info) => {
-                    if (info.offset.y < -20 || info.velocity.y < -150) nextSlide();
-                    else if (info.offset.y > 20 || info.velocity.y > 150) prevSlide();
-                  }}
-                  style={{
-                    transformStyle: "preserve-3d",
-                    transformOrigin: "center center",
-                  }}
-                  className="relative w-full h-full px-4 md:px-5 flex items-center justify-between gap-4 bg-white"
-                >
-                  {/* Dynamic Specular Sheen (Lighting reflection during flip) */}
+              {/* Left Area: 3D Flip Brands Stage (drag & click enabled, fixed flex-1 boundary) */}
+              <div
+                className="relative flex-1 h-full min-w-0 mr-2 sm:mr-3 flex items-center overflow-hidden cursor-pointer"
+                style={{ perspective: 1200 }}
+                onClick={nextSlide}
+                title="Нажмите для переключения"
+              >
+                <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
-                    initial={{ opacity: 0.35 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ duration: 0.45 }}
-                    className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-graphite/5 pointer-events-none z-20"
-                  />
+                    key={currentSlide.id}
+                    custom={direction}
+                    variants={liveTileVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    drag="y"
+                    dragConstraints={{ top: 0, bottom: 0 }}
+                    dragElastic={0.2}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.y < -20 || info.velocity.y < -150) nextSlide();
+                      else if (info.offset.y > 20 || info.velocity.y > 150) prevSlide();
+                    }}
+                    style={{
+                      transformStyle: "preserve-3d",
+                      transformOrigin: "center center",
+                    }}
+                    className="relative w-full h-full flex items-center bg-white"
+                  >
+                    {/* Dynamic Specular Sheen (Lighting reflection during flip) */}
+                    <motion.div
+                      initial={{ opacity: 0.35 }}
+                      animate={{ opacity: 0 }}
+                      transition={{ duration: 0.45 }}
+                      className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-graphite/5 pointer-events-none z-20"
+                    />
 
-                  {/* Clean Brand Names without numbering */}
-                  <div className="flex items-center gap-2.5 sm:gap-3.5 text-[13px] font-bold text-graphite tracking-tight truncate relative z-10">
-                    {currentSlide.brands.map((brand, idx) => (
-                      <span key={brand} className="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
-                        <span>{brand}</span>
-                        {idx < currentSlide.brands.length - 1 && (
-                          <span className="text-divider font-light select-none">·</span>
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                    {/* Clean Brand Names without numbering — strictly bounded */}
+                    <div className="flex items-center gap-2 sm:gap-3 text-[13px] font-bold text-graphite tracking-tight truncate relative z-10">
+                      {currentSlide.brands.map((brand, idx) => (
+                        <span key={brand} className="flex items-center gap-2 sm:gap-3 shrink-0">
+                          <span>{brand}</span>
+                          {idx < currentSlide.brands.length - 1 && (
+                            <span className="text-divider font-light select-none">·</span>
+                          )}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Right Area: Up / Down Arrow Buttons in neat rectangular rounded outline */}
+              <div className="flex items-center gap-1.5 shrink-0 z-30">
+                {/* Prev Slide Button (Arrow Up) */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevSlide();
+                  }}
+                  aria-label="Предыдущие бренды"
+                  title="Предыдущие бренды"
+                  className="group/up-btn w-7.5 h-7.5 sm:w-8 sm:h-8 flex items-center justify-center rounded-[6px] border border-divider/40 bg-surface/70 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer"
+                >
+                  <ArrowUp strokeWidth={1.5} className="w-3.5 h-3.5 transition-transform duration-200 group-hover/up-btn:-translate-y-0.5" />
+                </button>
+
+                {/* Next Slide Button (Arrow Down) */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextSlide();
+                  }}
+                  aria-label="Следующие бренды"
+                  title="Следующие бренды"
+                  className="group/down-btn w-7.5 h-7.5 sm:w-8 sm:h-8 flex items-center justify-center rounded-[6px] border border-divider/40 bg-surface/70 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer"
+                >
+                  <ArrowDown strokeWidth={1.5} className="w-3.5 h-3.5 transition-transform duration-200 group-hover/down-btn:translate-y-0.5" />
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -284,30 +383,55 @@ export function Hero() {
 
         {/* Infinite Looping Collage Marquee of Pavel's Real Portfolio Photos — Seamless & Flush */}
         <div className="overflow-hidden relative">
-          <div className="animate-marquee flex gap-1.5">
-            {portfolioMarquee.concat(portfolioMarquee).map((item, idx) => (
-              <a
-                key={idx}
-                href="#projects"
-                title={`${item.title} — ${item.subtitle}`}
-                className="relative shrink-0 h-28 md:h-36 w-44 md:w-56 overflow-hidden bg-carbon group select-none block"
-              >
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-full object-cover filter brightness-[0.95] contrast-[1.05] group-hover:scale-105 group-hover:brightness-100 transition-all duration-300"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-carbon/90 via-carbon/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-2.5 pointer-events-none">
-                  <span className="text-[11px] font-mono text-white/95 truncate leading-tight font-medium">
-                    {item.title}
-                  </span>
-                  <span className="text-[10px] font-mono text-white/65 truncate">
-                    {item.subtitle}
-                  </span>
-                </div>
-              </a>
-            ))}
+          <div ref={marqueeTrackRef} className="animate-marquee flex gap-1.5">
+            {portfolioMarquee.concat(portfolioMarquee).map((item, idx) => {
+              const isItemActive = centerMarqueeIndex === idx;
+
+              return (
+                <a
+                  key={idx}
+                  href="#projects"
+                  title={`${item.title} — ${item.subtitle}`}
+                  className="relative shrink-0 h-28 md:h-36 w-44 md:w-56 overflow-hidden bg-carbon group select-none block"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className={`w-full h-full object-cover filter transition-all duration-200 ease-out ${
+                      isItemActive
+                        ? "brightness-110 scale-105"
+                        : "brightness-[0.96] contrast-[1.04] group-hover:scale-105 group-hover:brightness-110"
+                    }`}
+                    loading="lazy"
+                  />
+
+                  {/* Lightened Frosted Overlay with Centered Loupe Badge on Hover & Mobile Center Spotlight */}
+                  <div
+                    className={`absolute inset-0 bg-white/55 backdrop-blur-[2px] transition-opacity duration-200 ease-out flex flex-col items-center justify-center p-3 pointer-events-none ${
+                      isItemActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    }`}
+                  >
+                    <div
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-[8px] bg-graphite text-white shadow-lg border border-white/20 transition-transform duration-200 ease-out ${
+                        isItemActive
+                          ? "translate-y-0"
+                          : "transform translate-y-1 group-hover:translate-y-0"
+                      }`}
+                    >
+                      <Search strokeWidth={1.5} className="w-3.5 h-3.5 text-white shrink-0" />
+                      <span className="text-[11px] font-medium tracking-tight whitespace-nowrap">
+                        Смотреть кейсы
+                      </span>
+                    </div>
+
+                    {/* Subtle technical caption at bottom */}
+                    <span className="absolute bottom-2 left-2 right-2 text-[10px] font-mono text-graphite/75 text-center truncate font-medium">
+                      {item.title}
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </motion.div>
