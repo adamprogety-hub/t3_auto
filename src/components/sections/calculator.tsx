@@ -107,8 +107,8 @@ const objectTypes: ObjectTypeConfig[] = [
 ];
 
 const scopeOptions = [
-  { id: "docs", label: "Проектирование схем\u00A0Э3 в\u00A0EPLAN и\u00A0кабельный журнал (ГОСТ)", price: 55000, default: true },
-  { id: "cabinet", label: "Сборка шкафа (корпус DKC\u00A0/\u00A0КЭАЗ OptiMat) и\u00A0стенд 48ч", price: 95000, default: true },
+  { id: "docs", label: "Проектирование схем\u00A0Э3 в\u00A0EPLAN/CAD и\u00A0кабельный журнал", price: 55000, default: true },
+  { id: "cabinet", label: "Сборка шкафа (корпус DKC\u00A0/\u00A0КЭАЗ OptiMat) и\u00A0заводские испытания", price: 95000, default: true },
   { id: "plc_code", label: "Разработка алгоритмов ПЛК (ОВЕН/Segnetics) + Weintek\u00A0HMI", price: 85000, default: true },
   { id: "pnr", label: "Пусконаладочные работы (ПНР) и\u00A0шефмонтаж по\u00A0всей\u00A0России", price: 75000, default: false },
 ];
@@ -190,7 +190,7 @@ export function Calculator() {
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-graphite text-[clamp(1.75rem,2.8vw,2.6rem)] font-extrabold leading-[1.12] tracking-tight">
-            Калькулятор стоимости шкафа управления
+            Конфигуратор проекта автоматизации
           </h2>
         </div>
 
@@ -316,8 +316,8 @@ export function Calculator() {
                               {sub.label}
                             </span>
                           </div>
-                          <span className={`text-[12px] shrink-0 ml-4 font-mono font-medium ${isChecked ? "text-graphite" : "text-pewter"}`}>
-                            +{(sub.price / 1000).toFixed(0)}т ₽
+                          <span className={`text-[12px] shrink-0 ml-4 font-medium ${isChecked ? "text-graphite" : "text-pewter"}`}>
+                            от {(sub.price / 1000).toFixed(0)}&nbsp;тыс.&nbsp;₽
                           </span>
                         </button>
                       );
@@ -360,8 +360,8 @@ export function Calculator() {
                           >
                             {lvl.badge}
                           </span>
-                          <span className={`text-[12px] font-mono ${active ? "text-white/80" : "text-pewter"}`}>
-                            {lvl.price === 0 ? "В базе" : `+${(lvl.price / 1000).toFixed(0)}т ₽`}
+                          <span className={`text-[12px] ${active ? "text-white/80" : "text-pewter"}`}>
+                            {lvl.price === 0 ? "включено" : `от ${(lvl.price / 1000).toFixed(0)} тыс. ₽`}
                           </span>
                         </div>
                         <h4 className={`mt-3 text-[14px] font-bold leading-snug ${active ? "text-white" : "text-graphite"}`}>
@@ -417,8 +417,8 @@ export function Calculator() {
                           {opt.label}
                         </span>
                       </div>
-                      <span className={`text-[12px] shrink-0 ml-2 font-mono font-medium ${isChecked ? "text-graphite" : "text-pewter"}`}>
-                        +{(opt.price / 1000).toFixed(0)}т ₽
+                      <span className={`text-[12px] shrink-0 ml-2 font-medium ${isChecked ? "text-graphite" : "text-pewter"}`}>
+                        от {(opt.price / 1000).toFixed(0)} тыс. ₽
                       </span>
                     </button>
                   );
@@ -454,15 +454,16 @@ export function Calculator() {
               {/* Lower half: remaining content */}
               <div className="flex flex-col justify-end">
                 <span className="text-pewter text-[12px] font-medium">
-                  Предварительная смета
+                  Ориентировочная стоимость проекта
                 </span>
 
-                <div className="mt-2 text-5xl font-black tracking-[-0.03em] text-graphite">
-                  {(total / 1000).toFixed(0)}
-                  <span className="text-xl font-bold text-pewter ml-1">тыс. ₽</span>
+                <div className="mt-2 flex items-baseline gap-1.5">
+                  <span className="text-[15px] font-semibold text-pewter">от</span>
+                  <span className="text-5xl font-black tracking-[-0.03em] text-graphite">{(total / 1000).toFixed(0)}</span>
+                  <span className="text-xl font-bold text-pewter">тыс. ₽</span>
                 </div>
                 <div className="mt-1 text-pewter text-[12px]">
-                  {total.toLocaleString("ru-RU")}{"\u00A0"}₽ без{"\u00A0"}учёта монтажных материалов
+                  Нижняя граница · точная смета после{"\u00A0"}изучения{"\u00A0"}ТЗ
                 </div>
 
                 <a

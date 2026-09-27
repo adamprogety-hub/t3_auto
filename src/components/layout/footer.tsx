@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 const NAV_LINKS = [
   { label: "Услуги и\u00A0решения", href: "#services" },
   { label: "Каталог шкафов (38+)", href: "#projects" },
-  { label: "Калькулятор подбора\u00A0ШУ", href: "#calculator" },
+  { label: "Конфигуратор проекта", href: "#calculator" },
   { label: "Регламент сборки и\u00A0ПНР", href: "#process" },
 ];
 
@@ -34,7 +34,7 @@ export function Footer() {
                 </div>
 
                 <p className="text-white/65 text-[13.5px] leading-relaxed max-w-lg">
-                  Проектирование алгоритмов, сертифицированная сборка шкафов управления и{"\u00A0"}пусконаладка с{"\u00A0"}48-часовым стендовым тестированием по{"\u00A0"}всей России и{"\u00A0"}ЕАЭС.
+                  Разработка прикладного ПО, сертифицированная сборка шкафов управления и{"\u00A0"}пусконаладка с{"\u00A0"}заводским контролем качества по{"\u00A0"}всей России и{"\u00A0"}ЕАЭС.
                 </p>
               </div>
 
@@ -82,8 +82,8 @@ export function Footer() {
               </div>
 
               <div className="mt-8 pt-4 border-t border-white/10 text-[11px] text-white/40 flex items-center justify-between">
-                <span>ГОСТ Р МЭК 61439-1 • ТР ТС 004/020</span>
-                <span className="font-mono text-[10px] text-white/30">Стенд 48ч</span>
+                <span>ТР ТС 004/2011 • ТР ТС 020/2011</span>
+                <span className="font-mono text-[10px] text-white/30">ОТК 100%</span>
               </div>
             </div>
           </div>

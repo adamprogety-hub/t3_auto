@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence, useAnimate } from "framer-motion";
 import { ArrowUp, ArrowDown, Search, Loader2 } from "lucide-react";
 
 interface VendorSlide {
@@ -16,15 +16,19 @@ const vendorSlides: VendorSlide[] = [
   },
   {
     id: "s2",
-    brands: ["Veda MC", "Innovert", "Ридан (Ridan)", "Danfoss VLT"],
+    brands: ["Veda MC", "Innovert", "Ридан (Ridan)", "Danfoss VLT", "Росма"],
   },
   {
     id: "s3",
-    brands: ["КЭАЗ OptiMat", "DKC RAM block", "CHINT", "Rittal"],
+    brands: ["КЭАЗ OptiMat", "DKC RAM block", "CHINT", "DEKraft", "Rittal"],
   },
   {
     id: "s4",
-    brands: ["Ретрофит: Siemens S7", "Danfoss", "Schneider Electric"],
+    brands: ["Ретрофит: Siemens S7", "Danfoss", "Schneider Electric", "ABB"],
+  },
+  {
+    id: "s5",
+    brands: ["ПЛК и приводы: Kinco", "Delta", "Меандр", "и ещё 20+ брендов"],
   },
 ];
 
@@ -60,23 +64,145 @@ const liveTileVariants = {
 };
 
 const portfolioMarquee = [
-  { src: "/portfolio/cabinets/cabinets_1.webp", title: "Силовой шкаф ША-К", subtitle: "Сборка ШУ (Москва)" },
-  { src: "/portfolio/boiler/boiler_1.webp", title: "Котельная 15 МВт", subtitle: "Главный шкаф Viessmann" },
-  { src: "/portfolio/scada/scada_1.webp", title: "MasterSCADA 4D", subtitle: "АРМ диспетчера" },
-  { src: "/portfolio/cooling/cooling_1.webp", title: "Промышленный холод", subtitle: "Ярцево (Компрессоры)" },
-  { src: "/portfolio/itp/itp_1.webp", title: "ИТП ЖК 1200 квартир", subtitle: "Насосные группы и клапаны" },
-  { src: "/portfolio/vzu/vzu_1.webp", title: "ВЗУ посёлка", subtitle: "Повысительная станция 2-го подъема" },
-  { src: "/portfolio/agro/agro_1.webp", title: "Агрокомплекс Бунятино", subtitle: "Линия автоматической сортировки" },
-  { src: "/portfolio/retrofit/retrofit_1.webp", title: "Ретрофит ЦТП 2-14", subtitle: "Циркуляционная группа" },
-  { src: "/portfolio/boiler/boiler_2.webp", title: "Насосная станция котлов", subtitle: "Частотные приводы Veda MC" },
+  // 1. Шкафы управления (сборка, шины, внутренняя компоновка)
+  { src: "/portfolio/cabinets/cabinets_1.webp", title: "Силовой шкаф ША-К", subtitle: "Силовые шины и выключатели" },
   { src: "/portfolio/cabinets/cabinets_2.webp", title: "Контроллерный отсек", subtitle: "Шины DKC RAM block" },
+  { src: "/portfolio/cabinets/cabinets_3.webp", title: "Сборка шкафа автоматики", subtitle: "Жгутование и монтаж" },
+  { src: "/portfolio/cabinets/cabinets_4.webp", title: "Клеммные ряды", subtitle: "Маркировка проводки" },
+  { src: "/portfolio/boiler/boiler_1.webp", title: "Главный шкаф управления", subtitle: "Серийная сборка ШУ" },
+
+  // 2. Панели оператора (HMI и локальный контроль)
+  { src: "/portfolio/retrofit/retrofit_3.webp", title: "Шкаф из нержавеющей стали", subtitle: "Сенсорная панель на двери" },
+  { src: "/portfolio/itp/itp_2.webp", title: "Мнемосхема Segnetics", subtitle: "Локальный контур отопления" },
+  { src: "/portfolio/itp/itp_3.webp", title: "Интерфейс оператора", subtitle: "Сенсорная панель Weintek" },
+  { src: "/portfolio/itp/itp_4.webp", title: "Настройка контуров", subtitle: "Мнемосхема насосной группы" },
+
+  // 3. SCADA и диспетчеризация (верхний уровень)
+  { src: "/portfolio/scada/scada_1.webp", title: "MasterSCADA 4D", subtitle: "АРМ диспетчера" },
   { src: "/portfolio/scada/scada_2.webp", title: "Графики SCADA", subtitle: "Тренды давления и расхода" },
-  { src: "/portfolio/cooling/cooling_2.webp", title: "Трубная обвязка чиллеров", subtitle: "Датчики потока и давления" },
-  { src: "/portfolio/itp/itp_2.webp", title: "Мнемосхема Segnetics", subtitle: "Контур отопления" },
-  { src: "/portfolio/vzu/vzu_3.webp", title: "Напорный коллектор", subtitle: "Каскадное включение насосов" },
-  { src: "/portfolio/agro/agro_3.webp", title: "Шкаф управления нарезкой", subtitle: "Синхронизация 6 приводов" },
-  { src: "/portfolio/retrofit/retrofit_3.webp", title: "Шкаф фрикулера", subtitle: "Тверь (Модернизация)" },
+  { src: "/portfolio/scada/scada_3.webp", title: "Мнемосхема системы", subtitle: "Диспетчеризация объекта" },
+  { src: "/portfolio/scada/scada_5.webp", title: "Журнал аварий и событий", subtitle: "Телеметрия и алармы" },
+
+  // 4. Объекты и пусконаладка (оборудование на площадке)
+  { src: "/portfolio/boiler/boiler_2.webp", title: "Насосная станция котлов", subtitle: "Частотные приводы Veda MC" },
+  { src: "/portfolio/cooling/cooling_1.webp", title: "Промышленный холод", subtitle: "Ярцево (Компрессоры)" },
+  { src: "/portfolio/vzu/vzu_1.webp", title: "ВЗУ посёлка", subtitle: "Повысительная станция 2-го подъема" },
 ];
+
+function ScrollableBrandRow({
+  brands,
+  slideKey,
+  isPaused,
+  onFinished,
+}: {
+  brands: string[];
+  slideKey: string;
+  isPaused: boolean;
+  onFinished: () => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scope, animate] = useAnimate();
+  const animRef = useRef<ReturnType<typeof animate> | null>(null);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const measureAndAnimate = () => {
+      if (!containerRef.current || !scope.current) return;
+      const containerWidth = containerRef.current.clientWidth;
+      const contentWidth = scope.current.scrollWidth;
+      const overflow = Math.max(0, contentWidth - containerWidth + 8);
+
+      if (overflow > 0) {
+        const scrollSpeed = 35; // px per second
+        const scrollDuration = Math.max(2.0, overflow / scrollSpeed);
+        const initialPause = 1.3;
+        const endPause = 1.4;
+        const totalDuration = initialPause + scrollDuration + endPause;
+
+        const controls = animate(
+          scope.current,
+          { x: [0, 0, -overflow, -overflow] },
+          {
+            duration: totalDuration,
+            times: [
+              0,
+              initialPause / totalDuration,
+              (initialPause + scrollDuration) / totalDuration,
+              1,
+            ],
+            ease: [0.25, 0.1, 0.25, 1],
+          }
+        );
+
+        animRef.current = controls;
+
+        controls.then(() => {
+          if (!isCancelled) {
+            onFinished();
+          }
+        });
+      } else {
+        const controls = animate(
+          scope.current,
+          { opacity: [1, 1] },
+          { duration: 3.5 }
+        );
+        animRef.current = controls;
+
+        controls.then(() => {
+          if (!isCancelled) {
+            onFinished();
+          }
+        });
+      }
+    };
+
+    const timer = setTimeout(measureAndAnimate, 60);
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(timer);
+      if (animRef.current) {
+        animRef.current.stop();
+      }
+    };
+  }, [brands, slideKey, animate, scope, onFinished]);
+
+  useEffect(() => {
+    if (!animRef.current) return;
+    try {
+      if (isPaused) {
+        animRef.current.pause();
+      } else {
+        animRef.current.play();
+      }
+    } catch {
+      // safe fallback
+    }
+  }, [isPaused]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative flex-1 h-full min-w-0 flex items-center overflow-hidden [mask-image:linear-gradient(to_right,black_calc(100%-18px),transparent_100%)] z-10"
+    >
+      <div
+        ref={scope}
+        className="flex items-center gap-2 sm:gap-3 text-[13px] font-bold text-graphite tracking-tight shrink-0 whitespace-nowrap will-change-transform"
+      >
+        {brands.map((brand, idx) => (
+          <span key={brand} className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <span>{brand}</span>
+            {idx < brands.length - 1 && (
+              <span className="text-divider font-light select-none">·</span>
+            )}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function MarqueePhotoItem({
   item,
@@ -157,25 +283,15 @@ export function Hero() {
   const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setDirection(1);
     setSlideIndex((prev) => (prev + 1) % vendorSlides.length);
-  };
+  }, []);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setDirection(-1);
     setSlideIndex((prev) => (prev > 0 ? prev - 1 : vendorSlides.length - 1));
-  };
-
-  // Autoplay flip ticker every 4.2 seconds unless hovered
-  useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      setDirection(1);
-      setSlideIndex((prev) => (prev + 1) % vendorSlides.length);
-    }, 4200);
-    return () => clearInterval(interval);
-  }, [isHovered]);
+  }, []);
 
   const currentSlide = vendorSlides[slideIndex];
 
@@ -272,11 +388,11 @@ export function Hero() {
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="pt-0 lg:pt-16 text-graphite text-[clamp(1.85rem,3.4vw,3.25rem)] font-extrabold leading-[1.08] tracking-tight max-w-4xl"
           >
-            Алгоритмизация
+            Программирование ПЛК,
             <br />
-            шкафов управления
+            сборка шкафов управления
             <br />
-            и{"\u00A0"}SCADA-диспетчеризация
+            и{"\u00A0"}разработка SCADA-систем
           </motion.h1>
 
           <motion.div
@@ -288,27 +404,51 @@ export function Hero() {
             <p className="text-iron text-[15px] leading-[1.75]">
               Проектируем и{"\u00A0"}собираем шкафы автоматики на{"\u00A0"}собственном участке в{"\u00A0"}Москве,
               программируем ПЛК и{"\u00A0"}выезжаем на{"\u00A0"}пусконаладку по{"\u00A0"}всей{"\u00A0"}России. Разрабатываем
-              алгоритмы для{"\u00A0"}котельных, ИТП, ВЗУ, очистных сооружений и{"\u00A0"}технологических линий
-              на{"\u00A0"}доступной в{"\u00A0"}РФ компонентной базе (ОВЕН, Segnetics, Weintek, MasterSCADA, Veda MC, КЭАЗ)
-              по{"\u00A0"}ГОСТ{"\u00A0"}21.408 и{"\u00A0"}нормам Ростехнадзора.
+              прикладное ПО для{"\u00A0"}котельных, ИТП, ВЗУ, очистных сооружений и{"\u00A0"}технологических линий
+              на{"\u00A0"}проверенной компонентной базе со{"\u00A0"}складским наличием в{"\u00A0"}РФ (ОВЕН, Segnetics, Inovance, Weintek, MasterSCADA, Veda MC, КЭАЗ и{"\u00A0"}более 25{"\u00A0"}других брендов)
+              в{"\u00A0"}строгом соответствии с{"\u00A0"}ПУЭ-7 и{"\u00A0"}вашим ТЗ.
             </p>
+          </motion.div>
+
+          {/* Engineering Competencies Chips */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.28 }}
+            className="mt-6 flex flex-wrap gap-2 max-w-2xl"
+          >
+            {[
+              "Проектирование Э3",
+              "Сборка ШУ / ША",
+              "Программирование ПЛК и HMI",
+              "Разработка SCADA",
+              "Шефмонтаж и ПНР",
+              "Ретрофит и модернизация",
+            ].map((comp) => (
+              <span
+                key={comp}
+                className="inline-flex items-center px-2.5 py-1 text-[11px] font-mono font-medium tracking-tight bg-surface border border-divider/70 text-graphite/80 rounded-[6px]"
+              >
+                {comp}
+              </span>
+            ))}
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="mt-8 flex flex-col sm:flex-row gap-3 w-full max-w-[500px] sm:w-[500px]"
+            className="mt-7 flex flex-col sm:flex-row gap-3 w-full max-w-[500px] sm:w-[500px]"
           >
             <a
               href="#calculator"
-              className="w-full sm:flex-1 inline-flex items-center justify-center h-12 sm:h-[50px] min-h-[48px] px-6 py-3.5 bg-graphite text-white text-[13px] sm:text-[14px] font-semibold tracking-normal transition-all duration-200 hover:bg-carbon active:scale-[0.98] shadow-sm text-center rounded-[8px]"
+              className="w-full sm:flex-1 inline-flex items-center justify-center h-12 sm:h-[50px] min-h-[48px] px-4 sm:px-5 py-3.5 bg-graphite text-white text-[13px] sm:text-[14px] font-semibold tracking-normal transition-all duration-200 hover:bg-carbon active:scale-[0.98] shadow-sm text-center whitespace-nowrap rounded-[8px]"
             >
-              Сконфигурировать решение
+              Рассчитать проект
             </a>
             <a
               href="#services"
-              className="w-full sm:flex-1 inline-flex items-center justify-center h-12 sm:h-[50px] min-h-[48px] px-6 py-3.5 border border-divider bg-white text-graphite text-[13px] sm:text-[14px] font-semibold tracking-normal transition-all duration-200 hover:bg-surface hover:border-graphite active:scale-[0.98] text-center rounded-[8px]"
+              className="w-full sm:flex-1 inline-flex items-center justify-center h-12 sm:h-[50px] min-h-[48px] px-4 sm:px-5 py-3.5 border border-divider bg-white text-graphite text-[13px] sm:text-[14px] font-semibold tracking-normal transition-all duration-200 hover:bg-surface hover:border-graphite active:scale-[0.98] text-center whitespace-nowrap rounded-[8px]"
             >
               Инженерные компетенции
             </a>
@@ -324,7 +464,7 @@ export function Hero() {
             {/* Ticker Header */}
             <div className="flex items-center justify-between gap-4 mb-2">
               <span className="text-pewter text-[11px] font-medium tracking-wide">
-                Элементная база со{"\u00A0"}стабильным складским наличием в{"\u00A0"}РФ:
+                Элементная база и{"\u00A0"}ретрофит (более 30{"\u00A0"}брендов на{"\u00A0"}складах в{"\u00A0"}РФ):
               </span>
               <div className="flex items-center gap-1.5">
                 {vendorSlides.map((slide, i) => (
@@ -385,17 +525,13 @@ export function Hero() {
                       className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-graphite/5 pointer-events-none z-20"
                     />
 
-                    {/* Clean Brand Names without numbering — strictly bounded */}
-                    <div className="flex items-center gap-2 sm:gap-3 text-[13px] font-bold text-graphite tracking-tight truncate relative z-10">
-                      {currentSlide.brands.map((brand, idx) => (
-                        <span key={brand} className="flex items-center gap-2 sm:gap-3 shrink-0">
-                          <span>{brand}</span>
-                          {idx < currentSlide.brands.length - 1 && (
-                            <span className="text-divider font-light select-none">·</span>
-                          )}
-                        </span>
-                      ))}
-                    </div>
+                    {/* Brands row that scrolls to the edge before next slide flips */}
+                    <ScrollableBrandRow
+                      brands={currentSlide.brands}
+                      slideKey={currentSlide.id}
+                      isPaused={isHovered}
+                      onFinished={nextSlide}
+                    />
                   </motion.div>
                 </AnimatePresence>
               </div>
