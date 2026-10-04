@@ -590,11 +590,11 @@ export function Calculator() {
                   <>
                     <div className="mt-2 flex items-baseline gap-1.5">
                       <span className="text-[15px] font-semibold text-pewter">от</span>
-                      <span className="text-5xl font-black tracking-[-0.03em] text-graphite">350</span>
+                      <span className="text-5xl font-black tracking-[-0.03em] text-graphite">150</span>
                       <span className="text-xl font-bold text-pewter">тыс. ₽</span>
                     </div>
                     <div className="mt-1 text-pewter text-[12px]">
-                      Точный расчёт после изучения ТЗ и циклограммы
+                      Базовый порог · точная смета после изучения ТЗ и циклограммы
                     </div>
 
                     <a
