@@ -83,7 +83,7 @@ export function Footer() {
 
               <div className="mt-8 pt-4 border-t border-white/10 text-[11px] text-white/40 flex items-center justify-between">
                 <span>ТР ТС 004/2011 • ТР ТС 020/2011</span>
-                <span className="font-mono text-[10px] text-white/30">ОТК 100%</span>
+                <span className="font-mono text-[10px] text-white/30">Заводской контроль</span>
               </div>
             </div>
           </div>

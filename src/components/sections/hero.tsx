@@ -84,7 +84,7 @@ const portfolioMarquee = [
   { src: "/portfolio/scada/scada_5.webp", title: "Журнал аварий и событий", subtitle: "Телеметрия и алармы" },
 
   // 4. Объекты и пусконаладка (оборудование на площадке)
-  { src: "/portfolio/boiler/boiler_2.webp", title: "Насосная станция котлов", subtitle: "Частотные приводы Veda MC" },
+  { src: "/portfolio/boiler/boiler_2.webp", title: "Насосная станция котлов", subtitle: "Преобразователи частоты Veda MC" },
   { src: "/portfolio/cooling/cooling_1.webp", title: "Промышленный холод", subtitle: "Ярцево (Компрессоры)" },
   { src: "/portfolio/vzu/vzu_1.webp", title: "ВЗУ посёлка", subtitle: "Повысительная станция 2-го подъема" },
 ];
