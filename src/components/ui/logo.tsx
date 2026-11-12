@@ -60,7 +60,7 @@ export function Logo({
           isLight ? "text-white" : "text-graphite"
         }`}
       >
-        <span className="font-extrabold text-[#E66826]">Т3</span>{" "}
+        <span className="notranslate font-extrabold text-[#E66826]">Т3</span>{" "}
         <span className={`font-bold ${isLight ? "text-white/95" : "text-graphite/95"}`}>
           Автоматизация
         </span>

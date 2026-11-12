@@ -38,7 +38,7 @@ export function WhyUs() {
     <section id="about" className="bg-graphite lg:bg-surface-warm">
       <div className="grid grid-cols-1 lg:grid-cols-[480px_1fr] gap-0">
         {/* Left — dark column with rounded bottom on desktop, flat on mobile to connect with Services */}
-        <div className="bg-graphite p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-center text-white rounded-none lg:rounded-b-[16px] relative z-10">
+        <div className="bg-graphite p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-center text-white rounded-b-[16px] lg:rounded-b-[20px] relative z-10">
           <h2 className="text-white text-[clamp(1.4rem,2.2vw,2.15rem)] font-bold leading-[1.15] tracking-tight font-heading">
             Инжиниринговый
             <br />
@@ -75,11 +75,11 @@ export function WhyUs() {
 
         {/* Right — Video Placeholder (Strictly no heading, no description) */}
         <div className="bg-graphite flex items-stretch">
-          <div className="bg-surface-warm w-full h-full relative flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 select-none overflow-hidden min-h-[380px] sm:min-h-[440px] md:min-h-[480px] lg:min-h-[520px] rounded-t-[16px] lg:rounded-t-[20px]">
+          <div className="bg-surface-warm w-full h-full relative flex items-stretch justify-center p-4 sm:p-5 md:p-6 select-none overflow-hidden min-h-[380px] sm:min-h-[440px] md:min-h-[480px] lg:min-h-[520px] rounded-t-[16px] lg:rounded-t-[20px]">
             {/* Video Player Card */}
             <div
               onClick={togglePlay}
-              className="relative w-full max-w-[720px] aspect-[16/10] sm:aspect-video rounded-2xl md:rounded-[20px] overflow-hidden bg-[#121518] border border-divider/60 shadow-[0_20px_50px_rgba(0,0,0,0.12)] group cursor-pointer flex items-center justify-center transition-all duration-300 hover:border-graphite/40"
+              className="relative w-full min-h-[340px] sm:min-h-[400px] lg:min-h-full rounded-[12px] md:rounded-[14px] overflow-hidden bg-[#121518] border border-divider/60 group cursor-pointer flex items-center justify-center transition-all duration-300 hover:border-graphite/40"
             >
               {/* Optional real video tag if added later */}
               <video

@@ -44,6 +44,73 @@
   --border: var(--divider);
 }
 
+/* ═══════════════════════════════════════
+   THEME 2: T3 PRESENTATION (LIGHT THEME)
+   Официальные цвета презентации: ледяной сланец, глубокий синий нэви и терракота
+   ═══════════════════════════════════════ */
+[data-theme="presentation"] {
+  --carbon: #0A1C2E;           /* Deep Executive Navy */
+  --gunmetal: #12283E;
+  --iron: #334155;             /* Dark Slate body text */
+  --slate: #64748B;            /* Slate Muted */
+  --pale-slate: #CBD5E1;
+
+  --surface: #F2F5F9;          /* Cool Ice-Slate Light Canvas */
+  --surface-warm: #E6ECF3;     /* Subtle cool step */
+  --surface-card: #FFFFFF;     /* Crisp White Cards */
+  --divider: #CBD5E1;          /* Clean steel borders */
+  --graphite: #0A1C2E;         /* Deep Navy Blue headings & dark accents */
+  --armor: #06121E;
+  --pewter: #64748B;           /* Clean neutral slate metadata (no accent color) */
+
+  --accent: #0A1C2E;           /* Executive Navy primary dark action (neutral) */
+  --accent-hover: #12283E;
+  --accent-light: #E6ECF3;
+  --bronze: #00A88F;           /* Presentation Digital Emerald */
+  --bronze-hover: #008F7A;
+  --bronze-light: rgba(0, 168, 143, 0.12);
+  --white: #FFFFFF;
+
+  --background: var(--surface);
+  --foreground: var(--graphite);
+  --muted: var(--pewter);
+  --border: var(--divider);
+}
+
+/* ═══════════════════════════════════════
+   THEME 3: CYBER COPILOT (LIGHT TECH THEME)
+   Палитра со скрина в светлом исполнении:
+   ночной индиго, кибер-фиолетовый и тёплый янтарь
+   ═══════════════════════════════════════ */
+[data-theme="cyber"] {
+  --carbon: #18172E;           /* Deep Midnight Indigo */
+  --gunmetal: #23223E;
+  --iron: #3F3D56;             /* Indigo-slate body text */
+  --slate: #64748B;
+  --pale-slate: #CBD5E1;
+
+  --surface: #F6F6FB;          /* High-Tech Pale Indigo Canvas */
+  --surface-warm: #ECEBF6;     /* Subtle lavender-slate step */
+  --surface-card: #FFFFFF;     /* Pure White Card */
+  --divider: #DDDCEB;          /* Soft violet-gray structural borders */
+  --graphite: #18172E;         /* Deep Midnight Indigo headings */
+  --armor: #100F22;
+  --pewter: #6B7280;           /* Neutral slate metadata (strictly NOT violet) */
+
+  --accent: #18172E;           /* Midnight Indigo primary dark action (neutral) */
+  --accent-hover: #23223E;
+  --accent-light: #ECEBF6;
+  --bronze: #F97316;           /* Amber Glow from screenshot */
+  --bronze-hover: #EA580C;
+  --bronze-light: #FFEDD5;
+  --white: #FFFFFF;
+
+  --background: var(--surface);
+  --foreground: var(--graphite);
+  --muted: var(--pewter);
+  --border: var(--divider);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -163,3 +230,112 @@ textarea {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Background Google Translate Clean Styles (Hide third-party banners and popups) */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame,
+.goog-te-gadget,
+.goog-te-gadget-simple,
+.VIpgJd-ZVi9od-OR95Rare-ibnHgk,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-SmfZ-OueMb-IalTfc,
+[class*="VIpgJd-"],
+#google_translate_element {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+.skiptranslate:not(.allow-translate) {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════
+   THEME STYLES: BACKGROUNDS & SURFACES
+   ═══════════════════════════════════════ */
+
+/* ─── THEME 2: T3 PRESENTATION (LIGHT THEME) ─── */
+[data-theme="presentation"] body {
+  background-color: #F2F5F9;
+  color: #0A1C2E;
+  background-image: none;
+}
+
+[data-theme="presentation"] .text-graphite {
+  color: #0A1C2E;
+}
+
+[data-theme="presentation"] .text-iron {
+  color: #334155;
+}
+
+[data-theme="presentation"] .text-pewter {
+  color: #64748B;
+}
+
+[data-theme="presentation"] .border-divider,
+[data-theme="presentation"] [class*="border-divider/"] {
+  border-color: #CBD5E1;
+}
+
+[data-theme="presentation"] [data-theme-popover] {
+  background-color: #FFFFFF;
+  color: #0A1C2E;
+  border-color: #CBD5E1;
+  box-shadow: 0 16px 36px rgba(10, 28, 46, 0.12);
+}
+
+/* ─── THEME 3: CYBER COPILOT (LIGHT TECH THEME SO SKRINA) ─── */
+[data-theme="cyber"] body {
+  background-color: #F6F6FB;
+  color: #18172E;
+  background-image: none;
+}
+
+[data-theme="cyber"] .text-graphite {
+  color: #18172E;
+}
+
+[data-theme="cyber"] .text-iron {
+  color: #3F3D56;
+}
+
+[data-theme="cyber"] .text-pewter {
+  color: #6B7280;
+}
+
+[data-theme="cyber"] .border-divider,
+[data-theme="cyber"] [class*="border-divider/"] {
+  border-color: #DDDCEB;
+}
+
+[data-theme="cyber"] [data-theme-popover] {
+  background-color: #FFFFFF;
+  color: #18172E;
+  border-color: #DDDCEB;
+  box-shadow: 0 16px 36px rgba(24, 23, 46, 0.12);
+}
+

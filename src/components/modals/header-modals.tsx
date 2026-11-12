@@ -187,12 +187,12 @@ function RequisitesView({
   onCopy: () => void;
 }) {
   return (
-    <div className="h-full w-full flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="min-h-full w-full flex items-start md:items-center justify-center p-3 pt-14 sm:p-6 lg:p-8">
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-4xl bg-white border border-divider/60 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col gap-6"
+        className="w-full max-w-4xl bg-white border border-divider/60 rounded-2xl p-4 sm:p-8 shadow-sm flex flex-col gap-5 sm:gap-6"
       >
         {/* Header Intro */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-divider/40">
@@ -231,9 +231,9 @@ function RequisitesView({
               Регистрационные данные
             </span>
 
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">Полное наименование:</span>
-              <span className="text-[13px] font-medium text-graphite text-right">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-3 border-b border-divider/30 pb-2">
+              <span className="text-[12px] text-pewter shrink-0">Полное наименование:</span>
+              <span className="text-[13px] font-medium text-graphite sm:text-right">
                 ООО «Т3 - Автоматизация»
               </span>
             </div>
@@ -266,9 +266,9 @@ function RequisitesView({
               </span>
             </div>
 
-            <div className="flex justify-between items-baseline">
-              <span className="text-[12px] text-pewter">Система налогообложения:</span>
-              <span className="text-[13px] font-medium text-graphite">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-3">
+              <span className="text-[12px] text-pewter shrink-0">Система налогообложения:</span>
+              <span className="text-[13px] font-medium text-graphite sm:text-right">
                 ОСНО (с НДС 20%)
               </span>
             </div>

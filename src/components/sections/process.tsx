@@ -139,9 +139,10 @@ export function Process() {
           </p>
         </div>
 
-        {/* Clean Synchronous Carousel Stage */}
+        {/* Synchronous 3D Carousel Stage */}
         <div
           className="mt-12 relative w-full flex items-center justify-center py-4 select-none min-h-[580px] md:min-h-[620px]"
+          style={{ perspective: 1200 }}
         >
           {steps.map((step, i) => {
             let offset = (i - activeIndex + count) % count;
@@ -152,8 +153,9 @@ export function Process() {
             const isRight = offset === 1;
             const isVisible = Math.abs(offset) <= 1;
 
-            // Planar layout coordinates without 3D perspective distortion
+            // 3D Perspective layout coordinates
             let targetX = 0;
+            let targetRotateY = 0;
             let targetScale = 1;
             let targetOpacity = 0;
             let targetZIndex = 0;
@@ -161,27 +163,32 @@ export function Process() {
             if (isDesktop) {
               if (isCenter) {
                 targetX = 0;
+                targetRotateY = 0;
                 targetScale = 1;
                 targetOpacity = 1;
                 targetZIndex = 20;
               } else if (isLeft) {
-                targetX = -400;
-                targetScale = 0.92;
-                targetOpacity = 0.45;
+                targetX = -380;
+                targetRotateY = 22;
+                targetScale = 0.88;
+                targetOpacity = 0.38;
                 targetZIndex = 10;
               } else if (isRight) {
-                targetX = 400;
-                targetScale = 0.92;
-                targetOpacity = 0.45;
+                targetX = 380;
+                targetRotateY = -22;
+                targetScale = 0.88;
+                targetOpacity = 0.38;
                 targetZIndex = 10;
               } else if (offset < -1) {
-                targetX = -560;
-                targetScale = 0.8;
+                targetX = -540;
+                targetRotateY = 35;
+                targetScale = 0.75;
                 targetOpacity = 0;
                 targetZIndex = 0;
               } else {
-                targetX = 560;
-                targetScale = 0.8;
+                targetX = 540;
+                targetRotateY = -35;
+                targetScale = 0.75;
                 targetOpacity = 0;
                 targetZIndex = 0;
               }
@@ -189,17 +196,20 @@ export function Process() {
               // Mobile & Tablet
               if (isCenter) {
                 targetX = 0;
+                targetRotateY = 0;
                 targetScale = 1;
                 targetOpacity = 1;
                 targetZIndex = 20;
               } else if (offset < 0) {
                 targetX = -320;
-                targetScale = 0.9;
+                targetRotateY = 28;
+                targetScale = 0.85;
                 targetOpacity = 0;
                 targetZIndex = 0;
               } else {
                 targetX = 320;
-                targetScale = 0.9;
+                targetRotateY = -28;
+                targetScale = 0.85;
                 targetOpacity = 0;
                 targetZIndex = 0;
               }
@@ -210,13 +220,14 @@ export function Process() {
                 key={step.num}
                 animate={{
                   x: targetX,
+                  rotateY: targetRotateY,
                   scale: targetScale,
                   opacity: targetOpacity,
                   zIndex: targetZIndex,
                 }}
                 transition={{
-                  duration: 0.5,
-                  ease: [0.16, 1, 0.3, 1],
+                  duration: 0.6,
+                  ease: [0.16, 1, 0.3, 1], // Signature Metro deceleration curve
                 }}
                 drag={isCenter ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
@@ -229,7 +240,11 @@ export function Process() {
                   if (isLeft) prev();
                   if (isRight) next();
                 }}
-                className={`absolute w-[92vw] max-w-[450px] h-[550px] md:h-[580px] px-8 pb-8 pt-4 md:px-9 md:pb-9 md:pt-5 rounded-[14px] bg-white border border-divider/40 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between overflow-hidden ${
+                style={{
+                  transformStyle: "preserve-3d",
+                  transformOrigin: offset < 0 ? "right center" : offset > 0 ? "left center" : "center center",
+                }}
+                className={`absolute w-[92vw] max-w-[450px] h-[550px] md:h-[580px] px-8 pb-8 pt-4 md:px-9 md:pb-9 md:pt-5 rounded-[14px] bg-white border border-divider/40 shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex flex-col justify-between overflow-hidden ${
                   isCenter
                     ? "cursor-grab active:cursor-grabbing pointer-events-auto"
                     : isVisible

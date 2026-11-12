@@ -152,7 +152,7 @@ export function StoriesBar() {
   return (
     <>
       {/* ─── Stories Bar with Strictly Symmetrical Spacing ─── */}
-      <section className="relative z-20 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto w-full pt-32 sm:pt-40 md:pt-48 lg:pt-56 pb-32 sm:pb-40 md:pb-48 lg:pb-56">
+      <section id="stories" className="relative z-20 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto w-full pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-32 sm:pb-40 md:pb-48 lg:pb-56">
         {/* Desktop Container */}
         <div className="hidden md:flex items-center justify-between h-[68px] lg:h-[72px] px-4 lg:px-5 rounded-[12px] bg-graphite border border-divider/25 shadow-[0_8px_30px_rgba(33,37,41,0.12)] max-w-[1120px] mx-auto">
           {/* Left: Stories tiles with sleek rectangular/squircle corners */}
@@ -184,21 +184,45 @@ export function StoriesBar() {
             ))}
           </div>
 
-          {/* Right: Badge "Мы в работе" */}
-          <div className="flex items-center">
-            <span className="inline-flex items-center px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-[8px] bg-white/10 border border-white/15 text-white text-[13px] font-medium tracking-tight select-none shadow-xs">
+          {/* Right: Prompt + interactive badge "Мы в работе" */}
+          <div className="flex items-center gap-3 lg:gap-4">
+            <button
+              type="button"
+              onClick={() => openStory(0)}
+              className="inline-flex items-center gap-1.5 text-white/70 hover:text-white text-[12px] lg:text-[13px] font-medium tracking-tight whitespace-nowrap transition-colors cursor-pointer"
+            >
+              <span aria-hidden="true" className="text-white/55">←</span>
+              <span>Посмотрите короткие видео</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => openStory(0)}
+              className="inline-flex items-center px-3.5 py-1.5 lg:px-4 lg:py-2 rounded-[8px] bg-white/10 hover:bg-white/15 border border-white/15 text-white text-[13px] font-medium tracking-tight select-none shadow-xs transition-colors cursor-pointer"
+            >
               Мы в работе
-            </span>
+            </button>
           </div>
         </div>
 
         {/* Mobile Container */}
         <div className="md:hidden rounded-[12px] bg-graphite border border-divider/25 p-3.5 space-y-3 shadow-[0_8px_24px_rgba(33,37,41,0.12)]">
-          {/* Top: Badge "Мы в работе" */}
-          <div className="flex items-center">
-            <span className="inline-flex items-center px-3 py-1.5 rounded-[8px] bg-white/10 border border-white/15 text-white text-[12px] font-medium tracking-tight select-none">
+          {/* Top: Prompt + interactive badge "Мы в работе" */}
+          <div className="flex items-center justify-between gap-2">
+            <button
+              type="button"
+              onClick={() => openStory(0)}
+              className="inline-flex items-center gap-1 text-white/70 active:text-white text-[11.5px] sm:text-[12px] font-medium tracking-tight whitespace-nowrap transition-colors"
+            >
+              <span>Посмотрите короткие видео</span>
+              <span aria-hidden="true" className="text-white/55">↓</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => openStory(0)}
+              className="shrink-0 inline-flex items-center px-3 py-1.5 rounded-[8px] bg-white/10 active:bg-white/15 border border-white/15 text-white text-[12px] font-medium tracking-tight select-none transition-colors"
+            >
               Мы в работе
-            </span>
+            </button>
           </div>
 
           {/* Bottom: Horizontal scroll of tiles */}
