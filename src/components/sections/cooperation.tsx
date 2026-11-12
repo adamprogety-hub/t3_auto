@@ -54,38 +54,27 @@ export function Cooperation() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-graphite text-white rounded-[14px] md:rounded-[18px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-5 sm:p-7 md:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[1fr_440px] xl:grid-cols-[1fr_480px] gap-8 items-center relative"
+            className="bg-graphite text-white rounded-[14px] md:rounded-[18px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-5 sm:p-7 md:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[440px_1fr] xl:grid-cols-[480px_1fr] gap-8 items-stretch relative"
           >
           {/* Ambient Lighting */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl pointer-events-none" />
 
-          {/* 3D Cabinet Render in Background (matching Screenshot 2 style) */}
-          <div className="absolute right-[240px] xl:right-[290px] 2xl:right-[340px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block opacity-45 xl:opacity-65">
-            <img
-              src="/asu_cabinet_transparent.webp"
-              alt="Шкаф АСУТП"
-              className="w-[520px] xl:w-[600px] h-auto object-contain -scale-x-100 drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
+          {/* 3D Folder Render Peeking out from behind the left form (Desktop) */}
+          <div className="absolute left-[300px] xl:left-[350px] 2xl:left-[400px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block opacity-75 xl:opacity-90">
+            <motion.img
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              src="/cooperation_folder.webp"
+              alt="Документация АСУТП"
+              className="w-[460px] xl:w-[530px] 2xl:w-[580px] h-auto object-contain drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
               draggable={false}
             />
           </div>
 
-          {/* Left Column: Heading & description */}
-          <div className="relative z-20 flex flex-col justify-center max-w-xl py-2 sm:py-4 lg:py-6">
-            <div>
-              <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.5rem)] font-bold leading-[1.12] tracking-tight">
-                Предложить
-                <br />
-                сотрудничество
-              </h2>
-              <p className="mt-4 text-white/70 text-[14px] sm:text-[15px] leading-relaxed max-w-lg">
-                Инжиниринговый центр «Т3 Автоматизация» открыт к партнёрству с{"\u00A0"}генподрядчиками,
-                проектными институтами, системными интеграторами и{"\u00A0"}поставщиками технологического оборудования.
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column: Elevated Feedback Form (matching Screenshot 2 card style) */}
-          <div className="relative z-20 p-5 sm:p-7 md:p-8 bg-[#EAEEF2] rounded-[14px] shadow-[0_16px_40px_-8px_rgba(0,0,0,0.30)] flex flex-col justify-center border border-white/60 text-graphite">
+          {/* Left Column: Elevated Feedback Form (order-2 on mobile, order-1 on desktop) */}
+          <div className="relative z-20 p-5 sm:p-7 md:p-8 bg-[#EAEEF2] rounded-[14px] shadow-[0_16px_40px_-8px_rgba(0,0,0,0.30)] flex flex-col justify-center border border-white/60 text-graphite order-2 lg:order-1">
             <AnimatePresence mode="wait">
               {isSubmitted ? (
                 /* Success View */
@@ -220,6 +209,40 @@ export function Cooperation() {
                 </motion.form>
               )}
             </AnimatePresence>
+          </div>
+
+          {/* Right Column: Heading top right, Description bottom right (order-1 on mobile, order-2 on desktop) */}
+          <div className="relative z-20 flex flex-col justify-between py-2 sm:py-4 lg:py-6 pl-0 lg:pl-6 xl:pl-10 order-1 lg:order-2 min-h-[200px] lg:min-h-[460px]">
+            {/* Top Right: Heading */}
+            <div className="max-w-xl">
+              <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.5rem)] font-bold leading-[1.12] tracking-tight">
+                Предложить
+                <br />
+                сотрудничество
+              </h2>
+            </div>
+
+            {/* Mobile 3D Folder Overlap Render */}
+            <div className="lg:hidden relative w-full flex justify-center my-4 z-10 pointer-events-none select-none">
+              <motion.img
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55 }}
+                src="/cooperation_folder.webp"
+                alt="Документация АСУТП"
+                className="w-56 sm:w-68 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
+                draggable={false}
+              />
+            </div>
+
+            {/* Bottom Right: Description */}
+            <div className="mt-4 lg:mt-auto pt-2 lg:pt-8 max-w-xl">
+              <p className="text-white/70 text-[14px] sm:text-[15px] leading-relaxed">
+                Инжиниринговый центр «Т3 Автоматизация» открыт к партнёрству с{"\u00A0"}генподрядчиками,
+                проектными институтами, системными интеграторами и{"\u00A0"}поставщиками технологического оборудования.
+              </p>
+            </div>
           </div>
         </motion.div>
         </div>
