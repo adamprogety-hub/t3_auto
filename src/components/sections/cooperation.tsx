@@ -60,7 +60,7 @@ export function Cooperation() {
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl pointer-events-none" />
 
           {/* 3D Folder Render Peeking out from behind the left form (Desktop) */}
-          <div className="absolute left-[290px] xl:left-[340px] 2xl:left-[380px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block opacity-100">
+          <div className="absolute left-[340px] xl:left-[400px] 2xl:left-[440px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block opacity-100">
             <motion.img
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -68,7 +68,7 @@ export function Cooperation() {
               transition={{ duration: 0.6, delay: 0.15 }}
               src="/cooperation_briefcase.png?v=3"
               alt="Документация АСУТП"
-              className="w-[480px] xl:w-[560px] 2xl:w-[620px] h-auto object-contain drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
+              className="w-[320px] xl:w-[370px] 2xl:w-[410px] h-auto object-contain drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
               draggable={false}
             />
           </div>
@@ -171,28 +171,36 @@ export function Cooperation() {
                   </div>
 
                   {/* Privacy Checkbox */}
-                  <div className="flex items-start gap-2 pt-0.5">
+                  <label className="flex items-start gap-2.5 cursor-pointer select-none pt-0.5 group">
                     <input
                       type="checkbox"
-                      id="cooperation-agree"
                       checked={isAgreed}
                       onChange={(e) => setIsAgreed(e.target.checked)}
-                      className="mt-0.5 h-3.5 w-3.5 rounded border-divider text-graphite focus:ring-graphite cursor-pointer"
+                      className="sr-only peer"
                     />
-                    <label
-                      htmlFor="cooperation-agree"
-                      className="text-[10.5px] text-pewter leading-snug cursor-pointer select-none"
-                    >
-                      Согласен на{"\u00A0"}обработку персональных данных в{"\u00A0"}соответствии с{"\u00A0"}
+                    <div className="w-4 h-4 rounded-[4px] border border-divider/80 peer-checked:bg-graphite peer-checked:border-graphite peer-focus-visible:ring-2 peer-focus-visible:ring-graphite/30 flex items-center justify-center shrink-0 mt-0.5 transition-all bg-white group-hover:border-graphite/60 shadow-2xs">
+                      <Check
+                        className={`w-3 h-3 text-white transition-opacity ${
+                          isAgreed ? "opacity-100" : "opacity-0"
+                        }`}
+                        strokeWidth={2.5}
+                      />
+                    </div>
+                    <span className="text-[11px] text-iron leading-[1.45]">
+                      Согласен на{"\u00A0"}обработку персональных данных в{"\u00A0"}соответствии с{" "}
                       <button
                         type="button"
-                        onClick={openPrivacyModal}
-                        className="underline hover:text-graphite transition-colors inline"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          openPrivacyModal();
+                        }}
+                        className="text-graphite font-semibold underline underline-offset-2 hover:text-[#E66826] transition-colors cursor-pointer"
                       >
                         политикой конфиденциальности
                       </button>
-                    </label>
-                  </div>
+                    </span>
+                  </label>
 
                   {/* Submit Button */}
                   <button
@@ -231,7 +239,7 @@ export function Cooperation() {
                 transition={{ duration: 0.55 }}
                 src="/cooperation_briefcase.png?v=3"
                 alt="Документация АСУТП"
-                className="w-64 sm:w-76 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
+                className="w-48 sm:w-56 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
                 draggable={false}
               />
             </div>

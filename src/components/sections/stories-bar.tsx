@@ -152,7 +152,7 @@ export function StoriesBar() {
   return (
     <>
       {/* ─── Stories Bar with Strictly Symmetrical Spacing ─── */}
-      <section className="relative z-20 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto w-full pt-20 sm:pt-24 lg:pt-32 pb-20 sm:pb-24 lg:pb-32">
+      <section className="relative z-20 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto w-full pt-32 sm:pt-40 md:pt-48 lg:pt-56 pb-32 sm:pb-40 md:pb-48 lg:pb-56">
         {/* Desktop Container */}
         <div className="hidden md:flex items-center justify-between h-[68px] lg:h-[72px] px-4 lg:px-5 rounded-[12px] bg-graphite border border-divider/25 shadow-[0_8px_30px_rgba(33,37,41,0.12)] max-w-[1120px] mx-auto">
           {/* Left: Stories tiles with sleek rectangular/squircle corners */}

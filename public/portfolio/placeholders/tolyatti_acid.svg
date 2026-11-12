@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <rect width="400" height="240" fill="#F4F6F8" />
+  <g transform="translate(100, 35)" stroke="#64748B" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Chemical Vessel / Reactor Tank -->
+    <path d="M40 50 C40 35, 100 35, 100 50 L100 135 C100 150, 40 150, 40 135 Z" fill="#FFFFFF" stroke="#475569" stroke-width="1.4" />
+    <!-- Liquid Level in Tank -->
+    <path d="M42 100 C60 96, 80 104, 98 100 L98 135 C98 145, 42 145, 42 135 Z" fill="#E2E8F0" stroke="none" opacity="0.6" />
+    <!-- Agitator / Impeller in Vessel -->
+    <line x1="70" y1="20" x2="70" y2="115" stroke="#475569" stroke-width="1.4" />
+    <path d="M55 115 L85 115" stroke="#475569" stroke-width="2" />
+    <circle cx="70" cy="18" r="6" fill="#E2E8F0" stroke="#475569" />
+
+    <!-- Process Piping & Control Valve -->
+    <path d="M100 70 L140 70 L140 105" stroke-width="1.5" stroke="#475569" />
+    <polygon points="135,80 145,80 135,90 145,90" fill="#CBD5E1" stroke="#475569" />
+    <circle cx="140" cy="85" r="3" fill="#E66826" stroke="none" />
+
+    <!-- HMI Screen Frame (Right) -->
+    <rect x="135" y="110" width="68" height="48" rx="3" fill="#FFFFFF" stroke="#475569" stroke-width="1.3" />
+    <rect x="140" y="115" width="58" height="38" rx="1" fill="#F8FAFC" stroke="#E2E8F0" />
+    <!-- SCADA Trend Graph on Screen -->
+    <path d="M144 142 L152 135 L162 138 L174 125 L186 130 L194 122" stroke="#E66826" stroke-width="1.4" />
+    <line x1="144" y1="145" x2="194" y2="145" stroke="#CBD5E1" stroke-dasharray="2 2" />
+
+    <!-- Temperature Sensor Transmitter -->
+    <circle cx="28" cy="90" r="7" fill="#FFFFFF" stroke="#475569" />
+    <line x1="35" y1="90" x2="40" y2="90" />
+    <line x1="28" y1="87" x2="28" y2="93" stroke="#E66826" stroke-width="1.4" />
+  </g>
+</svg>

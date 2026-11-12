@@ -26,10 +26,10 @@ export function Contacts() {
           </h2>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-[440px_1fr] gap-12 items-start">
-          {/* Left — contacts */}
-          <div>
-            <div className="rounded-[14px] bg-white p-6 md:p-8 space-y-6 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-[440px_1fr] gap-8 lg:gap-12 items-stretch">
+          {/* Left — company info card (aligned with form) */}
+          <div className="flex flex-col h-full">
+            <div className="rounded-[14px] bg-white p-6 md:p-8 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between h-full space-y-6">
               <div>
                 <span className="text-pewter text-[11px] font-mono uppercase tracking-wider block">
                   Дирекция филиала Волга
@@ -88,33 +88,13 @@ export function Contacts() {
                   География и филиалы Т3
                 </span>
                 <div className="text-[13px] space-y-1.5 text-graphite font-medium">
-                  <div>• <strong className="text-graphite font-bold">Центральный офис:</strong> г. Москва, ул. Берзарина, д. 28А, к. 2</div>
-                  <div>• <strong className="text-graphite font-bold">Филиал Волга и производство:</strong> г. Самара, 19 км</div>
-                  <div>• <strong className="text-graphite font-bold">Филиал Урал:</strong> г. Челябинск</div>
+                  <div>— <strong className="text-graphite font-bold">Центральный офис:</strong> г. Москва, ул. Берзарина, д. 28А, к. 2</div>
+                  <div>— <strong className="text-graphite font-bold">Филиал Волга и производство:</strong> г. Самара, 19 км</div>
+                  <div>— <strong className="text-graphite font-bold">Филиал Урал:</strong> г. Челябинск</div>
                 </div>
                 <div className="text-iron text-[12px] mt-2 font-mono">
                   ООО «Т3 - Автоматизация» · ИНН 9734028824 · ОГРН 1267700304178
                 </div>
-              </div>
-            </div>
-
-            {/* NDA Trust badge */}
-            <div className="mt-4 p-4 md:p-5 rounded-[10px] bg-white shadow-[0_4px_20px_-4px_rgba(19,18,16,0.04),0_1px_3px_rgba(0,0,0,0.02)] grid grid-cols-3 gap-3 md:gap-4 items-center">
-              {/* Left 1/3 — 3D NDA padlock */}
-              <div className="col-span-1 flex items-center justify-center">
-                <img
-                  src="/icons/nda/nda_padlock.webp"
-                  alt="Соглашение о конфиденциальности (NDA)"
-                  className="w-full max-h-[85px] md:max-h-[96px] object-contain drop-shadow-[0_6px_16px_rgba(19,18,16,0.08)] hover:scale-105 transition-transform duration-300 select-none"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Right 2/3 (text content) */}
-              <div className="col-span-2">
-                <p className="text-[12px] text-iron leading-relaxed">
-                  <strong className="text-graphite font-semibold">Соглашение о{"\u00A0"}конфиденциальности (NDA):</strong> подписываем соглашение о{"\u00A0"}неразглашении до{"\u00A0"}передачи технологических схем и{"\u00A0"}чертежей объекта.
-                </p>
               </div>
             </div>
           </div>
@@ -124,7 +104,7 @@ export function Contacts() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="p-8 md:p-10 bg-white rounded-[12px] shadow-[0_16px_44px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.03)]"
+            className="p-8 md:p-10 bg-white rounded-[14px] shadow-[0_16px_44px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.03)] h-full flex flex-col justify-between"
           >
             <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

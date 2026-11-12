@@ -382,37 +382,18 @@ function CasesGalleryView() {
               <div className="relative h-44 sm:h-48 w-full bg-surface-warm overflow-hidden group">
                 <img
                   src={currentImg.src}
-                  alt={currentImg.caption || proj.title}
+                  alt={proj.title}
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   loading="lazy"
                 />
-
-                {/* Tag overlay */}
-                <div className="absolute top-2.5 left-2.5 z-10">
-                  <span className="px-2 py-0.5 rounded-[5px] text-[10px] font-mono font-medium bg-graphite/85 text-white backdrop-blur-xs">
-                    {proj.type}
-                  </span>
-                </div>
-
-                {/* Photo pagination pill */}
-                {photoCount > 1 && (
-                  <div className="absolute bottom-2.5 right-2.5 z-10 flex items-center gap-1 bg-graphite/70 backdrop-blur-xs rounded-full px-2 py-0.5 text-[10px] text-white font-mono">
-                    <span>{currentPhotoIdx + 1}</span>
-                    <span>/</span>
-                    <span>{photoCount}</span>
-                  </div>
-                )}
               </div>
 
               {/* Title Bar Under Photo */}
               <div className="p-3.5 flex items-center justify-between gap-2 border-t border-divider/40 bg-white">
                 <div className="min-w-0">
-                  <h4 className="text-[14px] font-bold text-graphite tracking-tight leading-snug truncate font-heading">
+                  <h4 className="text-[14px] font-bold text-graphite tracking-tight leading-snug font-heading">
                     {proj.title}
                   </h4>
-                  <span className="text-[11px] text-pewter block truncate mt-0.5">
-                    {proj.location}
-                  </span>
                 </div>
 
                 <div
@@ -438,33 +419,9 @@ function CasesGalleryView() {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className="p-3.5 flex flex-col gap-2.5 text-[12px]">
-                      {/* Photo Thumbnails if multiple */}
-                      {photoCount > 1 && (
-                        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none]">
-                          {proj.images.map((img, photoI) => (
-                            <button
-                              key={photoI}
-                              onClick={(e) => setCardPhoto(proj.id, photoI, photoCount, e)}
-                              className={`relative w-9 h-9 rounded-[5px] overflow-hidden border shrink-0 transition-all ${
-                                photoI === currentPhotoIdx
-                                  ? "border-graphite ring-1 ring-graphite"
-                                  : "border-divider/50 opacity-60 hover:opacity-100"
-                              }`}
-                            >
-                              <img src={img.src} alt="" className="w-full h-full object-cover" />
-                            </button>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Caption of current photo */}
-                      <p className="text-graphite font-medium text-[12px] leading-relaxed">
-                        {currentImg.caption}
-                      </p>
-
                       {/* Equipment */}
                       {proj.hardware && (
-                        <div className="pt-2 border-t border-divider/30 text-[11px]">
+                        <div className="text-[11px]">
                           <span className="text-pewter block font-mono">Оборудование:</span>
                           <span className="text-graphite font-semibold">{proj.hardware}</span>
                         </div>
@@ -472,17 +429,9 @@ function CasesGalleryView() {
 
                       {/* Details */}
                       {proj.details && (
-                        <p className="text-iron text-[11px] leading-relaxed">
+                        <p className="text-iron text-[11px] leading-relaxed pt-2 border-t border-divider/30">
                           {proj.details}
                         </p>
-                      )}
-
-                      {/* Result */}
-                      {proj.result && (
-                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-accent/10 border border-accent/20 text-accent font-medium text-[11px] self-start mt-0.5">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          <span>{proj.result}</span>
-                        </div>
                       )}
                     </div>
                   </motion.div>

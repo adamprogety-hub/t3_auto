@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <rect width="400" height="240" fill="#F4F6F8" />
+  <g transform="translate(100, 45)" stroke="#64748B" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Gas Pipeline Flow -->
+    <line x1="0" y1="100" x2="200" y2="100" stroke="#475569" stroke-width="2" />
+    <!-- Flow Direction Arrow -->
+    <path d="M22 96 L28 100 L22 104" stroke="#E66826" stroke-width="1.5" />
+    <path d="M178 96 L184 100 L178 104" stroke="#E66826" stroke-width="1.5" />
+
+    <!-- Gas Filter Unit (Inlet) -->
+    <rect x="42" y="86" width="22" height="28" rx="2" fill="#E2E8F0" stroke="#475569" stroke-width="1.3" />
+    <line x1="42" y1="100" x2="64" y2="100" stroke="#CBD5E1" stroke-dasharray="2 2" />
+
+    <!-- Pressure Regulator Valve -->
+    <polygon points="90,92 106,108 90,108 106,92" fill="#CBD5E1" stroke="#475569" stroke-width="1.3" />
+    <circle cx="98" cy="80" r="10" fill="#FFFFFF" stroke="#475569" />
+    <line x1="98" y1="90" x2="98" y2="100" />
+    <line x1="98" y1="80" x2="103" y2="76" stroke="#E66826" stroke-width="1.4" />
+
+    <!-- Gas Volume Corrector (Elster) -->
+    <rect x="135" y="85" width="28" height="30" rx="3" fill="#FFFFFF" stroke="#475569" stroke-width="1.3" />
+    <rect x="140" y="90" width="18" height="10" rx="1" fill="#F8FAFC" stroke="#CBD5E1" />
+    <circle cx="149" cy="107" r="2" fill="#10B981" stroke="none" />
+
+    <!-- Telemetry Impulse Line to Cabinet -->
+    <path d="M149 85 L149 55 L115 55" stroke-dasharray="2 2" stroke="#E66826" opacity="0.8" />
+    
+    <!-- Astra Linux Telemetry Controller Box -->
+    <rect x="65" y="25" width="50" height="42" rx="3" fill="#FFFFFF" stroke="#475569" stroke-width="1.3" />
+    <line x1="72" y1="36" x2="108" y2="36" stroke="#CBD5E1" />
+    <circle cx="75" cy="48" r="2" fill="#E66826" stroke="none" />
+    <circle cx="83" cy="48" r="2" fill="#10B981" stroke="none" />
+    
+    <!-- GSM / Radio Antenna -->
+    <line x1="105" y1="25" x2="105" y2="10" stroke="#475569" stroke-width="1.4" />
+    <path d="M99 14 C102 10, 108 10, 111 14" stroke="#E66826" stroke-width="1.2" />
+    <path d="M96 18 C101 13, 109 13, 114 18" stroke="#E66826" stroke-width="1.2" />
+  </g>
+</svg>

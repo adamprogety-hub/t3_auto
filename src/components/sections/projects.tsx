@@ -33,10 +33,10 @@ export const projects: ProjectItem[] = [
     size: "large", // 2x2
     color: "bg-graphite",
     images: [
-      { src: "/portfolio/boiler/boiler_1.webp", caption: "Шереметьево: Главный шкаф автоматики котельной жизнеобеспечения" },
-      { src: "/portfolio/boiler/boiler_2.webp", caption: "Шереметьево: Шкаф управления сетевой насосной станцией с ЧРП" },
-      { src: "/portfolio/boiler/boiler_3.webp", caption: "Шереметьево: Обвязка тепломеханических узлов и насосных групп" },
-      { src: "/portfolio/boiler/boiler_4.webp", caption: "Шереметьево: Коллекторы водозаборных сооружений и датчики давления" },
+      {
+        src: "/portfolio/placeholders/sheremetyevo.svg",
+        caption: "Шереметьево: Схема шкафов автоматики и ЧРП (материалы под NDA)",
+      },
     ],
   },
   {
@@ -50,10 +50,10 @@ export const projects: ProjectItem[] = [
     size: "medium", // 1x1
     color: "bg-gunmetal",
     images: [
-      { src: "/portfolio/itp/itp_1.webp", caption: "Тольяттикаучук: Насосная группа блока №15 изобутановой фракции" },
-      { src: "/portfolio/itp/itp_2.webp", caption: "Тольяттикаучук: Мнемосхема АРМ — Контур контроля загазованности" },
-      { src: "/portfolio/itp/itp_3.webp", caption: "Тольяттикаучук: Мнемосхема АРМ — Параметры отделения Д-1а ТСЦ" },
-      { src: "/portfolio/itp/itp_4.webp", caption: "Тольяттикаучук: Системы противоаварийной защиты (ПАЗ)" },
+      {
+        src: "/portfolio/placeholders/tolyatti_block15.svg",
+        caption: "Тольяттикаучук: Архитектура РСУ и контуров ПАЗ SIL3 (материалы под NDA)",
+      },
     ],
   },
   {
@@ -67,11 +67,10 @@ export const projects: ProjectItem[] = [
     size: "medium",
     color: "bg-iron",
     images: [
-      { src: "/portfolio/scada/scada_1.webp", caption: "Щавелевая кислота: Главная мнемосхема установки на панели HMI" },
-      { src: "/portfolio/scada/scada_2.webp", caption: "Щавелевая кислота: Графики трендов давления, расхода и температур" },
-      { src: "/portfolio/scada/scada_3.webp", caption: "Щавелевая кислота: HMI мнемосхема контуров дозирования и смешения" },
-      { src: "/portfolio/scada/scada_4.webp", caption: "Щавелевая кислота: Экран контуров противоаварийной защиты ПАЗ" },
-      { src: "/portfolio/scada/scada_5.webp", caption: "Щавелевая кислота: Панель оператора на базе контроллера БАЗИС-100" },
+      {
+        src: "/portfolio/placeholders/tolyatti_acid.svg",
+        caption: "Щавелевая кислота: Мнемосхемы HMI и контуры ПТК БАЗИС-100 (материалы под NDA)",
+      },
     ],
   },
   {
@@ -85,10 +84,10 @@ export const projects: ProjectItem[] = [
     size: "wide", // 2x1
     color: "bg-gunmetal",
     images: [
-      { src: "/portfolio/vzu/vzu_1.webp", caption: "СВГК: Шкаф телемеханики ШГРП в сборе перед испытаниями" },
-      { src: "/portfolio/vzu/vzu_2.webp", caption: "СВГК: Компоновка контроллера телемеханики и модема GSM" },
-      { src: "/portfolio/vzu/vzu_3.webp", caption: "СВГК: Интерфейс АРМ диспетчера на базе ОС Astra Linux" },
-      { src: "/portfolio/vzu/vzu_4.webp", caption: "СВГК: Опрос корректора газа Elster по протоколу OPC UA" },
+      {
+        src: "/portfolio/placeholders/svgk_shgrp.svg",
+        caption: "СВГК: Шкаф телемеханики ШГРП на ОС Astra Linux (материалы под NDA)",
+      },
     ],
   },
   {
@@ -102,10 +101,10 @@ export const projects: ProjectItem[] = [
     size: "medium",
     color: "bg-carbon",
     images: [
-      { src: "/portfolio/cabinets/cabinets_1.webp", caption: "АЗ УРАЛ: Шкаф управления стендом контрольно-измерительного пункта" },
-      { src: "/portfolio/cabinets/cabinets_2.webp", caption: "АЗ УРАЛ: Контроллерная панель управления узлами обкатки" },
-      { src: "/portfolio/cabinets/cabinets_3.webp", caption: "АЗ УРАЛ: Главный конвейер — интеграция стенда с АСУ завода" },
-      { src: "/portfolio/cabinets/cabinets_4.webp", caption: "АЗ УРАЛ: Маркировка сигнальных линий датчиков испытаний" },
+      {
+        src: "/portfolio/placeholders/ural_trucks.svg",
+        caption: "АЗ УРАЛ: Стенд контроля КИП главного конвейера (материалы под NDA)",
+      },
     ],
   },
   {
@@ -119,10 +118,10 @@ export const projects: ProjectItem[] = [
     size: "medium",
     color: "bg-iron",
     images: [
-      { src: "/portfolio/cooling/cooling_1.webp", caption: "РМК: Диспетчерский видеостенд центра промышленной безопасности" },
-      { src: "/portfolio/cooling/cooling_2.webp", caption: "РМК: Интеграция телеметрии 256 дискретных сигналов подстанций" },
-      { src: "/portfolio/cooling/cooling_3.webp", caption: "РМК: Шкаф сбора данных технологических параметров цехов" },
-      { src: "/portfolio/cooling/cooling_4.webp", caption: "РМК: Модуль аварийного оповещения персонала через SIP и Telegram" },
+      {
+        src: "/portfolio/placeholders/rmk_safety.svg",
+        caption: "РМК: Диспетчерский центр промбезопасности 1000 параметров (материалы под NDA)",
+      },
     ],
   },
   {
@@ -136,10 +135,10 @@ export const projects: ProjectItem[] = [
     size: "medium",
     color: "bg-gunmetal",
     images: [
-      { src: "/portfolio/agro/agro_1.webp", caption: "Кизляр: Колонны ректификации спирта и датчики давления/температуры" },
-      { src: "/portfolio/agro/agro_2.webp", caption: "Кизляр: Управление клапанами подачи пара и флегмового числа" },
-      { src: "/portfolio/agro/agro_3.webp", caption: "Кизляр: Шкаф управления контурами дистилляции и охлаждения" },
-      { src: "/portfolio/agro/agro_4.webp", caption: "Кизляр: Панель оператора с мнемосхемой ректификационной установки" },
+      {
+        src: "/portfolio/placeholders/kizlyar_brandy.svg",
+        caption: "Кизляр: Автоматизация колонн ректификации спирта (материалы под NDA)",
+      },
     ],
   },
   {
@@ -153,10 +152,10 @@ export const projects: ProjectItem[] = [
     size: "wide",
     color: "bg-carbon",
     images: [
-      { src: "/portfolio/retrofit/retrofit_1.webp", caption: "СТЗ: Камера машинного зрения над конвейерной линией сборки" },
-      { src: "/portfolio/retrofit/retrofit_2.webp", caption: "СТЗ: Распознавание положения элементов каркаса сидений" },
-      { src: "/portfolio/retrofit/retrofit_3.webp", caption: "СТЗ: Шкаф обработки нейросетевых моделей промышленного зрения" },
-      { src: "/portfolio/retrofit/retrofit_4.webp", caption: "СТЗ: Сигнальный интерфейс с контроллером сварочного робота" },
+      {
+        src: "/portfolio/placeholders/auto_cv.svg",
+        caption: "СТЗ: Система компьютерного зрения конвейера (материалы под NDA)",
+      },
     ],
   },
 ];

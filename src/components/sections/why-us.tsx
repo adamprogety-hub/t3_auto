@@ -1,101 +1,45 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ArrowUp, ArrowDown } from "lucide-react";
-
-interface ReasonItem {
-  title: string;
-  badge: string;
-  description: string;
-  icon: string;
-}
-
-const reasons: ReasonItem[] = [
-  {
-    title: "Генподрядчик видит каждый шкаф (QR-код)",
-    badge: "Цифровой двойник",
-    description:
-      "QR-код на\u00A0корпусе каждого шкафа открывает его электронный техпаспорт: схемы, протоколы проверок и\u00A0статус сборки прямо со\u00A0смартфона или\u00A0планшета.",
-    icon: "/icons/why-us/01.png",
-  },
-  {
-    title: "Сборка и\u00A0ОТК на\u00A0защищённых планшетах",
-    badge: "Мобильные места ОТК",
-    description:
-      "Пошаговый план сборки по\u00A0каждому изделию. Журнал изменений КД, фотофиксация узлов и\u00A0дефектов до\u00A0отгрузки исключают человеческий фактор.",
-    icon: "/icons/why-us/02.png",
-  },
-  {
-    title: "Сертифицированные ЭТЛ и\u00A0лаборатории",
-    badge: "150+ поверенных приборов",
-    description:
-      "Собственные сертифицированные электротехническая и\u00A0метрологическая лаборатории с\u00A0контролем поверок приборов гарантируют прохождение госэкспертизы.",
-    icon: "/icons/why-us/03.png",
-  },
-  {
-    title: "Свой сервер и\u00A0доверенный контур",
-    badge: "Безопасность КИИ",
-    description:
-      "Хранение проектных данных и\u00A0ревизий КД в\u00A0защищённом контуре с\u00A0разграничением прав доступа. Полная безопасность данных заказчика.",
-    icon: "/icons/why-us/04.png",
-  },
-  {
-    title: "Пожизненный архив выполненных проектов",
-    badge: "База документации",
-    description:
-      "Даже если у\u00A0заказчика утеряна документация спустя годы эксплуатации, проектная база Т3 позволяет восстановить и\u00A0модернизировать объект в\u00A0сжатые сроки.",
-    icon: "/icons/why-us/05.png",
-  },
-];
+import { useState, useRef } from "react";
+import { Play, Pause, Volume2, VolumeX, Maximize2 } from "lucide-react";
 
 export function WhyUs() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
-
-  const prev = () => {
-    setActiveIndex((current) => (current > 0 ? current - 1 : reasons.length - 1));
+  const togglePlay = () => {
+    if (!videoRef.current) {
+      setIsPlaying((prev) => !prev);
+      return;
+    }
+    if (videoRef.current.paused) {
+      videoRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(true));
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
   };
 
-  const next = () => {
-    setActiveIndex((current) => (current < reasons.length - 1 ? current + 1 : 0));
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    } else {
+      setIsMuted((prev) => !prev);
+    }
   };
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowUp") prev();
-      if (e.key === "ArrowDown") next();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeIndex]);
-
-  // Autoplay every 5s, pause on hover
-  useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      next();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isHovered, activeIndex]);
-
-  const count = reasons.length;
 
   return (
     <section id="about" className="bg-graphite lg:bg-surface-warm">
       <div className="grid grid-cols-1 lg:grid-cols-[480px_1fr] gap-0">
         {/* Left — dark column with rounded bottom on desktop, flat on mobile to connect with Services */}
         <div className="bg-graphite p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-center text-white rounded-none lg:rounded-b-[16px] relative z-10">
-          <h2 className="text-white text-[clamp(1.4rem,2.2vw,2.15rem)] font-bold leading-[1.15] tracking-tight">
+          <h2 className="text-white text-[clamp(1.4rem,2.2vw,2.15rem)] font-bold leading-[1.15] tracking-tight font-heading">
             Инжиниринговый
             <br />
             центр АСУТП:
@@ -123,220 +67,127 @@ export function WhyUs() {
           </p>
 
           <div className="mt-4 space-y-1.5 text-[12px] font-mono text-white/60">
-            <div>• <strong className="text-white">Москва:</strong> управление проектами, проектирование по РФ</div>
-            <div>• <strong className="text-white">Самара (Волга):</strong> Нефтегаз, АПК, производство 19 км</div>
-            <div>• <strong className="text-white">Челябинск (Урал):</strong> Добыча, ТЭК, металлургия</div>
+            <div>— <strong className="text-white">Москва:</strong> управление проектами, проектирование по РФ</div>
+            <div>— <strong className="text-white">Самара (Волга):</strong> Нефтегаз, АПК, производство 19 км</div>
+            <div>— <strong className="text-white">Челябинск (Урал):</strong> Добыча, ТЭК, металлургия</div>
           </div>
         </div>
 
-        {/* Right — vertical carousel with clean brutalist corners */}
-        <div className="bg-graphite">
-          <div
-            className="bg-surface-warm w-full h-full relative flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 select-none overflow-hidden min-h-[440px] sm:min-h-[480px] md:min-h-[500px] lg:min-h-[520px] rounded-t-[16px] lg:rounded-t-[20px]"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-          {/* Planar Stage */}
-          <div
-            className="relative w-full h-[370px] sm:h-[400px] md:h-[450px] flex items-center justify-center"
-          >
-            {reasons.map((reason, i) => {
-              // Wrap-around offset calculation: -1 (top), 0 (center), 1 (bottom), etc.
-              let offset = (i - activeIndex + count) % count;
-              if (offset > count / 2) offset -= count;
+        {/* Right — Video Placeholder (Strictly no heading, no description) */}
+        <div className="bg-graphite flex items-stretch">
+          <div className="bg-surface-warm w-full h-full relative flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 select-none overflow-hidden min-h-[380px] sm:min-h-[440px] md:min-h-[480px] lg:min-h-[520px] rounded-t-[16px] lg:rounded-t-[20px]">
+            {/* Video Player Card */}
+            <div
+              onClick={togglePlay}
+              className="relative w-full max-w-[720px] aspect-[16/10] sm:aspect-video rounded-2xl md:rounded-[20px] overflow-hidden bg-[#121518] border border-divider/60 shadow-[0_20px_50px_rgba(0,0,0,0.12)] group cursor-pointer flex items-center justify-center transition-all duration-300 hover:border-graphite/40"
+            >
+              {/* Optional real video tag if added later */}
+              <video
+                ref={videoRef}
+                src="/video/production.mp4"
+                playsInline
+                muted={isMuted}
+                loop
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                  isPlaying ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+              />
 
-              const isCenter = offset === 0;
-              const isTop = offset === -1;
-              const isBottom = offset === 1;
-              const isVisible = Math.abs(offset) <= 1;
-
-              // Planar layout coordinates without 3D perspective distortion
-              let targetY = 0;
-              let targetScale = 1;
-              let targetOpacity = 0;
-              let targetZIndex = 0;
-
-              if (isDesktop) {
-                if (isCenter) {
-                  targetY = 0;
-                  targetScale = 1;
-                  targetOpacity = 1;
-                  targetZIndex = 20;
-                } else if (isTop) {
-                  targetY = -120;
-                  targetScale = 0.92;
-                  targetOpacity = 0.45;
-                  targetZIndex = 10;
-                } else if (isBottom) {
-                  targetY = 120;
-                  targetScale = 0.92;
-                  targetOpacity = 0.45;
-                  targetZIndex = 10;
-                } else if (offset < -1) {
-                  targetY = -210;
-                  targetScale = 0.8;
-                  targetOpacity = 0;
-                  targetZIndex = 0;
-                } else {
-                  targetY = 210;
-                  targetScale = 0.8;
-                  targetOpacity = 0;
-                  targetZIndex = 0;
-                }
-              } else {
-                // Mobile & Tablet
-                if (isCenter) {
-                  targetY = 0;
-                  targetScale = 1;
-                  targetOpacity = 1;
-                  targetZIndex = 20;
-                } else if (isTop) {
-                  targetY = -92;
-                  targetScale = 0.92;
-                  targetOpacity = 0.45;
-                  targetZIndex = 10;
-                } else if (isBottom) {
-                  targetY = 92;
-                  targetScale = 0.92;
-                  targetOpacity = 0.45;
-                  targetZIndex = 10;
-                } else if (offset < -1) {
-                  targetY = -160;
-                  targetScale = 0.8;
-                  targetOpacity = 0;
-                  targetZIndex = 0;
-                } else {
-                  targetY = 160;
-                  targetScale = 0.8;
-                  targetOpacity = 0;
-                  targetZIndex = 0;
-                }
-              }
-
-              return (
-                <motion.div
-                  key={reason.title}
-                  animate={{
-                    y: targetY,
-                    scale: targetScale,
-                    opacity: targetOpacity,
-                    zIndex: targetZIndex,
+              {/* Placeholder Backdrop: Subtle Industrial Technical Aesthetic */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1C2025] via-[#14171A] to-[#0E1012] flex items-center justify-center overflow-hidden">
+                {/* Subtle Technical Grid Lines */}
+                <div
+                  className="absolute inset-0 opacity-[0.07] pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)",
+                    backgroundSize: "32px 32px",
                   }}
-                  transition={{
-                    duration: 0.5,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  drag={isCenter ? "y" : false}
-                  dragConstraints={{ top: 0, bottom: 0 }}
-                  dragElastic={0.15}
-                  onDragEnd={(_, info) => {
-                    if (info.offset.y < -40 || info.velocity.y < -220) next();
-                    else if (info.offset.y > 40 || info.velocity.y > 220) prev();
-                  }}
-                  onClick={() => {
-                    if (isTop) prev();
-                    if (isBottom) next();
-                  }}
-                  className={`absolute w-[calc(100vw-36px)] max-w-[560px] md:max-w-[620px] lg:max-w-[580px] xl:max-w-[640px] h-[145px] sm:h-[160px] md:h-[175px] rounded-[14px] bg-white border border-divider/40 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)] flex overflow-hidden ${
-                    isCenter
-                      ? "cursor-grab active:cursor-grabbing pointer-events-auto"
-                      : isVisible
-                      ? "cursor-pointer hover:opacity-60 transition-opacity pointer-events-auto"
-                      : "pointer-events-none"
-                  }`}
-                >
-                  {/* Dynamic 3D Depth Shading Overlay (matches process.tsx / problems.tsx) */}
-                  <motion.div
-                    animate={{ opacity: isCenter ? 0 : 0.45 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0 bg-graphite/20 backdrop-blur-[0.5px] pointer-events-none z-30"
-                  />
-
-                  {/* Left Side: 3D Icon, bottom-anchored, enlarged on mobile with slight left bleed */}
-                  <div className="w-[35%] sm:w-[32%] md:w-[30%] shrink-0 h-full bg-surface-card relative overflow-hidden">
-                    <img
-                      src={reason.icon}
-                      alt={reason.title}
-                      draggable={false}
-                      className="absolute bottom-0 -left-2.5 sm:left-[4%] w-[114%] sm:w-[92%] max-h-[104%] sm:max-h-[92%] object-contain object-bottom pointer-events-none select-none drop-shadow-[0_8px_20px_rgba(19,18,16,0.08)]"
-                    />
-                  </div>
-
-                  {/* Center Area: Reason Content — Only Title with Right Clearance */}
-                  <div className="flex-1 p-3.5 sm:p-5 md:p-6 pr-13 sm:pr-15 md:pr-18 flex flex-col justify-center overflow-hidden">
-                    <h3 className="text-graphite text-[14px] sm:text-[16px] md:text-[19px] font-extrabold tracking-tight leading-snug font-heading">
-                      {reason.title}
-                    </h3>
-                  </div>
-
-                  {/* Top-Right Corner Navigation Arrow (Arrow Up) */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      prev();
-                    }}
-                    aria-label="Предыдущий слайд"
-                    title="Предыдущий слайд"
-                    className={`group/up-btn absolute top-3 right-3 sm:top-4 sm:right-4 z-40 w-8 h-8 sm:w-8.5 sm:h-8.5 flex items-center justify-center rounded-[8px] border border-divider/45 bg-white/95 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 backdrop-blur-xs transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer ${
-                      isCenter ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-                    }`}
-                  >
-                    <ArrowUp strokeWidth={1.5} className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover/up-btn:-translate-y-0.5" />
-                  </button>
-
-                  {/* Bottom-Right Corner Navigation Arrow (Arrow Down) */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      next();
-                    }}
-                    aria-label="Следующий слайд"
-                    title="Следующий слайд"
-                    className={`group/down-btn absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-40 w-8 h-8 sm:w-8.5 sm:h-8.5 flex items-center justify-center rounded-[8px] border border-divider/45 bg-white/95 hover:bg-graphite hover:text-white hover:border-graphite text-graphite/70 backdrop-blur-xs transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer ${
-                      isCenter ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-                    }`}
-                  >
-                    <ArrowDown strokeWidth={1.5} className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover/down-btn:translate-y-0.5" />
-                  </button>
-                </motion.div>
-              );
-            })}
-
-            {/* Vertical Dash Stepper (Desktop only) */}
-            <div className="hidden lg:flex absolute right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-1.5">
-              {reasons.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveIndex(idx)}
-                  aria-label={`Перейти к пункту 0${idx + 1}`}
-                  className={`w-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === activeIndex
-                      ? "h-8 bg-graphite"
-                      : "h-2.5 bg-divider hover:bg-pewter"
-                  }`}
                 />
-              ))}
+
+                {/* Subtle Architectural CAD Center Silhouette */}
+                <svg
+                  viewBox="0 0 240 140"
+                  className="w-3/5 max-w-[320px] opacity-[0.14] text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M40 25 L120 25 L120 115 L40 115 Z" />
+                  <path d="M120 25 L180 50 L180 115 L120 115" strokeDasharray="3 3" />
+                  <line x1="50" y1="45" x2="110" y2="45" />
+                  <line x1="50" y1="65" x2="110" y2="65" />
+                  <line x1="50" y1="85" x2="110" y2="85" />
+                  <circle cx="80" cy="95" r="3" />
+                </svg>
+
+                {/* Ambient Soft Glow Behind Play Button */}
+                <div className="absolute w-40 h-40 rounded-full bg-[#E66826]/10 blur-3xl pointer-events-none" />
+              </div>
+
+              {/* Central Play / Pause Button */}
+              <div className="relative z-20 flex items-center justify-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-graphite flex items-center justify-center shadow-[0_12px_36px_rgba(0,0,0,0.25)] border border-white/40 transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-active:scale-95">
+                  {isPlaying ? (
+                    <Pause className="w-6 h-6 sm:w-7 sm:h-7 fill-graphite text-graphite" strokeWidth={0} />
+                  ) : (
+                    <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-graphite text-graphite ml-1" strokeWidth={0} />
+                  )}
+                </div>
+              </div>
+
+              {/* Player Bottom Controls Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 z-20 p-3.5 sm:p-5 bg-gradient-to-t from-black/80 via-black/35 to-transparent flex flex-col gap-2 pointer-events-auto">
+                {/* Scrubber Progress Bar */}
+                <div className="w-full h-1 group-hover:h-1.5 bg-white/20 rounded-full overflow-hidden transition-all duration-200">
+                  <div className="h-full w-[28%] bg-[#E66826] rounded-full transition-all duration-300" />
+                </div>
+
+                {/* Bottom Row Icons */}
+                <div className="flex items-center justify-between text-white/70 text-[11px] font-mono">
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        togglePlay();
+                      }}
+                      className="hover:text-white transition-colors cursor-pointer"
+                    >
+                      {isPlaying ? (
+                        <Pause className="w-4 h-4 fill-current" />
+                      ) : (
+                        <Play className="w-4 h-4 fill-current" />
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={toggleMute}
+                      className="hover:text-white transition-colors cursor-pointer"
+                    >
+                      {isMuted ? (
+                        <VolumeX className="w-4 h-4" />
+                      ) : (
+                        <Volume2 className="w-4 h-4" />
+                      )}
+                    </button>
+                    <span className="hidden sm:inline">00:00 / 02:45</span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <span className="px-1.5 py-0.5 rounded-[4px] text-[10px] font-mono bg-white/10 text-white/80 border border-white/15">
+                      1080p HD
+                    </span>
+                    <Maximize2 className="w-3.5 h-3.5 hover:text-white transition-colors cursor-pointer" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Horizontal Dash Stepper (Mobile & Tablet only) */}
-          <div className="flex lg:hidden items-center justify-center gap-2 mt-4 z-30">
-            {reasons.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                aria-label={`Перейти к пункту 0${idx + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === activeIndex
-                    ? "w-7 bg-graphite"
-                    : "w-2 bg-divider hover:bg-pewter"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
         </div>
       </div>
     </section>
