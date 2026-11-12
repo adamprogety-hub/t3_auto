@@ -2,41 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ShieldCheck, Cpu, Factory, Users } from "lucide-react";
+import { Check } from "lucide-react";
 import { openPrivacyModal } from "@/components/ui/privacy-modal";
 
-const COOPERATION_TYPES = [
-  "Генподряд / Субподряд",
-  "Поставка шкафов",
-  "Проектирование АТХ",
-  "Вендор / Поставщик",
-];
-
-const ADVANTAGES = [
-  {
-    icon: Factory,
-    title: "Собственное производство в Самаре (19 км)",
-    desc: "Серийная и заказная сборка шкафов с электронным паспортом",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Соответствие ФСТЭК № 239",
-    desc: "Аттестация для объектов КИИ 2 и 3 категорий",
-  },
-  {
-    icon: Cpu,
-    title: "Отечественный стек ПТК",
-    desc: "«КАСКАД Цифра», ПТК «СУРА», ПТК «БАЗИС», TREI-5B",
-  },
-  {
-    icon: Users,
-    title: "50 ведущих инженеров",
-    desc: "Филиалы в Москве, Самаре и Челябинске, ПНР по всей России",
-  },
-];
-
 export function Cooperation() {
-  const [selectedType, setSelectedType] = useState(COOPERATION_TYPES[0]);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [comment, setComment] = useState("");
@@ -100,8 +69,8 @@ export function Cooperation() {
             />
           </div>
 
-          {/* Left Column: Heading, description & key benefits */}
-          <div className="relative z-20 flex flex-col justify-between max-w-xl">
+          {/* Left Column: Heading & description */}
+          <div className="relative z-20 flex flex-col justify-center max-w-xl py-2 sm:py-4 lg:py-6">
             <div>
               <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.5rem)] font-bold leading-[1.12] tracking-tight">
                 Предложить
@@ -112,34 +81,6 @@ export function Cooperation() {
                 Инжиниринговый центр «Т3 Автоматизация» открыт к партнёрству с{"\u00A0"}генподрядчиками,
                 проектными институтами, системными интеграторами и{"\u00A0"}поставщиками технологического оборудования.
               </p>
-            </div>
-
-            {/* Benefit Points */}
-            <div className="mt-8 space-y-3.5">
-              {ADVANTAGES.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div key={idx} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-[8px] bg-white/10 border border-white/15 flex items-center justify-center shrink-0 mt-0.5 text-white/90">
-                      <Icon className="w-4 h-4 text-white" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <div className="text-white text-[13.5px] font-semibold leading-snug">
-                        {item.title}
-                      </div>
-                      <div className="text-white/50 text-[12px] leading-snug mt-0.5">
-                        {item.desc}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-8 pt-5 border-t border-white/10 text-[12px] text-white/40 flex items-center gap-4">
-              <span>Прямой диалог с руководством</span>
-              <span>•</span>
-              <span>Подписание NDA за 1 рабочий день</span>
             </div>
           </div>
 
@@ -192,34 +133,8 @@ export function Cooperation() {
                       Обсудить партнёрство
                     </h3>
                     <p className="text-iron text-[12px] mt-0.5">
-                      Выберите формат и оставьте контактные данные
+                      Оставьте контактные данные для связи
                     </p>
-                  </div>
-
-                  {/* Cooperation Type Selector Chips */}
-                  <div>
-                    <label className="text-graphite text-[11px] font-medium uppercase tracking-wider block mb-1.5 font-mono">
-                      Формат сотрудничества:
-                    </label>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {COOPERATION_TYPES.map((type) => {
-                        const isSelected = selectedType === type;
-                        return (
-                          <button
-                            key={type}
-                            type="button"
-                            onClick={() => setSelectedType(type)}
-                            className={`px-2.5 py-2 rounded-[8px] text-[11.5px] font-semibold text-center transition-all cursor-pointer border ${
-                              isSelected
-                                ? "bg-graphite text-white border-graphite shadow-2xs"
-                                : "bg-white/80 hover:bg-white text-graphite/80 border-divider/60"
-                            }`}
-                          >
-                            {type}
-                          </button>
-                        );
-                      })}
-                    </div>
                   </div>
 
                   {/* Name / Company */}
