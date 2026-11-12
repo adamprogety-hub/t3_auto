@@ -212,10 +212,10 @@ export function Cooperation() {
           </div>
 
           {/* Right Column: Heading top right, Description bottom right (order-1 on mobile, order-2 on desktop) */}
-          <div className="relative z-20 flex flex-col justify-between py-2 sm:py-4 lg:py-6 pl-0 lg:pl-6 xl:pl-10 order-1 lg:order-2 min-h-[200px] lg:min-h-[460px]">
+          <div className="relative z-20 flex flex-col justify-between items-end text-right py-2 sm:py-4 lg:py-6 pl-0 lg:pl-6 xl:pl-10 order-1 lg:order-2 min-h-[200px] lg:min-h-[460px]">
             {/* Top Right: Heading */}
-            <div className="max-w-xl">
-              <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.5rem)] font-bold leading-[1.12] tracking-tight">
+            <div className="max-w-md ml-auto">
+              <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.5rem)] font-bold leading-[1.12] tracking-tight text-right">
                 Предложить
                 <br />
                 сотрудничество
@@ -237,8 +237,8 @@ export function Cooperation() {
             </div>
 
             {/* Bottom Right: Description */}
-            <div className="mt-4 lg:mt-auto pt-2 lg:pt-8 max-w-xl">
-              <p className="text-white/70 text-[14px] sm:text-[15px] leading-relaxed">
+            <div className="mt-4 lg:mt-auto pt-2 lg:pt-8 max-w-md ml-auto">
+              <p className="text-white/70 text-[14px] sm:text-[15px] leading-relaxed text-right">
                 Инжиниринговый центр «Т3 Автоматизация» открыт к партнёрству с{"\u00A0"}генподрядчиками,
                 проектными институтами, системными интеграторами и{"\u00A0"}поставщиками технологического оборудования.
               </p>
