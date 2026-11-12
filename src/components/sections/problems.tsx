@@ -20,74 +20,74 @@ interface ProblemItem {
 const problems: ProblemItem[] = [
   {
     id: "p1",
-    code: "SYS_ERR // 01",
+    code: "CHALLENGE // 01",
     index: "01",
-    title: "Отсутствие согласования схем до\u00A0начала работ",
-    description: "Ошибки в\u00A0перечне сигналов и\u00A0нестыковки в\u00A0чертежах кочуют в\u00A0монтаж без\u00A0входного аудита, вызывая срыв сроков запуска и\u00A0удорожание шкафа.",
-    tag: "Схемотехника",
-    impact: "Удорожание шкафа до\u00A0+30% и\u00A0простой монтажников на\u00A0объекте",
-    solution: "Сверка адресации I/O со\u00A0схемами до\u00A0сборки шкафа",
-    hardwareAffected: "Модули ввода-вывода ПЛК, клеммные ряды",
+    title: "Срочная замена импортных РСУ и\u00A0ПАЗ без\u00A0остановки завода",
+    description: "Уход Yokogawa, Siemens, Schneider Electric, ABB, Honeywell и\u00A0Foxboro оставляет предприятие без\u00A0ЗИП и\u00A0лицензий с\u00A0риском остановки непрерывного технологического цикла.",
+    tag: "Импортозамещение",
+    impact: "Риск аварийного останова непрерывного производства и\u00A0срыв планов выпуска",
+    solution: "Бесшовный перевод на\u00A0отечественные ПТК («БАЗИС», «СУРА», TREI) с\u00A0сохранением существующего КИП",
+    hardwareAffected: "Контроллеры РСУ/ПАЗ, распределенный ввод-вывод, модули искрозащиты",
     icon: "/icons/problems/01_schematics.webp",
   },
   {
     id: "p2",
-    code: "SYS_ERR // 02",
+    code: "CHALLENGE // 02",
     index: "02",
-    title: "Преждевременный износ и\u00A0поломки оборудования",
-    description: "Из-за неотлаженных алгоритмов управления насосы и\u00A0горелки работают рывками, уходят в\u00A0аварийный стоп и\u00A0вырабатывают ресурс за\u00A0год вместо десяти лет.",
-    tag: "Алгоритмы ПЛК",
-    impact: "Дорогостоящий ремонт агрегатов и\u00A0внеплановые простои объекта",
-    solution: "ПИД-регулирование с\u00A0плавной ротацией и\u00A0модуляцией мощности",
-    hardwareAffected: "Насосные группы, приводы, горелочные устройства",
-    icon: "/icons/problems/02_boiler_pump.webp",
+    title: "Требования ФСТЭК и\u00A0безопасность объектов КИИ",
+    description: "Объекты критической информационной инфраструктуры требуют применения ПО из\u00A0реестра Минцифры и\u00A0оборудования с\u00A0сертификатами ФСТЭК по\u00A0Приказу №\u00A0239.",
+    tag: "КИИ и\u00A0Безопасность",
+    impact: "Непрохождение госэкспертизы, штрафы регуляторов и\u00A0предписания надзорных органов",
+    solution: "ПАК и\u00A0ПО из\u00A0реестров Минпромторга и\u00A0Минцифры, испытания на\u00A0отсутствие НДВ (КИИ 2 и\u00A03 категорий)",
+    hardwareAffected: "Серверы SCADA, АРМ операторов, шлюзы телемеханики, системное ПО",
+    icon: "/icons/problems/04_scada_telemetry.webp",
   },
   {
     id: "p3",
-    code: "SYS_ERR // 03",
+    code: "CHALLENGE // 03",
     index: "03",
-    title: "Размытая ответственность подрядчиков",
-    description: "Когда проектирование, сборку шкафа и\u00A0наладку делают разные компании, за\u00A0запуск системы никто не\u00A0отвечает. При сбоях вину перекладывают на\u00A0чужой монтаж, а\u00A0за\u00A0простои платит заказчик.",
-    tag: "Организация",
-    impact: "Месяцы перекладывания вины между сторонними подрядчиками",
-    solution: "Сборка шкафа и\u00A0разработка ПО в\u00A0одних руках с\u00A0проверкой до\u00A0отгрузки",
-    hardwareAffected: "Стыковка силовых и\u00A0слаботочных цепей",
+    title: "Дефицит квалифицированных инженеров АСУТП у\u00A0генподрядчика",
+    description: "Генподрядчик строит объект, но\u00A0не\u00A0имеет внутреннего ресурса для\u00A0проектирования сложных разделов АТХ, разработки ПО для\u00A0ПЛК/HMI и\u00A0пусконаладки РСУ.",
+    tag: "Генподряд",
+    impact: "Размытая ответственность сторонних субподрядчиков и\u00A0срыв графиков ввода объекта",
+    solution: "Инженерная команда Т3 закрывает раздел АСУТП «под\u00A0ключ» от\u00A0сметы и\u00A0ТЗ до\u00A0сдачи Ростехнадзору",
+    hardwareAffected: "Разделы АТХ, АСУТП, ПАЗ, исполнительная документация",
     icon: "/icons/problems/03_assembly_test.webp",
   },
   {
     id: "p4",
-    code: "SYS_ERR // 04",
+    code: "CHALLENGE // 04",
     index: "04",
-    title: "Сбои удалённого мониторинга и\u00A0связи",
-    description: "Зависание связи и\u00A0ложные аварийные тревоги: дежурный персонал видит устаревшие данные и\u00A0не\u00A0может оперативно контролировать объект на\u00A0расстоянии.",
-    tag: "Диспетчеризация",
-    impact: "Слепые зоны на\u00A0экране диспетчера во\u00A0время нештатных ситуаций",
-    solution: "Резервирование двух SIM-карт + локальный кольцевой буфер",
-    hardwareAffected: "Промышленные GSM/LTE шлюзы, каналы связи Modbus TCP",
-    icon: "/icons/problems/04_scada_telemetry.webp",
-  },
-  {
-    id: "p5",
-    code: "SYS_ERR // 05",
-    index: "05",
-    title: "Шкафы-«чёрные ящики» без\u00A0документации",
-    description: "Отсутствие маркировки проводников, закрытые паролями функциональные блоки и\u00A0потерянные схемы\u00A0Э3. Любая доработка требует долгого реверс-инжиниринга.",
-    tag: "Документация",
-    impact: "Невозможность оперативного ремонта дежурным персоналом",
-    solution: "Полный комплект схем\u00A0Э3, кабельный журнал и\u00A0заводская маркировка цепей",
-    hardwareAffected: "Контроллерное ПО, принципиальные электросхемы",
+    title: "Непрозрачность сборки и\u00A0«черные ящики» без\u00A0техпаспортов",
+    description: "Когда шкафы автоматики собираются кустарно, заказчик не\u00A0видит реальный ход работ до\u00A0поставки на\u00A0площадку, а\u00A0схемы Э3 теряются при\u00A0первой модернизации.",
+    tag: "Цифровое производство",
+    impact: "Скрытые дефекты монтажа, недели простоя на\u00A0ПНР и\u00A0потеря документации",
+    solution: "Цифровой двойник: QR-код на\u00A0каждом шкафу, фотофиксация этапов и\u00A0пожизненный архив КД",
+    hardwareAffected: "Шкафы АСУТП, АСУЭ, аналитики газов и\u00A0жидкостей",
     icon: "/icons/problems/05_documentation.webp",
   },
   {
+    id: "p5",
+    code: "CHALLENGE // 05",
+    index: "05",
+    title: "Масштабирование диспетчеризации на\u00A0миллионы сигналов",
+    description: "Классические SCADA не\u00A0справляются с\u00A0распределенными холдингами и\u00A0ситуационными центрами, требуя огромных вычислительных ресурсов и\u00A0зарубежных лицензий.",
+    tag: "Enterprise SCADA",
+    impact: "Задержки телеметрии, потеря технологических трендов и\u00A0слепые зоны операторов",
+    solution: "Внедрение платформы «КАСКАД Цифра» с\u00A0БДРВ, поддержкой микро-ПК и\u00A0протокола OPC UA",
+    hardwareAffected: "Ситуационно-аналитические центры, интеграционные платформы MES/ERP",
+    icon: "/icons/problems/02_boiler_pump.webp",
+  },
+  {
     id: "p6",
-    code: "SYS_ERR // 06",
+    code: "CHALLENGE // 06",
     index: "06",
-    title: "Затянутые пусконаладочные работы",
-    description: "Из-за отсутствия контроля качества и\u00A0заводской проверки перед отправкой клиенту ошибки выявляются уже на\u00A0объекте, срывая сроки сдачи.",
-    tag: "Пусконаладка",
-    impact: "Срыв сроков сдачи объекта, штрафы и\u00A0простой монтажных бригад",
-    solution: "Прозвонка монтажа, проверка питания и\u00A0симуляция сигналов на\u00A0стенде до\u00A0отгрузки",
-    hardwareAffected: "Интеграция ПЛК, датчиков и\u00A0преобразователей частоты",
+    title: "Сложность сдачи объекта надзорным органам и\u00A0Ростехнадзору",
+    description: "Ошибки в\u00A0исполнительной документации, отсутствие сертификатов и\u00A0протоколов заводских испытаний затягивают получение разрешения на\u00A0ввод на\u00A0месяцы.",
+    tag: "Ввод в\u00A0эксплуатацию",
+    impact: "Задержка ввода производства в\u00A0промышленную эксплуатацию и\u00A0заморозка платежей",
+    solution: "Собственные сертифицированные лаборатории (ЭТЛ) и\u00A0полное сопровождение проверок",
+    hardwareAffected: "Протоколы ПНР, акты комплексного опробования, поверки приборов КИПиА",
     icon: "/icons/problems/06_commissioning.webp",
   },
 ];
@@ -124,19 +124,20 @@ export function Problems() {
   const count = problems.length;
 
   return (
-    <section className="py-20 md:py-28 bg-surface overflow-hidden">
+    <section className="pt-0 pb-20 md:pb-28 bg-surface overflow-hidden">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.15] tracking-tight">
-            С{"\u00A0"}какими трудностями сталкиваются заказчики на{"\u00A0"}объекте
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-bold leading-[1.15] tracking-tight">
+            Ключевые вызовы генподряда
+            <br />
+            и{"\u00A0"}промышленной автоматизации
           </h2>
         </div>
 
-        {/* Synchronous 3D Carousel Stage */}
+        {/* Clean Synchronous Carousel Stage */}
         <div
           className="mt-12 relative w-full flex items-center justify-center py-4 select-none min-h-[580px] md:min-h-[620px]"
-          style={{ perspective: 1200 }}
         >
           {problems.map((problem, i) => {
             // Wrap-around offset calculation: -1 (left), 0 (center), 1 (right), etc.
@@ -150,7 +151,6 @@ export function Problems() {
 
             // Desktop layout coordinates
             let targetX = 0;
-            let targetRotateY = 0;
             let targetScale = 1;
             let targetOpacity = 0;
             let targetZIndex = 0;
@@ -158,53 +158,45 @@ export function Problems() {
             if (isDesktop) {
               if (isCenter) {
                 targetX = 0;
-                targetRotateY = 0;
                 targetScale = 1;
                 targetOpacity = 1;
                 targetZIndex = 20;
               } else if (isLeft) {
-                targetX = -380;
-                targetRotateY = 22;
-                targetScale = 0.88;
-                targetOpacity = 0.38;
+                targetX = -400;
+                targetScale = 0.92;
+                targetOpacity = 0.45;
                 targetZIndex = 10;
               } else if (isRight) {
-                targetX = 380;
-                targetRotateY = -22;
-                targetScale = 0.88;
-                targetOpacity = 0.38;
+                targetX = 400;
+                targetScale = 0.92;
+                targetOpacity = 0.45;
                 targetZIndex = 10;
               } else if (offset < -1) {
-                targetX = -540;
-                targetRotateY = 35;
-                targetScale = 0.75;
+                targetX = -560;
+                targetScale = 0.8;
                 targetOpacity = 0;
                 targetZIndex = 0;
               } else {
-                targetX = 540;
-                targetRotateY = -35;
-                targetScale = 0.75;
+                targetX = 560;
+                targetScale = 0.8;
                 targetOpacity = 0;
                 targetZIndex = 0;
               }
             } else {
               // Mobile & Tablet
-            if (isCenter) {
+              if (isCenter) {
                 targetX = 0;
-                targetRotateY = 0;
                 targetScale = 1;
                 targetOpacity = 1;
                 targetZIndex = 20;
               } else if (offset < 0) {
                 targetX = -320;
-                targetRotateY = 28;
-                targetScale = 0.85;
+                targetScale = 0.9;
                 targetOpacity = 0;
                 targetZIndex = 0;
               } else {
                 targetX = 320;
-                targetRotateY = -28;
-                targetScale = 0.85;
+                targetScale = 0.9;
                 targetOpacity = 0;
                 targetZIndex = 0;
               }
@@ -215,14 +207,13 @@ export function Problems() {
                 key={problem.id}
                 animate={{
                   x: targetX,
-                  rotateY: targetRotateY,
                   scale: targetScale,
                   opacity: targetOpacity,
                   zIndex: targetZIndex,
                 }}
                 transition={{
-                  duration: 0.6,
-                  ease: [0.16, 1, 0.3, 1], // Signature Metro deceleration curve
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1], // Deceleration curve
                 }}
                 drag={isCenter ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
@@ -235,11 +226,7 @@ export function Problems() {
                   if (isLeft) prev();
                   if (isRight) next();
                 }}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transformOrigin: offset < 0 ? "right center" : offset > 0 ? "left center" : "center center",
-                }}
-                className={`absolute w-[92vw] max-w-[450px] h-[550px] md:h-[580px] px-8 pb-8 pt-4 md:px-9 md:pb-9 md:pt-5 rounded-[14px] bg-white shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex flex-col justify-between overflow-hidden ${
+                className={`absolute w-[92vw] max-w-[450px] h-[550px] md:h-[580px] px-8 pb-8 pt-4 md:px-9 md:pb-9 md:pt-5 rounded-[14px] bg-white border border-divider/40 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between overflow-hidden ${
                   isCenter
                     ? "cursor-grab active:cursor-grabbing pointer-events-auto"
                     : isVisible

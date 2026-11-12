@@ -13,38 +13,38 @@ interface ReasonItem {
 
 const reasons: ReasonItem[] = [
   {
-    title: "Заводской контроль и\u00A0запуск по\u00A0всей\u00A0РФ",
-    badge: "Контроль качества и\u00A0выезды",
+    title: "Генподрядчик видит каждый шкаф (QR-код)",
+    badge: "Цифровой двойник",
     description:
-      "Прозваниваем монтаж, подаём контрольное питание и\u00A0симулируем технологические сигналы на\u00A0стенде перед отгрузкой. Это сокращает время ПНР на\u00A0объекте.",
+      "QR-код на\u00A0корпусе каждого шкафа открывает его электронный техпаспорт: схемы, протоколы проверок и\u00A0статус сборки прямо со\u00A0смартфона или\u00A0планшета.",
     icon: "/icons/why-us/01.png",
   },
   {
-    title: "Широкая база комплектующих в\u00A0наличии",
-    badge: "Складской пул в\u00A0РФ",
+    title: "Сборка и\u00A0ОТК на\u00A0защищённых планшетах",
+    badge: "Мобильные места ОТК",
     description:
-      "Работаем с\u00A0широким пулом брендов: ОВЕН, Segnetics, Inovance, Weintek, Veda MC, DKC, КЭАЗ и\u00A0др. Не\u00A0зависим от\u00A0долгой логистики и\u00A0санкционных задержек.",
+      "Пошаговый план сборки по\u00A0каждому изделию. Журнал изменений КД, фотофиксация узлов и\u00A0дефектов до\u00A0отгрузки исключают человеческий фактор.",
     icon: "/icons/why-us/02.png",
   },
   {
-    title: "Отлаженное ПО и\u00A0документация",
-    badge: "ПО ПЛК / SCADA",
+    title: "Сертифицированные ЭТЛ и\u00A0лаборатории",
+    badge: "150+ поверенных приборов",
     description:
-      "Передаём протестированное исполняемое ПО, карту регистров Modbus и\u00A0руководство оператора. Передача открытых исходных кодов\u00A0— по\u00A0отдельному договору.",
+      "Собственные сертифицированные электротехническая и\u00A0метрологическая лаборатории с\u00A0контролем поверок приборов гарантируют прохождение госэкспертизы.",
     icon: "/icons/why-us/03.png",
   },
   {
-    title: "Полная исполнительная документация",
-    badge: "Э3 / Кабели / ПУЭ",
+    title: "Свой сервер и\u00A0доверенный контур",
+    badge: "Безопасность КИИ",
     description:
-      "Разрабатываем принципиальные схемы\u00A0Э3, кабельные журналы, спецификации и\u00A0паспорта изделий в\u00A0соответствии с\u00A0ПУЭ и\u00A0ТЗ для\u00A0беспрепятственной сдачи объекта.",
+      "Хранение проектных данных и\u00A0ревизий КД в\u00A0защищённом контуре с\u00A0разграничением прав доступа. Полная безопасность данных заказчика.",
     icon: "/icons/why-us/04.png",
   },
   {
-    title: "Гарантийное сопровождение после запуска",
-    badge: "Гарантийная поддержка",
+    title: "Пожизненный архив выполненных проектов",
+    badge: "База документации",
     description:
-      "Не\u00A0бросаем объект после подписания актов. Инженеры на\u00A0связи: оперативно консультируем дежурный персонал и\u00A0помогаем скорректировать уставки под\u00A0реальную эксплуатационную нагрузку.",
+      "Даже если у\u00A0заказчика утеряна документация спустя годы эксплуатации, проектная база Т3 позволяет восстановить и\u00A0модернизировать объект в\u00A0сжатые сроки.",
     icon: "/icons/why-us/05.png",
   },
 ];
@@ -91,33 +91,54 @@ export function WhyUs() {
   const count = reasons.length;
 
   return (
-    <section className="bg-graphite lg:bg-surface-warm">
+    <section id="about" className="bg-graphite lg:bg-surface-warm">
       <div className="grid grid-cols-1 lg:grid-cols-[480px_1fr] gap-0">
         {/* Left — dark column with rounded bottom on desktop, flat on mobile to connect with Services */}
-        <div className="bg-graphite p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-center text-white rounded-none lg:rounded-b-[36px] relative z-10">
-          <h2 className="text-white text-[clamp(1.4rem,2.2vw,2.15rem)] font-extrabold leading-[1.15] tracking-tight">
-            Инжиниринг
+        <div className="bg-graphite p-8 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-center text-white rounded-none lg:rounded-b-[16px] relative z-10">
+          <h2 className="text-white text-[clamp(1.4rem,2.2vw,2.15rem)] font-bold leading-[1.15] tracking-tight">
+            Инжиниринговый
             <br />
-            полного цикла:
+            центр АСУТП:
             <br />
-            от схемы до пуска
+            команда и{"\u00A0"}ресурсы
           </h2>
-          <p className="mt-4 sm:mt-6 text-white/60 text-[14px] leading-relaxed">
-            Проектирование схем Э3, сборка шкафов в{"\u00A0"}Москве и{"\u00A0"}пусконаладка на{"\u00A0"}объектах выполняются одной инженерной командой. Это исключает нестыковки между проектной документацией и{"\u00A0"}реальным монтажом на{"\u00A0"}площадке.
+
+          <div className="mt-6 grid grid-cols-3 gap-3 border-y border-white/10 py-4 my-2">
+            <div>
+              <div className="text-2xl font-black text-[#E66826]">3 года</div>
+              <div className="text-[11px] text-white/50 leading-tight mt-0.5">слаженная работа команды</div>
+            </div>
+            <div>
+              <div className="text-2xl font-black text-white">50</div>
+              <div className="text-[11px] text-white/50 leading-tight mt-0.5">ведущих инженеров</div>
+            </div>
+            <div>
+              <div className="text-2xl font-black text-white">50+</div>
+              <div className="text-[11px] text-white/50 leading-tight mt-0.5">сданных объектов</div>
+            </div>
+          </div>
+
+          <p className="mt-4 text-white/70 text-[13.5px] leading-relaxed">
+            Команда объединяет ведущих специалистов из{"\u00A0"}ключевых проектных институтов и{"\u00A0"}системных интеграторов страны.
           </p>
+
+          <div className="mt-4 space-y-1.5 text-[12px] font-mono text-white/60">
+            <div>• <strong className="text-white">Москва:</strong> управление проектами, проектирование по РФ</div>
+            <div>• <strong className="text-white">Самара (Волга):</strong> Нефтегаз, АПК, производство 19 км</div>
+            <div>• <strong className="text-white">Челябинск (Урал):</strong> Добыча, ТЭК, металлургия</div>
+          </div>
         </div>
 
-        {/* Right — vertical 3D carousel with rounded top corners */}
+        {/* Right — vertical carousel with clean brutalist corners */}
         <div className="bg-graphite">
           <div
-            className="bg-surface-warm w-full h-full relative flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 select-none overflow-hidden min-h-[440px] sm:min-h-[480px] md:min-h-[500px] lg:min-h-[520px] rounded-t-[28px] lg:rounded-t-[36px]"
+            className="bg-surface-warm w-full h-full relative flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 select-none overflow-hidden min-h-[440px] sm:min-h-[480px] md:min-h-[500px] lg:min-h-[520px] rounded-t-[16px] lg:rounded-t-[20px]"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-          {/* 3D Viewport Stage */}
+          {/* Planar Stage */}
           <div
             className="relative w-full h-[370px] sm:h-[400px] md:h-[450px] flex items-center justify-center"
-            style={{ perspective: 1200 }}
           >
             {reasons.map((reason, i) => {
               // Wrap-around offset calculation: -1 (top), 0 (center), 1 (bottom), etc.
@@ -129,9 +150,8 @@ export function WhyUs() {
               const isBottom = offset === 1;
               const isVisible = Math.abs(offset) <= 1;
 
-              // Vertical 3D layout coordinates (matching style of problems.tsx / process.tsx)
+              // Planar layout coordinates without 3D perspective distortion
               let targetY = 0;
-              let targetRotateX = 0;
               let targetScale = 1;
               let targetOpacity = 0;
               let targetZIndex = 0;
@@ -139,65 +159,55 @@ export function WhyUs() {
               if (isDesktop) {
                 if (isCenter) {
                   targetY = 0;
-                  targetRotateX = 0;
                   targetScale = 1;
                   targetOpacity = 1;
                   targetZIndex = 20;
                 } else if (isTop) {
                   targetY = -120;
-                  targetRotateX = -18;
-                  targetScale = 0.88;
-                  targetOpacity = 0.4;
+                  targetScale = 0.92;
+                  targetOpacity = 0.45;
                   targetZIndex = 10;
                 } else if (isBottom) {
                   targetY = 120;
-                  targetRotateX = 18;
-                  targetScale = 0.88;
-                  targetOpacity = 0.4;
+                  targetScale = 0.92;
+                  targetOpacity = 0.45;
                   targetZIndex = 10;
                 } else if (offset < -1) {
                   targetY = -210;
-                  targetRotateX = -28;
-                  targetScale = 0.75;
+                  targetScale = 0.8;
                   targetOpacity = 0;
                   targetZIndex = 0;
                 } else {
                   targetY = 210;
-                  targetRotateX = 28;
-                  targetScale = 0.75;
+                  targetScale = 0.8;
                   targetOpacity = 0;
                   targetZIndex = 0;
                 }
               } else {
-                // Mobile & Tablet: top and bottom cards remain slightly visible
+                // Mobile & Tablet
                 if (isCenter) {
                   targetY = 0;
-                  targetRotateX = 0;
                   targetScale = 1;
                   targetOpacity = 1;
                   targetZIndex = 20;
                 } else if (isTop) {
                   targetY = -92;
-                  targetRotateX = -15;
-                  targetScale = 0.88;
-                  targetOpacity = 0.4;
+                  targetScale = 0.92;
+                  targetOpacity = 0.45;
                   targetZIndex = 10;
                 } else if (isBottom) {
                   targetY = 92;
-                  targetRotateX = 15;
-                  targetScale = 0.88;
-                  targetOpacity = 0.4;
+                  targetScale = 0.92;
+                  targetOpacity = 0.45;
                   targetZIndex = 10;
                 } else if (offset < -1) {
                   targetY = -160;
-                  targetRotateX = -22;
-                  targetScale = 0.75;
+                  targetScale = 0.8;
                   targetOpacity = 0;
                   targetZIndex = 0;
                 } else {
                   targetY = 160;
-                  targetRotateX = 22;
-                  targetScale = 0.75;
+                  targetScale = 0.8;
                   targetOpacity = 0;
                   targetZIndex = 0;
                 }
@@ -208,14 +218,13 @@ export function WhyUs() {
                   key={reason.title}
                   animate={{
                     y: targetY,
-                    rotateX: targetRotateX,
                     scale: targetScale,
                     opacity: targetOpacity,
                     zIndex: targetZIndex,
                   }}
                   transition={{
-                    duration: 0.6,
-                    ease: [0.16, 1, 0.3, 1], // Signature Metro deceleration curve
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
                   }}
                   drag={isCenter ? "y" : false}
                   dragConstraints={{ top: 0, bottom: 0 }}
@@ -228,16 +237,7 @@ export function WhyUs() {
                     if (isTop) prev();
                     if (isBottom) next();
                   }}
-                  style={{
-                    transformStyle: "preserve-3d",
-                    transformOrigin:
-                      offset < 0
-                        ? "center bottom"
-                        : offset > 0
-                        ? "center top"
-                        : "center center",
-                  }}
-                  className={`absolute w-[calc(100vw-36px)] max-w-[560px] md:max-w-[620px] lg:max-w-[580px] xl:max-w-[640px] h-[145px] sm:h-[160px] md:h-[175px] rounded-[14px] bg-white shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex overflow-hidden ${
+                  className={`absolute w-[calc(100vw-36px)] max-w-[560px] md:max-w-[620px] lg:max-w-[580px] xl:max-w-[640px] h-[145px] sm:h-[160px] md:h-[175px] rounded-[14px] bg-white border border-divider/40 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)] flex overflow-hidden ${
                     isCenter
                       ? "cursor-grab active:cursor-grabbing pointer-events-auto"
                       : isVisible

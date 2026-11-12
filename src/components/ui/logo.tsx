@@ -5,8 +5,8 @@ interface LogoMarkProps extends React.SVGProps<SVGSVGElement> {
 }
 
 /**
- * 4.0 Precision Logic Gate (Логический Вентиль) SVG Mark
- * Чистая векторная геометрия с прозрачным вырезом (без привязки к цвету фона)
+ * Т3 Инженерный Знак (T3 Precision Industrial Mark)
+ * Лаконичная векторная геометрия промышленной автоматизации
  */
 export function LogoMark({ size = 24, className = "", ...props }: LogoMarkProps) {
   return (
@@ -19,9 +19,14 @@ export function LogoMark({ size = 24, className = "", ...props }: LogoMarkProps)
       className={`shrink-0 ${className}`}
       {...props}
     >
+      <rect width="100" height="100" rx="20" fill="currentColor" fillOpacity="0.08" />
       <path
-        d="M0 0h50v25L25 50H0ZM50 0l50 50H50ZM0 50l50 50H0ZM50 50h50v50H50Z"
+        d="M20 28H56V40H44V76H32V40H20V28Z"
         fill="currentColor"
+      />
+      <path
+        d="M58 28H80V40H68V46H78V58H68V64H80V76H58V64H70V58H60V46H70V40H58V28Z"
+        fill="#E66826"
       />
     </svg>
   );
@@ -36,13 +41,11 @@ interface LogoProps {
 }
 
 /**
- * Фирменный логотип компании «АЦИнжиниринг»
- * Строго без слогана, с идеальным балансом знака 4.0 и кириллического гротеска
+ * Фирменный текстовый логотип компании «Т3 Автоматизация»
  */
 export function Logo({
   className = "",
   theme = "dark",
-  iconSize = 24,
   href = "#",
   onClick,
 }: LogoProps) {
@@ -50,22 +53,16 @@ export function Logo({
 
   const content = (
     <span
-      className={`inline-flex items-center gap-2.5 select-none transition-opacity duration-200 group-hover:opacity-90 ${className}`}
+      className={`inline-flex items-center select-none transition-opacity duration-200 group-hover:opacity-90 ${className}`}
     >
-      <LogoMark
-        size={iconSize}
-        className={`transition-transform duration-300 ease-out group-hover:scale-105 ${
-          isLight ? "text-white" : "text-graphite"
-        }`}
-      />
       <span
-        className={`font-heading tracking-tight leading-none text-[17px] sm:text-[18px] ${
+        className={`font-heading tracking-tight leading-none text-[18px] sm:text-[19px] ${
           isLight ? "text-white" : "text-graphite"
         }`}
       >
-        <span className="font-black">АЦ</span>
-        <span className={`font-bold ${isLight ? "text-white/90" : "text-graphite/95"}`}>
-          Инжиниринг
+        <span className="font-extrabold text-[#E66826]">Т3</span>{" "}
+        <span className={`font-bold ${isLight ? "text-white/95" : "text-graphite/95"}`}>
+          Автоматизация
         </span>
       </span>
     </span>
@@ -77,7 +74,7 @@ export function Logo({
         href={href}
         onClick={onClick}
         className="inline-flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-        aria-label="АЦИнжиниринг — главная страница"
+        aria-label="Т3 Автоматизация — главная страница"
       >
         {content}
       </a>

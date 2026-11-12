@@ -21,7 +21,7 @@ export function Contacts() {
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-bold leading-[1.12] tracking-tight">
             Обсудить проект или{"\u00A0"}отправить ТЗ
           </h2>
         </div>
@@ -31,22 +31,33 @@ export function Contacts() {
           <div>
             <div className="rounded-[14px] bg-white p-6 md:p-8 space-y-6 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)]">
               <div>
-                <span className="text-pewter text-[11px] font-medium uppercase tracking-wider block">
-                  Телефон и{"\u00A0"}мессенджеры
+                <span className="text-pewter text-[11px] font-mono uppercase tracking-wider block">
+                  Дирекция филиала Волга
                 </span>
-                <a
-                  href="tel:+79001234567"
-                  className="mt-2 text-graphite text-lg font-bold hover:text-accent transition-colors block"
-                >
-                  +7 (900) 123-45-67
-                </a>
-                <span className="text-pewter text-[12px] block mt-0.5">
+                <div className="text-graphite text-base font-bold mt-1">
+                  Иванов Алексей Николаевич
+                </div>
+                <div className="mt-3 space-y-1">
+                  <a
+                    href="tel:+79608218170"
+                    className="text-graphite text-lg font-bold hover:text-[#E66826] transition-colors block"
+                  >
+                    +7 (960) 821-81-70
+                  </a>
+                  <a
+                    href="tel:+79951317090"
+                    className="text-iron text-sm font-semibold hover:text-[#E66826] transition-colors block"
+                  >
+                    +7 (995) 131-70-90
+                  </a>
+                </div>
+                <span className="text-pewter text-[12px] block mt-1">
                   Пн–Пт, 9:00–18:00 МСК
                 </span>
 
                 <div className="mt-4 pt-4 border-t border-divider flex items-center gap-3">
                   <a
-                    href="https://t.me/acengine"
+                    href="https://t.me/t3_auto"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-3.5 py-2 bg-surface text-graphite text-[12px] font-medium rounded-[6px] hover:bg-graphite hover:text-white transition-colors group"
@@ -58,33 +69,32 @@ export function Contacts() {
               </div>
 
               <div className="pt-6 border-t border-divider">
-                <span className="text-pewter text-[11px] font-medium uppercase tracking-wider block">
-                  Почта для{"\u00A0"}документации
+                <span className="text-pewter text-[11px] font-mono uppercase tracking-wider block">
+                  Почта для проектной документации
                 </span>
                 <a
-                  href="mailto:info@acengine.ru"
+                  href="mailto:aleksey.ivanov@t3-auto.com"
                   className="mt-2 text-graphite text-base font-bold hover:text-iron transition-colors block font-mono"
                 >
-                  info@acengine.ru
+                  aleksey.ivanov@t3-auto.com
                 </a>
                 <span className="text-pewter text-[12px] block mt-0.5">
-                  Для проектных спецификаций, P&ID схем и{"\u00A0"}ТЗ
+                  Для ТЗ, P&ID схем, опросных листов и смет
                 </span>
               </div>
 
-              <div className="pt-6 border-t border-divider">
-                <span className="text-pewter text-[11px] font-medium uppercase tracking-wider block">
-                  Производство и{"\u00A0"}логистика
+              <div className="pt-6 border-t border-divider space-y-3">
+                <span className="text-pewter text-[11px] font-mono uppercase tracking-wider block">
+                  География и филиалы Т3
                 </span>
-                <div className="mt-2 text-graphite text-[14px] font-semibold">
-                  Сборочный участок и{"\u00A0"}лаборатория: г.{"\u00A0"}Москва
+                <div className="text-[13px] space-y-1.5 text-graphite font-medium">
+                  <div>• <strong className="text-graphite font-bold">Центральный офис:</strong> г. Москва, ул. Берзарина, д. 28А, к. 2</div>
+                  <div>• <strong className="text-graphite font-bold">Филиал Волга и производство:</strong> г. Самара, 19 км</div>
+                  <div>• <strong className="text-graphite font-bold">Филиал Урал:</strong> г. Челябинск</div>
                 </div>
-                <div className="text-iron text-[13px] mt-1 font-medium">
-                  Выезды на{"\u00A0"}шефмонтаж и{"\u00A0"}ПНР{"\u00A0"}— по{"\u00A0"}всей{"\u00A0"}России
+                <div className="text-iron text-[12px] mt-2 font-mono">
+                  ООО «Т3 - Автоматизация» · ИНН 9734028824 · ОГРН 1267700304178
                 </div>
-                <span className="text-pewter text-[12px] block mt-1.5 leading-relaxed">
-                  Доставка готовых шкафов по{"\u00A0"}РФ транспортными компаниями (Деловые Линии, ПЭК) в{"\u00A0"}жёсткой обрешётке со{"\u00A0"}страхованием груза.
-                </span>
               </div>
             </div>
 
@@ -146,13 +156,14 @@ export function Contacts() {
                     Тип объекта
                   </label>
                   <select className="mt-2 w-full h-12 px-4 bg-surface-card border border-divider text-graphite text-[13px] focus:outline-none focus:border-graphite transition-colors appearance-none">
-                    <option value="">Выберите объект</option>
-                    <option>Котельная (газ / пар / дизель)</option>
-                    <option>ИТП / ЦТП (тепловой пункт)</option>
-                    <option>ВЗУ / Станция 2-го подъема</option>
-                    <option>Очистные сооружения / КНС</option>
-                    <option>Производственная линия / Станок</option>
-                    <option>Другой технологический объект</option>
+                    <option value="">Выберите отрасль / объект</option>
+                    <option>Нефтехимия и нефтегаз (РСУ / ПАЗ)</option>
+                    <option>Металлургия и добыча полезных ископаемых</option>
+                    <option>Инфраструктура и КИИ (аэропорты, энергетика)</option>
+                    <option>Машиностроение и автопром (СТЗ, РТК)</option>
+                    <option>Газораспределение и телемеханика (ШГРП, ЗОКИИ)</option>
+                    <option>Пищевая промышленность (ректификация, линии)</option>
+                    <option>Другой промышленный объект</option>
                   </select>
                 </div>
                 <div>
@@ -160,11 +171,12 @@ export function Contacts() {
                     Текущая стадия
                   </label>
                   <select className="mt-2 w-full h-12 px-4 bg-surface-card border border-divider text-graphite text-[13px] focus:outline-none focus:border-graphite transition-colors appearance-none">
-                    <option>Есть готовое ТЗ и схемы Э3</option>
-                    <option>Требуется проектирование с нуля</option>
-                    <option>Модернизация (ретрофит) старого шкафа</option>
-                    <option>Требуется пусконаладка (ПНР)</option>
-                    <option>Нужна только диспетчеризация (SCADA)</option>
+                    <option>Стадия тендера / предварительный расчёт сметы</option>
+                    <option>Проектирование (разделы АТХ, АСУТП, ПАЗ)</option>
+                    <option>Сборка шкафов управления по готовому проекту</option>
+                    <option>Срочное импортозамещение / ретрофит</option>
+                    <option>Пусконаладочные работы (ПНР) и шефмонтаж</option>
+                    <option>Внедрение SCADA / MES («КАСКАД Цифра»)</option>
                   </select>
                 </div>
               </div>

@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X, BookOpen, Loader2 } from "lucide-react";
+import { openCasesModal } from "@/components/modals/header-modals";
 
-interface ProjectItem {
+export interface ProjectItem {
   id: string;
   title: string;
   type: string;
@@ -20,142 +21,142 @@ interface ProjectItem {
   }[];
 }
 
-const projects: ProjectItem[] = [
+export const projects: ProjectItem[] = [
   {
-    id: "boiler",
-    title: "Котельная 15 МВт",
-    type: "Котельная + SCADA",
-    hardware: "ОВЕН ПЛК210 · Weintek 15″ · MasterSCADA 4D",
-    details: "Каскадное управление 3 котлами Viessmann · Насосные группы с ПЧ Veda MC · Горелки Weishaupt",
-    location: "Московская обл.",
-    result: "Каскад 1:10 · Архивация 1 год",
+    id: "sheremetyevo",
+    title: "Аэропорт Шереметьево",
+    type: "Инфраструктура / КИИ",
+    hardware: "Замена Schneider Electric · ПТК РФ · ЧРП",
+    details: "Полная замена автоматики Schneider Electric: новое ПО и шкафы управления для систем жизнеобеспечения. Котельная, КНС, водозаборные сооружения (5 скважин с ЧП, 12 насосов, УФ-обеззараживание).",
+    location: "Москва (МАШ Шереметьево)",
+    result: "100% замена Schneider Electric",
     size: "large", // 2x2
     color: "bg-graphite",
     images: [
-      { src: "/portfolio/boiler/boiler_1.webp", caption: "Тверь: Главный шкаф автоматики котловой группы" },
-      { src: "/portfolio/boiler/boiler_2.webp", caption: "Тверь: Шкаф управления сетевой насосной станцией" },
-      { src: "/portfolio/boiler/boiler_3.webp", caption: "Балашиха: Обвязка тепломеханических узлов и насосов" },
-      { src: "/portfolio/boiler/boiler_4.webp", caption: "Балашиха: Коллекторы и датчики давления ОВЕН ПД100" },
+      { src: "/portfolio/boiler/boiler_1.webp", caption: "Шереметьево: Главный шкаф автоматики котельной жизнеобеспечения" },
+      { src: "/portfolio/boiler/boiler_2.webp", caption: "Шереметьево: Шкаф управления сетевой насосной станцией с ЧРП" },
+      { src: "/portfolio/boiler/boiler_3.webp", caption: "Шереметьево: Обвязка тепломеханических узлов и насосных групп" },
+      { src: "/portfolio/boiler/boiler_4.webp", caption: "Шереметьево: Коллекторы водозаборных сооружений и датчики давления" },
     ],
   },
   {
-    id: "itp",
-    title: "ИТП ЖК на 1200 квартир",
-    type: "Тепловой пункт (ИТП)",
-    hardware: "Segnetics Matrix · Клапаны Ридан (Ridan)",
-    details: "Погодозависимая компенсация · Рециркуляция ГВС · Контроль перепада давления датчиками ОВЕН",
-    location: "Санкт-Петербург",
-    result: "Точность t° ±0.5 °C",
+    id: "tolyatti_block15",
+    title: "ООО «Тольяттикаучук» (ГК «Татнефть»)",
+    type: "Нефтехимия / РСУ и ПАЗ",
+    hardware: "Распределённая РСУ · Система ПАЗ · Газовый контроль",
+    details: "Техперевооружение блока №15 «Приём, хранение и отпуск изобутановой фракции» отделения Д-1а ТСЦ и модернизация систем контроля загазованности Д-1-И-1 ТСЦ.",
+    location: "Самарская обл. (Тольятти)",
+    result: "Децентрализованный I/O · ПАЗ SIL3",
     size: "medium", // 1x1
     color: "bg-gunmetal",
     images: [
-      { src: "/portfolio/itp/itp_1.webp", caption: "Балашиха: Насосная группа и смесительные клапаны ИТП" },
-      { src: "/portfolio/itp/itp_2.webp", caption: "Лобня: Мнемосхема АРМ — Контур отопления" },
-      { src: "/portfolio/itp/itp_3.webp", caption: "Лобня: Мнемосхема АРМ — Контур ГВС" },
-      { src: "/portfolio/itp/itp_4.webp", caption: "Лобня: Мнемосхема АРМ — Приточная вентиляция" },
+      { src: "/portfolio/itp/itp_1.webp", caption: "Тольяттикаучук: Насосная группа блока №15 изобутановой фракции" },
+      { src: "/portfolio/itp/itp_2.webp", caption: "Тольяттикаучук: Мнемосхема АРМ — Контур контроля загазованности" },
+      { src: "/portfolio/itp/itp_3.webp", caption: "Тольяттикаучук: Мнемосхема АРМ — Параметры отделения Д-1а ТСЦ" },
+      { src: "/portfolio/itp/itp_4.webp", caption: "Тольяттикаучук: Системы противоаварийной защиты (ПАЗ)" },
     ],
   },
   {
-    id: "scada",
-    title: "Единый диспетчерский пункт",
-    type: "SCADA-диспетчеризация",
-    hardware: "MasterSCADA 4D · ОВЕН ПЛК210 · GSM iRZ",
-    details: "8 распределённых объектов тепло- и водоснабжения на едином экране АРМ диспетчера с резервом каналов связи",
-    location: "Центральный ФО",
-    result: "Telegram-бот · 480 тегов",
+    id: "tolyatti_acid",
+    title: "Производство щавелевой кислоты",
+    type: "Химия / ПТК «БАЗИС-100»",
+    hardware: "ПТК «БАЗИС-100» · 4 панели HMI · Резервирование",
+    details: "АСУТП установки производства щавелевой кислоты: 900 каналов, 12 мнемосхем на 4 панелях HMI. РСУ и ПАЗ, каждая на двух резервированных контроллерах.",
+    location: "Самарская обл. (Тольятти)",
+    result: "900 каналов · 12 мнемосхем HMI",
     size: "medium",
     color: "bg-iron",
     images: [
-      { src: "/portfolio/scada/scada_1.webp", caption: "Калининград: Главная мнемосхема диспетчеризации SCADA" },
-      { src: "/portfolio/scada/scada_2.webp", caption: "Калининград: Графики трендов давления и температур" },
-      { src: "/portfolio/scada/scada_3.webp", caption: "Бунятино: HMI мнемосхема сортировочного комплекса" },
-      { src: "/portfolio/scada/scada_4.webp", caption: "Бунятино: Экран управления накопительными бункерами" },
-      { src: "/portfolio/scada/scada_5.webp", caption: "Бунятино: Сенсорный пульт управления линии мойки" },
+      { src: "/portfolio/scada/scada_1.webp", caption: "Щавелевая кислота: Главная мнемосхема установки на панели HMI" },
+      { src: "/portfolio/scada/scada_2.webp", caption: "Щавелевая кислота: Графики трендов давления, расхода и температур" },
+      { src: "/portfolio/scada/scada_3.webp", caption: "Щавелевая кислота: HMI мнемосхема контуров дозирования и смешения" },
+      { src: "/portfolio/scada/scada_4.webp", caption: "Щавелевая кислота: Экран контуров противоаварийной защиты ПАЗ" },
+      { src: "/portfolio/scada/scada_5.webp", caption: "Щавелевая кислота: Панель оператора на базе контроллера БАЗИС-100" },
     ],
   },
   {
-    id: "vzu",
-    title: "ВЗУ посёлка и станция 2-го подъёма",
-    type: "Водоснабжение (ВЗУ)",
-    hardware: "ОВЕН СПК110 · ПЧ Veda MC / Innovert",
-    details: "4 артезианские скважины · Автоматическая ротация по моточасам · Промывка песчаных фильтров",
-    location: "Тюменская обл.",
-    result: "Давление 4.2 ±0.1 бар",
+    id: "svgk_shgrp",
+    title: "ООО «СВГК» / Группа «Межрегионгаз»",
+    type: "Газораспределение / ЗОКИИ",
+    hardware: "Astra Linux · ШГРП · OPC UA · ПП № 1912",
+    details: "Пилотный шкаф телемеханики ШГРП: сбор данных с датчиков ГРП, приводная арматура, корректор Elster, передача по GSM/OPC UA, АРМ на Astra Linux. Опытная эксплуатация без замечаний.",
+    location: "Самарская обл.",
+    result: "ПП РФ №1912 (ЗОКИИ) · Опытная серия",
     size: "wide", // 2x1
     color: "bg-gunmetal",
     images: [
-      { src: "/portfolio/vzu/vzu_1.webp", caption: "Завод пластика: Каскадная повысительная насосная станция" },
-      { src: "/portfolio/vzu/vzu_2.webp", caption: "Завод пластика: Щит управления и реле давления" },
-      { src: "/portfolio/vzu/vzu_3.webp", caption: "ЦТП-2-20: Насосная группа станции второго подъёма" },
-      { src: "/portfolio/vzu/vzu_4.webp", caption: "ЦТП-2-20: Напорный коллектор с преобразователями частоты" },
+      { src: "/portfolio/vzu/vzu_1.webp", caption: "СВГК: Шкаф телемеханики ШГРП в сборе перед испытаниями" },
+      { src: "/portfolio/vzu/vzu_2.webp", caption: "СВГК: Компоновка контроллера телемеханики и модема GSM" },
+      { src: "/portfolio/vzu/vzu_3.webp", caption: "СВГК: Интерфейс АРМ диспетчера на базе ОС Astra Linux" },
+      { src: "/portfolio/vzu/vzu_4.webp", caption: "СВГК: Опрос корректора газа Elster по протоколу OPC UA" },
     ],
   },
   {
-    id: "cabinets",
-    title: "Шкафы автоматики серии ША-К",
-    type: "Серийное производство ШУ",
-    hardware: "Корпуса DKC RAM block · КЭАЗ OptiMat",
-    details: "Сборка шкафов управления котельными установками по ПУЭ и ТЗ заказчика на проверенной компонентной базе",
-    location: "Сборочный цех (Москва)",
-    result: "Заводская проверка цепей и логики",
+    id: "ural_trucks",
+    title: "Автомобильный завод «УРАЛ»",
+    type: "Машиностроение / КИП",
+    hardware: "АСУ стендом КИП · Главный конвейер · АРМ ОТК",
+    details: "Модернизация системы контроля процесса испытаний автомобилей в цехе Главный конвейер. Контроль испытаний и устранения несоответствий от схода до сдачи ОТК.",
+    location: "Челябинская обл. (Миасс)",
+    result: "Надёжный контроль сдачи ОТК",
     size: "medium",
     color: "bg-carbon",
     images: [
-      { src: "/portfolio/cabinets/cabinets_1.webp", caption: "Силовой шкаф ША-К: Силовые шины и автоматические выключатели" },
-      { src: "/portfolio/cabinets/cabinets_2.webp", caption: "Компоновка контроллерного отсека и блоков питания" },
-      { src: "/portfolio/cabinets/cabinets_3.webp", caption: "СПБ: Сборка и тестирование шкафа автоматики" },
-      { src: "/portfolio/cabinets/cabinets_4.webp", caption: "Тверь: Лазерная маркировка клемм и жгутование проводки" },
+      { src: "/portfolio/cabinets/cabinets_1.webp", caption: "АЗ УРАЛ: Шкаф управления стендом контрольно-измерительного пункта" },
+      { src: "/portfolio/cabinets/cabinets_2.webp", caption: "АЗ УРАЛ: Контроллерная панель управления узлами обкатки" },
+      { src: "/portfolio/cabinets/cabinets_3.webp", caption: "АЗ УРАЛ: Главный конвейер — интеграция стенда с АСУ завода" },
+      { src: "/portfolio/cabinets/cabinets_4.webp", caption: "АЗ УРАЛ: Маркировка сигнальных линий датчиков испытаний" },
     ],
   },
   {
-    id: "cooling",
-    title: "Холодоснабжение предприятия",
-    type: "Промышленный холод",
-    hardware: "ПЛК Carel / ОВЕН · ПЧ Danfoss VLT",
-    details: "Управление винтовыми компрессорами, сухими градирнями и гликолевыми насосными контурами с плавным пуском",
-    location: "Смоленская обл.",
-    result: "Энергосбережение -24%",
+    id: "rmk_safety",
+    title: "АО «Русская медная компания»",
+    type: "Металлургия / Промбезопасность",
+    hardware: "Единый диспетчерский центр · 1000 параметров",
+    details: "Единый диспетчерский центр промышленной безопасности: регламенты, люди на объекте, реакция на ЧС. 1000 параметров АСУТП, 256 сигналов подстанций, оповещение Telegram/SIP/SMS.",
+    location: "Уральский ФО",
+    result: "1000 параметров · Оповещение ЧС",
     size: "medium",
     color: "bg-iron",
     images: [
-      { src: "/portfolio/cooling/cooling_1.webp", caption: "Ярцево: Компрессорная станция промышленного холода" },
-      { src: "/portfolio/cooling/cooling_2.webp", caption: "Ярцево: Трубная обвязка чиллеров и датчики потока" },
-      { src: "/portfolio/cooling/cooling_3.webp", caption: "СПБ: Сухая градирня (фрикулер) и вентиляторные группы" },
-      { src: "/portfolio/cooling/cooling_4.webp", caption: "СПБ: Щит управления насосами промежуточного контура" },
+      { src: "/portfolio/cooling/cooling_1.webp", caption: "РМК: Диспетчерский видеостенд центра промышленной безопасности" },
+      { src: "/portfolio/cooling/cooling_2.webp", caption: "РМК: Интеграция телеметрии 256 дискретных сигналов подстанций" },
+      { src: "/portfolio/cooling/cooling_3.webp", caption: "РМК: Шкаф сбора данных технологических параметров цехов" },
+      { src: "/portfolio/cooling/cooling_4.webp", caption: "РМК: Модуль аварийного оповещения персонала через SIP и Telegram" },
     ],
   },
   {
-    id: "agro",
-    title: "Агрокомплекс: Линия сортировки",
-    type: "Технологическая линия",
-    hardware: "ПЛК Delta DVP · Панели Weintek · ПЧ Innovert",
-    details: "Синхронизация конвейеров, оптических датчиков и дозаторов с рецептурным заданием параметров на HMI",
-    location: "Московская обл. (Дмитров)",
-    result: "Синхронизация 6 приводов",
+    id: "kizlyar_brandy",
+    title: "АО «Кизлярский коньячный завод»",
+    type: "Пищепром / Ректификация",
+    hardware: "АСУТП ректификации · ПЛК · Датчики КИП",
+    details: "Автоматизация перегонки вина на коньячный спирт в цехе ректификации: рост производительности непрерывных установок и снижение общих потерь продукции.",
+    location: "Республика Дагестан",
+    result: "Рост выхода · Снижение потерь",
     size: "medium",
     color: "bg-gunmetal",
     images: [
-      { src: "/portfolio/agro/agro_1.webp", caption: "Агрофирма Бунятино: Автоматизированная линия мойки и сортировки" },
-      { src: "/portfolio/agro/agro_2.webp", caption: "Бунятино: Распределительный конвейер с частотным приводом" },
-      { src: "/portfolio/agro/agro_3.webp", caption: "Бунятино: Шкаф управления технологической линией нарезки" },
-      { src: "/portfolio/agro/agro_4.webp", caption: "Бунятино: Моечный барабан с контролем уровня воды" },
+      { src: "/portfolio/agro/agro_1.webp", caption: "Кизляр: Колонны ректификации спирта и датчики давления/температуры" },
+      { src: "/portfolio/agro/agro_2.webp", caption: "Кизляр: Управление клапанами подачи пара и флегмового числа" },
+      { src: "/portfolio/agro/agro_3.webp", caption: "Кизляр: Шкаф управления контурами дистилляции и охлаждения" },
+      { src: "/portfolio/agro/agro_4.webp", caption: "Кизляр: Панель оператора с мнемосхемой ректификационной установки" },
     ],
   },
   {
-    id: "retrofit",
-    title: "Ретрофит и модернизация насосных групп",
-    type: "Модернизация автоматики",
-    hardware: "Segnetics SMH4 · ПЧ Veda MC · Датчики ОВЕН",
-    details: "Замена морально устаревшей релейной автоматики на современные ПЛК с частотным регулированием без останова",
-    location: "Центральный ФО",
-    result: "Переврезка за 48 часов",
+    id: "auto_cv",
+    title: "Система компьютерного зрения (СТЗ)",
+    type: "Компьютерное зрение / Робототехника",
+    hardware: "Камеры СТЗ · Нейросетевой блок · Интеграция с РТК",
+    details: "Контроль форм на конвейере сидений автозавода: бесконтактный поиск дефектов и недостающих элементов до захода оператора в зону действия робота.",
+    location: "Приволжский ФО",
+    result: "> 90% точность · Без участия человека",
     size: "wide",
     color: "bg-carbon",
     images: [
-      { src: "/portfolio/retrofit/retrofit_1.webp", caption: "ЦТП 2-14: Монтаж новой циркуляционной насосной группы" },
-      { src: "/portfolio/retrofit/retrofit_2.webp", caption: "ЦТП 2-14: Обвязка регулирующих клапанов и реле сухого хода" },
-      { src: "/portfolio/retrofit/retrofit_3.webp", caption: "Тверь: Модернизированный шкаф автоматики фрикулера" },
-      { src: "/portfolio/retrofit/retrofit_4.webp", caption: "Ярцево: Переподключение кабельных линий к новому шкафу" },
+      { src: "/portfolio/retrofit/retrofit_1.webp", caption: "СТЗ: Камера машинного зрения над конвейерной линией сборки" },
+      { src: "/portfolio/retrofit/retrofit_2.webp", caption: "СТЗ: Распознавание положения элементов каркаса сидений" },
+      { src: "/portfolio/retrofit/retrofit_3.webp", caption: "СТЗ: Шкаф обработки нейросетевых моделей промышленного зрения" },
+      { src: "/portfolio/retrofit/retrofit_4.webp", caption: "СТЗ: Сигнальный интерфейс с контроллером сварочного робота" },
     ],
   },
 ];
@@ -313,49 +314,6 @@ function ProjectCardImage({
   );
 }
 
-function LightboxPhoto({
-  src,
-  caption,
-}: {
-  src: string;
-  caption: string;
-}) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement | null>(null);
-
-  useEffect(() => {
-    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
-      setIsLoaded(true);
-    } else {
-      setIsLoaded(false);
-    }
-  }, [src]);
-
-  return (
-    <div className="relative flex items-center justify-center w-full h-full">
-      {!isLoaded && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <div className="w-10 h-10 rounded-full bg-white shadow-md border border-divider/30 flex items-center justify-center">
-            <Loader2 className="w-5 h-5 text-graphite/70 animate-spin" strokeWidth={1.5} />
-          </div>
-        </div>
-      )}
-
-      <motion.img
-        ref={imgRef}
-        src={src}
-        alt={caption}
-        onLoad={() => setIsLoaded(true)}
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: isLoaded ? 1 : 0, scale: 1 }}
-        exit={{ opacity: 0, scale: 1.02 }}
-        transition={{ duration: 0.22 }}
-        className="max-h-[58vh] md:max-h-[62vh] w-auto max-w-full object-contain rounded-xl shadow-md"
-      />
-    </div>
-  );
-}
-
 interface LiveTileProps {
   project: ProjectItem;
   tileIndex: number;
@@ -482,59 +440,10 @@ function LiveTile({ project, tileIndex, activeMobileId, onOpenLightbox }: LiveTi
 
 export function Projects() {
   const [activeMobileId, setActiveMobileId] = useState<string | null>(null);
-  const [lightboxState, setLightboxState] = useState<{
-    isOpen: boolean;
-    project: ProjectItem | null;
-    photoIndex: number;
-  }>({
-    isOpen: false,
-    project: null,
-    photoIndex: 0,
-  });
 
   const openLightbox = (project: ProjectItem, photoIndex: number) => {
-    setLightboxState({
-      isOpen: true,
-      project,
-      photoIndex,
-    });
+    openCasesModal(project.id, photoIndex);
   };
-
-  const closeLightbox = () => {
-    setLightboxState((prev) => ({ ...prev, isOpen: false }));
-  };
-
-  const nextLightboxPhoto = () => {
-    if (!lightboxState.project) return;
-    const count = lightboxState.project.images.length;
-    setLightboxState((prev) => ({
-      ...prev,
-      photoIndex: (prev.photoIndex + 1) % count,
-    }));
-  };
-
-  const prevLightboxPhoto = () => {
-    if (!lightboxState.project) return;
-    const count = lightboxState.project.images.length;
-    setLightboxState((prev) => ({
-      ...prev,
-      photoIndex: (prev.photoIndex - 1 + count) % count,
-    }));
-  };
-
-  // Keyboard navigation for lightbox
-  useEffect(() => {
-    if (!lightboxState.isOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowRight") nextLightboxPhoto();
-      if (e.key === "ArrowLeft") prevLightboxPhoto();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxState.isOpen, lightboxState.project]);
 
   // Single-card mobile auto-hover coordinator
   // Strictly guarantees that AT MOST ONE card can have the hover effect at any moment
@@ -584,14 +493,17 @@ export function Projects() {
     <div className="bg-surface-warm">
       <section
         id="projects"
-        className="py-20 md:py-28 bg-surface rounded-t-[28px] md:rounded-t-[36px] lg:rounded-t-[44px]"
+        className="py-20 md:py-28 bg-surface rounded-t-[16px] md:rounded-t-[20px]"
       >
         <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
         <div className="max-w-3xl mx-auto pb-10 text-center">
-          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
-            Реализованные конфигурации и технологические узлы
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-bold leading-[1.12] tracking-tight">
+            Опыт внедрения на{"\u00A0"}критических и{"\u00A0"}промышленных объектах
           </h2>
+          <p className="mt-3 text-iron text-[14.5px] leading-relaxed">
+            Проекты для федеральной инфраструктуры, нефтехимии, машиностроения, металлургии и газораспределения.
+          </p>
         </div>
 
         {/* Windows Phone Metro Live Grid */}
@@ -631,115 +543,6 @@ export function Projects() {
           />
         </div>
       </div>
-
-      {/* Light Theme Engineer Lightbox Modal */}
-      <AnimatePresence>
-        {lightboxState.isOpen && lightboxState.project && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={closeLightbox}
-            className="fixed inset-0 z-50 bg-graphite/40 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 md:p-8"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl bg-surface border border-divider/60 rounded-2xl md:rounded-[20px] overflow-hidden shadow-2xl flex flex-col max-h-[92vh] p-3 sm:p-4 md:p-5 gap-3 md:gap-4"
-            >
-              {/* Main Image Viewport (Clean, no card background) */}
-              <div className="relative flex-1 min-h-[340px] sm:min-h-[420px] md:min-h-[480px] flex items-center justify-center p-2 sm:p-4 overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <LightboxPhoto
-                    key={lightboxState.photoIndex}
-                    src={lightboxState.project.images[lightboxState.photoIndex].src}
-                    caption={lightboxState.project.images[lightboxState.photoIndex].caption}
-                  />
-                </AnimatePresence>
-              </div>
-
-              {/* Single Unified Bottom Cloud (No border, light site shadow) */}
-              <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-5 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6 w-full">
-                {/* Left: Title & Description */}
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-graphite font-heading text-lg md:text-xl font-bold tracking-tight">
-                    {lightboxState.project.title}
-                  </h3>
-                  <p className="text-iron text-[13px] leading-relaxed mt-1">
-                    {lightboxState.project.images[lightboxState.photoIndex].caption}
-                    {lightboxState.project.hardware && (
-                      <span className="text-pewter block sm:inline sm:ml-2 text-[12px]">
-                        — Оборудование: {lightboxState.project.hardware}
-                      </span>
-                    )}
-                  </p>
-                </div>
-
-                {/* Right: Controls & Thumbnails */}
-                <div className="flex flex-col gap-2.5 shrink-0 items-start md:items-end w-full md:w-auto">
-                  {/* Segmented Controller + Separate Close */}
-                  <div className="flex items-center gap-2">
-                    {/* Monolithic Segmented Pill */}
-                    <div className="bg-surface rounded-[8px] p-0.5 border border-divider/50 flex items-center shadow-2xs">
-                      <button
-                        onClick={prevLightboxPhoto}
-                        aria-label="Предыдущий слайд"
-                        className="w-8 h-8 flex items-center justify-center rounded-[6px] text-graphite hover:bg-white hover:shadow-xs transition-all active:scale-95 cursor-pointer"
-                      >
-                        <ChevronLeft strokeWidth={1.5} className="w-4 h-4" />
-                      </button>
-
-                      <div className="px-2.5 text-xs font-mono font-semibold text-graphite select-none tracking-wider min-w-[42px] text-center">
-                        {lightboxState.photoIndex + 1} / {lightboxState.project.images.length}
-                      </div>
-
-                      <button
-                        onClick={nextLightboxPhoto}
-                        aria-label="Следующий слайд"
-                        className="w-8 h-8 flex items-center justify-center rounded-[6px] text-graphite hover:bg-white hover:shadow-xs transition-all active:scale-95 cursor-pointer"
-                      >
-                        <ChevronRight strokeWidth={1.5} className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    {/* Independent Close Button */}
-                    <button
-                      onClick={closeLightbox}
-                      aria-label="Закрыть окно"
-                      className="w-9 h-9 flex items-center justify-center rounded-[8px] bg-surface hover:bg-graphite hover:text-white text-graphite border border-divider/50 transition-all hover:border-graphite active:scale-95 cursor-pointer shadow-2xs"
-                    >
-                      <X strokeWidth={1.5} className="w-4 h-4" />
-                    </button>
-                  </div>
-
-                  {/* Thumbnails row */}
-                  <div className="flex items-center gap-2 overflow-x-auto py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {lightboxState.project.images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() =>
-                          setLightboxState((prev) => ({ ...prev, photoIndex: idx }))
-                        }
-                        className={`relative w-11 h-11 md:w-12 md:h-12 rounded-[8px] overflow-hidden border transition-all shrink-0 cursor-pointer ${
-                          idx === lightboxState.photoIndex
-                            ? "border-graphite ring-2 ring-graphite/25 opacity-100 shadow-xs"
-                            : "border-divider/50 opacity-60 hover:opacity-100 hover:border-iron"
-                        }`}
-                      >
-                        <img
-                          src={img.src}
-                          alt={img.caption || ""}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   </div>
   );

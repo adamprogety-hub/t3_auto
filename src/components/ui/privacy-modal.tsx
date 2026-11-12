@@ -11,6 +11,22 @@ export function openPrivacyModal() {
 
 export function PrivacyModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [headerBottom, setHeaderBottom] = useState(72);
+  const [margin, setMargin] = useState(16);
+
+  useEffect(() => {
+    const updateGeometry = () => {
+      const isMobile = window.innerWidth < 768;
+      setMargin(isMobile ? 12 : 20);
+      const header = document.querySelector("header");
+      if (header) {
+        setHeaderBottom(header.getBoundingClientRect().bottom);
+      }
+    };
+    updateGeometry();
+    window.addEventListener("resize", updateGeometry);
+    return () => window.removeEventListener("resize", updateGeometry);
+  }, [isOpen]);
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -39,25 +55,34 @@ export function PrivacyModal() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
-          {/* Backdrop */}
+        <>
+          {/* Backdrop: z-50 blurs the page, header is z-[70] so it stays unblurred */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.22 }}
+            transition={{ duration: 0.2 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-graphite/70 backdrop-blur-xs"
+            className="fixed inset-0 z-50 bg-graphite/40 backdrop-blur-md"
             aria-hidden="true"
           />
 
-          {/* Modal Card */}
+          {/* Modal Card with equal margins */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 16 }}
+            initial={{ opacity: 0, scale: 0.98, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 12 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-2xl max-h-[86vh] bg-white rounded-[16px] shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-divider/60 flex flex-col overflow-hidden z-10"
+            exit={{ opacity: 0, scale: 0.98, y: 8 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: "fixed",
+              top: `${headerBottom + margin}px`,
+              bottom: `${margin}px`,
+              left: `${margin}px`,
+              right: `${margin}px`,
+              zIndex: 60,
+            }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl md:rounded-[20px] shadow-2xl border border-divider/60 flex flex-col overflow-hidden pointer-events-auto"
             role="dialog"
             aria-modal="true"
             aria-labelledby="privacy-modal-title"
@@ -82,7 +107,7 @@ export function PrivacyModal() {
               {/* Intro block */}
               <div className="p-4 bg-surface-warm rounded-[10px] border border-divider/50">
                 <p className="text-graphite text-[12.5px] font-medium leading-relaxed">
-                  Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта <strong>АЦИнжиниринг</strong> («Оператор»), оставляющих заявки на расчет стоимости, скачивающих инженерные материалы или передающих технические задания.
+                  Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта <strong>ООО «Т3 - Автоматизация»</strong> («Оператор»), оставляющих заявки на расчет стоимости, скачивающих инженерные материалы или передающих технические задания.
                 </p>
               </div>
 
@@ -96,7 +121,7 @@ export function PrivacyModal() {
                   1.1. Оператор ставит важнейшей целью соблюдение прав и свобод человека и гражданина при обработке его персональных данных, включая защиту прав на неприкосновенность частной жизни и коммерческую тайну.
                 </p>
                 <p>
-                  1.2. Настоящая Политика применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта АЦИнжиниринг.
+                  1.2. Настоящая Политика применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта Т3 Автоматизация.
                 </p>
               </section>
 
@@ -169,7 +194,7 @@ export function PrivacyModal() {
                   5.1. Безопасность персональных данных обеспечивается правовыми, организационными и техническими мерами защиты.
                 </p>
                 <p>
-                  5.2. Срок обработки данных является неограниченным до момента отзыва согласия. Пользователь может в любой момент отозвать свое согласие, направив уведомление на контактный email: <span className="font-mono text-graphite font-medium">info@acengine.ru</span> с пометкой «Отзыв согласия на обработку персональных данных».
+                  5.2. Срок обработки данных является неограниченным до момента отзыва согласия. Пользователь может в любой момент отозвать свое согласие, направив уведомление на контактный email: <span className="font-mono text-graphite font-medium">aleksey.ivanov@t3-auto.com</span> с пометкой «Отзыв согласия на обработку персональных данных».
                 </p>
               </section>
             </div>
@@ -185,7 +210,7 @@ export function PrivacyModal() {
               </button>
             </div>
           </motion.div>
-        </div>
+        </>
       )}
     </AnimatePresence>
   );

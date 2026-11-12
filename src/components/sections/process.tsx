@@ -17,80 +17,80 @@ interface ProcessStep {
 const steps: ProcessStep[] = [
   {
     num: "01",
-    stage: "Аудит проекта",
-    title: "Входной аудит проекта",
-    description: "Анализ технологической схемы, циклограммы и\u00A0опросных листов. Находим и\u00A0устраняем ошибки в\u00A0схемах до\u00A0закупки оборудования.",
+    stage: "Обследование",
+    title: "Предпроектное обследование и\u00A0аудит",
+    description: "Аудит действующей автоматики, выезд экспертов на\u00A0объект, сбор исходных данных и\u00A0формирование технического задания (ТЗ).",
     details: [
-      "Проверка схем автоматизации и\u00A0опросных листов заказчика",
-      "Расчет электрических нагрузок и\u00A0сечений кабелей",
-      "Устранение ошибок и\u00A0нестыковок в\u00A0проекте до\u00A0закупки",
+      "Обследование объекта и\u00A0анализ технологических схем (P&ID)",
+      "Ревизия существующего оборудования КИПиА и\u00A0полевой сети",
+      "Разработка и\u00A0согласование технического задания на\u00A0АСУТП, РСУ и\u00A0ПАЗ",
     ],
-    deliverable: "Инженерное заключение + опросный лист",
+    deliverable: "Утверждённое ТЗ + отчёт обследования",
     icon: "/icons/process/01_audit_pid.webp",
   },
   {
     num: "02",
-    stage: "Проект",
-    title: "Проектирование схем\u00A0Э3",
-    description: "Разработка принципиальных электрических схем, подбор и\u00A0расчет защитных аппаратов, кабельный журнал и\u00A0спецификация оборудования.",
+    stage: "Проектирование",
+    title: "Разработка проектной документации",
+    description: "Разделы АТХ, АСУТП, ПАЗ. Разработка эскизных проектов, рабочей документации и\u00A0спецификаций на\u00A0отечественное оборудование.",
     details: [
-      "Схемы Э3 в\u00A0EPLAN Pro Panel и\u00A0AutoCAD",
-      "Спецификация оборудования и\u00A0защитных аппаратов",
-      "Кабельный журнал и\u00A0таблица внешних подключений",
+      "Спецификации оборудования из\u00A0реестров Минпромторга РФ",
+      "Принципиальные схемы Э3, кабельные журналы по\u00A0ГОСТ 34/21",
+      "Согласование проектных решений и\u00A0защита в\u00A0госэкспертизе",
     ],
-    deliverable: "Комплект схем Э3 с\u00A0кабельным журналом",
+    deliverable: "Комплект РД разделов АТХ / АСУТП / ПАЗ",
     icon: "/icons/process/02_eplan_design.webp",
   },
   {
     num: "03",
-    stage: "Сборка",
-    title: "Сборка шкафов управления",
-    description: "Монтаж на\u00A0собственном участке в\u00A0Москве. Аккуратная компоновка, маркировка проводников по\u00A0схеме и\u00A0соблюдение высокой культуры монтажа.",
+    stage: "Производство",
+    title: "Цифровое производство и\u00A0поставка",
+    description: "Сборка шкафов на\u00A0производственной базе в\u00A0Самаре (19 км). Электронный техпаспорт по\u00A0QR-коду, ОТК на\u00A0планшетах и\u00A0заводские испытания.",
     details: [
-      "Корпуса DKC, Провенто или аналоги под\u00A0условия объекта (IP54/IP65)",
-      "Грамотное разделение силовых и\u00A0сигнальных линий по\u00A0лоткам",
-      "Четкая маркировка проводников и\u00A0клеммных рядов по\u00A0схеме",
+      "Шкафы АСУТП, АСУЭ, аналитики газов/жидкостей, ПТК и\u00A0РТК",
+      "Проверка в\u00A0сертифицированных ЭТЛ и\u00A0метрологической лаборатории",
+      "Фотофиксация узлов и\u00A0онлайн-доступ заказчика к\u00A0статусу сборки",
     ],
-    deliverable: "Собранный шкаф с\u00A0заводским паспортом",
+    deliverable: "Шкафы с паспортом и QR цифрового двойника",
     icon: "/icons/process/03_assembly_marking.webp",
   },
   {
     num: "04",
-    stage: "Испытания",
-    title: "Проверка на\u00A0соответствие ТЗ",
-    description: "Комплексная проверка шкафа на\u00A0собственном участке в\u00A0Москве. Подача питания, прозвонка цепей и\u00A0программная симуляция алгоритмов для\u00A0подтверждения соответствия техническому заданию.",
+    stage: "Разработка ПО",
+    title: "Программирование ПЛК, HMI и\u00A0SCADA",
+    description: "Разработка прикладного ПО для\u00A0контроллеров и\u00A0диспетчеризации. Сквозное моделирование контуров регулирования и\u00A0защит ПАЗ на\u00A0стенде.",
     details: [
-      "Прозвонка силовых и\u00A0контрольных цепей",
-      "Подача питания и\u00A0тестирование индикации",
-      "Симуляция работы алгоритмов управления по\u00A0ТЗ",
+      "ПО для\u00A0ПТК «БАЗИС», «СУРА», TREI, АБАК, ONI",
+      "Интеграция с\u00A0платформой «КАСКАД Цифра» (ОРС UA, БДРВ)",
+      "Стендовая симуляция алгоритмов до\u00A0выезда на\u00A0объект",
     ],
-    deliverable: "Протокол заводской проверки по ТЗ",
+    deliverable: "Отлаженное ПО + карты регистров I/O",
     icon: "/icons/process/04_stand_test_48h.webp",
   },
   {
     num: "05",
-    stage: "ПНР",
-    title: "Шефмонтаж и\u00A0пусконаладка (ПНР)",
-    description: "Выезд инженеров на\u00A0объект по\u00A0всей\u00A0России. Проверка внешних подключений, юстировка исполнительных механизмов и\u00A0настройка регуляторов под\u00A0нагрузкой.",
+    stage: "Шефмонтаж и ПНР",
+    title: "Пусконаладочные работы на\u00A0объекте",
+    description: "Выезд инженерных бригад по\u00A0всей России: контроль монтажа, наладка контуров, юстировка датчиков и\u00A0комплексные испытания под\u00A0нагрузкой.",
     details: [
-      "Выезд инженерной группы на\u00A0площадку заказчика",
-      "Прозвонка кабельных трасс и\u00A0проверка сигналов КИПиА",
-      "Настройка ПИД-регуляторов и\u00A0испытания под\u00A0нагрузкой",
+      "Прозвонка внешних кабельных линий и\u00A0проверка полевых датчиков",
+      "Настройка контуров регулирования и\u00A0комплексное опробование",
+      "Оформление протоколов ПНР и\u00A0инструктаж персонала заказчика",
     ],
-    deliverable: "Акт комплексного опробования и пуска",
+    deliverable: "Акт комплексных испытаний и опробования",
     icon: "/icons/process/05_field_pnr.webp",
   },
   {
     num: "06",
-    stage: "Сдача",
-    title: "Сдача объекта и\u00A0документы",
-    description: "Передаем схемы с\u00A0фактическими правками после монтажа, паспорта и\u00A0инструкции. Если требуется\u00A0— помогаем со\u00A0сдачей объекта в\u00A0эксплуатацию.",
+    stage: "Сдача и Сервис",
+    title: "Ввод в\u00A0эксплуатацию и\u00A0сопровождение",
+    description: "Помощь во\u00A0взаимодействии с\u00A0надзорными органами (Ростехнадзор), сдача исполнительной документации и\u00A0гарантийный сервис 24/7.",
     details: [
-      "Исполнительные схемы с\u00A0фактическими правками",
-      "Паспорт шкафа и\u00A0понятные инструкции для\u00A0персонала",
-      "Помощь при\u00A0сдаче объекта в\u00A0эксплуатацию",
+      "Полный комплект исполнительной документации по\u00A0ГОСТ",
+      "Сопровождение проверок принимающих организаций",
+      "Пожизненный архив проекта: КД доступна даже при\u00A0утере заказчиком",
     ],
-    deliverable: "Исполнительная документация и акты сдачи",
+    deliverable: "Ввод в эксплуатацию + гарантийный сервис",
     icon: "/icons/process/06_handover_open_source.webp",
   },
 ];
@@ -131,15 +131,17 @@ export function Process() {
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-extrabold leading-[1.12] tracking-tight">
-            Технологический цикл внедрения АСУ{"\u00A0"}ТП
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-bold leading-[1.12] tracking-tight">
+            Ваши этапы — наш раздел АСУТП
           </h2>
+          <p className="mt-3 text-iron text-[14.5px] leading-relaxed">
+            Работаем субподрядчиком по разделу АСУТП или техническим партнёром уже на этапе тендера и сметы.
+          </p>
         </div>
 
-        {/* Synchronous 3D Carousel Stage */}
+        {/* Clean Synchronous Carousel Stage */}
         <div
           className="mt-12 relative w-full flex items-center justify-center py-4 select-none min-h-[580px] md:min-h-[620px]"
-          style={{ perspective: 1200 }}
         >
           {steps.map((step, i) => {
             let offset = (i - activeIndex + count) % count;
@@ -150,8 +152,8 @@ export function Process() {
             const isRight = offset === 1;
             const isVisible = Math.abs(offset) <= 1;
 
+            // Planar layout coordinates without 3D perspective distortion
             let targetX = 0;
-            let targetRotateY = 0;
             let targetScale = 1;
             let targetOpacity = 0;
             let targetZIndex = 0;
@@ -159,32 +161,27 @@ export function Process() {
             if (isDesktop) {
               if (isCenter) {
                 targetX = 0;
-                targetRotateY = 0;
                 targetScale = 1;
                 targetOpacity = 1;
                 targetZIndex = 20;
               } else if (isLeft) {
-                targetX = -380;
-                targetRotateY = 22;
-                targetScale = 0.88;
-                targetOpacity = 0.38;
+                targetX = -400;
+                targetScale = 0.92;
+                targetOpacity = 0.45;
                 targetZIndex = 10;
               } else if (isRight) {
-                targetX = 380;
-                targetRotateY = -22;
-                targetScale = 0.88;
-                targetOpacity = 0.38;
+                targetX = 400;
+                targetScale = 0.92;
+                targetOpacity = 0.45;
                 targetZIndex = 10;
               } else if (offset < -1) {
-                targetX = -540;
-                targetRotateY = 35;
-                targetScale = 0.75;
+                targetX = -560;
+                targetScale = 0.8;
                 targetOpacity = 0;
                 targetZIndex = 0;
               } else {
-                targetX = 540;
-                targetRotateY = -35;
-                targetScale = 0.75;
+                targetX = 560;
+                targetScale = 0.8;
                 targetOpacity = 0;
                 targetZIndex = 0;
               }
@@ -192,20 +189,17 @@ export function Process() {
               // Mobile & Tablet
               if (isCenter) {
                 targetX = 0;
-                targetRotateY = 0;
                 targetScale = 1;
                 targetOpacity = 1;
                 targetZIndex = 20;
               } else if (offset < 0) {
                 targetX = -320;
-                targetRotateY = 28;
-                targetScale = 0.85;
+                targetScale = 0.9;
                 targetOpacity = 0;
                 targetZIndex = 0;
               } else {
                 targetX = 320;
-                targetRotateY = -28;
-                targetScale = 0.85;
+                targetScale = 0.9;
                 targetOpacity = 0;
                 targetZIndex = 0;
               }
@@ -216,14 +210,13 @@ export function Process() {
                 key={step.num}
                 animate={{
                   x: targetX,
-                  rotateY: targetRotateY,
                   scale: targetScale,
                   opacity: targetOpacity,
                   zIndex: targetZIndex,
                 }}
                 transition={{
-                  duration: 0.6,
-                  ease: [0.16, 1, 0.3, 1], // Signature Metro deceleration curve
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
                 }}
                 drag={isCenter ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
@@ -236,11 +229,7 @@ export function Process() {
                   if (isLeft) prev();
                   if (isRight) next();
                 }}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transformOrigin: offset < 0 ? "right center" : offset > 0 ? "left center" : "center center",
-                }}
-                className={`absolute w-[92vw] max-w-[450px] h-[550px] md:h-[580px] px-8 pb-8 pt-4 md:px-9 md:pb-9 md:pt-5 rounded-[14px] bg-white shadow-[0_20px_50px_-12px_rgba(19,18,16,0.09),0_6px_20px_-4px_rgba(19,18,16,0.04)] flex flex-col justify-between overflow-hidden ${
+                className={`absolute w-[92vw] max-w-[450px] h-[550px] md:h-[580px] px-8 pb-8 pt-4 md:px-9 md:pb-9 md:pt-5 rounded-[14px] bg-white border border-divider/40 shadow-[0_12px_36px_-6px_rgba(19,18,16,0.06),0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between overflow-hidden ${
                   isCenter
                     ? "cursor-grab active:cursor-grabbing pointer-events-auto"
                     : isVisible

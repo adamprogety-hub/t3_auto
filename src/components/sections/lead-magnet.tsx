@@ -30,35 +30,35 @@ interface MaterialItem {
 const MATERIALS: MaterialItem[] = [
   {
     id: "oprosnik",
-    title: "Опросный лист подбора\u00A0ШУ",
-    shortTitle: "опросник (XLSX)",
+    title: "Опросный лист на\u00A0разработку АСУТП / РСУ",
+    shortTitle: "опросник АСУТП (XLSX)",
     actionLabel: "опросный лист",
-    format: "XLSX · 420 КБ",
-    desc: "Excel-таблица с\u00A0расчетом сигналов\u00A0I/O",
+    format: "XLSX · 480 КБ",
+    desc: "Расчет сигналов I/O, категорий ПАЗ и требований КИИ",
     file: "/docs/oprosnyj-list-shu-acengine.xlsx",
-    fileName: "Опросный_лист_подбора_ШУ_ACEngine.xlsx",
+    fileName: "Опросный_лист_АСУТП_Т3_Автоматизация.xlsx",
     icon: FileSpreadsheet,
   },
   {
     id: "checklist",
-    title: "Чек-лист аудита схем\u00A0Э3",
-    shortTitle: "чек-лист (PDF)",
+    title: "Чек-лист готовности к\u00A0аудиту ФСТЭК (КИИ)",
+    shortTitle: "чек-лист КИИ (PDF)",
     actionLabel: "чек-лист аудита",
-    format: "PDF · 1.8 МБ",
-    desc: "Критерии проверки рабочей документации",
+    format: "PDF · 1.6 МБ",
+    desc: "Требования Приказа № 239 для КИИ 2 и 3 категорий",
     file: "/docs/chek-list-audit-skhem-e3-acengine.pdf",
-    fileName: "Чек-лист_аудита_схем_Э3_ACEngine.pdf",
+    fileName: "Чек-лист_ФСТЭК_КИИ_Приказ_239_Т3.pdf",
     icon: FileText,
   },
   {
     id: "bundle",
-    title: "Скачать оба\u00A0материала",
-    shortTitle: "оба материала (ZIP)",
+    title: "Комплект документации генподрядчика",
+    shortTitle: "комплект инженера (ZIP)",
     actionLabel: "оба материала сразу",
-    format: "ZIP · 2.2 МБ",
-    desc: "Опросный лист и\u00A0чек-лист в\u00A0одном архиве",
+    format: "ZIP · 2.5 МБ",
+    desc: "Опросные листы, карта импортозамещения и чек-лист",
     file: "/docs/materialy-acengine-oprosnik-i-chek-list.zip",
-    fileName: "Материалы_ACEngine_опросник_и_чек-лист.zip",
+    fileName: "Комплект_документации_Т3_Автоматизация.zip",
     icon: Archive,
     isDark: true,
   },
@@ -137,7 +137,7 @@ export function LeadMagnet() {
     <div className="bg-surface-warm">
       <section
         id="lead-magnet"
-        className="py-20 md:py-28 bg-surface rounded-b-[28px] md:rounded-b-[36px] lg:rounded-b-[44px]"
+        className="py-20 md:py-28 bg-surface rounded-b-[16px] md:rounded-b-[20px]"
       >
         <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         <motion.div
@@ -145,23 +145,23 @@ export function LeadMagnet() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-graphite text-white rounded-[20px] md:rounded-[24px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-3 sm:p-5 md:p-6 lg:p-7 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_450px] gap-6 lg:gap-8 items-stretch relative"
+          className="bg-graphite text-white rounded-[14px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-3 sm:p-5 md:p-6 lg:p-7 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_450px] gap-6 lg:gap-8 items-stretch relative"
         >
           {/* Left: Description & Checklist */}
           <div className="p-4 sm:p-6 md:p-8 xl:p-10 flex flex-col lg:justify-between relative z-20 min-h-0 lg:min-h-[460px]">
             {/* Top: Heading */}
             <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[400px]">
-              <h2 className="text-white text-[clamp(1.35rem,2vw,2rem)] font-extrabold leading-[1.12] tracking-tight">
-                Опросные листы
+              <h2 className="text-white text-[clamp(1.35rem,2vw,2rem)] font-bold leading-[1.12] tracking-tight">
+                Опросные листы АСУТП
                 <br />
-                и{"\u00A0"}чек-лист проверки схем{"\u00A0"}Э3
+                и{"\u00A0"}чек-листы аудита КИИ
               </h2>
             </div>
 
             {/* Bottom: Description right under heading on mobile, at bottom on desktop for 3D render */}
             <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[380px] mt-4 sm:mt-5 lg:mt-auto lg:pt-10">
               <p className="text-white/60 text-[12.5px] sm:text-[13px] leading-[1.65]">
-                Рабочие шаблоны сбора исходных данных для{"\u00A0"}главных энергетиков, проектировщиков и{"\u00A0"}инженеров КИПиА. Помогают формализовать требования к{"\u00A0"}шкафам управления и{"\u00A0"}исключить ошибки в{"\u00A0"}перечне сигналов{"\u00A0"}I/O.
+                Рабочие шаблоны сбора исходных данных для{"\u00A0"}главных энергетиков, главных инженеров и{"\u00A0"}генподрядчиков. Помогают формализовать требования к{"\u00A0"}разделам АТХ/АСУТП/ПАЗ и{"\u00A0"}подготовиться к{"\u00A0"}проверкам ФСТЭК.
               </p>
             </div>
           </div>
