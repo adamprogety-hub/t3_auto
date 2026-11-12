@@ -60,15 +60,15 @@ export function Cooperation() {
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl pointer-events-none" />
 
           {/* 3D Folder Render Peeking out from behind the left form (Desktop) */}
-          <div className="absolute left-[290px] xl:left-[340px] 2xl:left-[390px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block opacity-90 xl:opacity-100">
+          <div className="absolute left-[290px] xl:left-[340px] 2xl:left-[380px] top-1/2 -translate-y-1/2 pointer-events-none select-none z-10 hidden lg:block opacity-100">
             <motion.img
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              src="/cooperation_folder.webp"
+              src="/cooperation_briefcase.png?v=3"
               alt="Документация АСУТП"
-              className="w-[460px] xl:w-[540px] 2xl:w-[590px] h-auto object-contain drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
+              className="w-[480px] xl:w-[560px] 2xl:w-[620px] h-auto object-contain drop-shadow-[0_20px_45px_rgba(0,0,0,0.6)]"
               draggable={false}
             />
           </div>
@@ -229,9 +229,9 @@ export function Cooperation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55 }}
-                src="/cooperation_folder.webp"
+                src="/cooperation_briefcase.png?v=3"
                 alt="Документация АСУТП"
-                className="w-56 sm:w-68 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
+                className="w-64 sm:w-76 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
                 draggable={false}
               />
             </div>
