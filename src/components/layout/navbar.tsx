@@ -59,7 +59,7 @@ export function Navbar() {
         <div
           className={`mx-auto transition-all duration-500 ease-out pointer-events-auto rounded-xl md:rounded-2xl border ${
             isScrolled || activeModal
-              ? "max-w-[1240px] bg-white/95 backdrop-blur-md border-divider/60 shadow-[0_12px_40px_rgba(0,0,0,0.1)] pl-3 sm:pl-5 md:pl-7 pr-2.5 sm:pr-4"
+              ? "max-w-[1240px] bg-white/95 backdrop-blur-md border-divider/60 shadow-[0_12px_40px_rgba(0,0,0,0.1)] px-2 sm:px-2.5 md:px-3"
               : "max-w-[1440px] bg-transparent border-transparent shadow-none"
           }`}
         >
@@ -71,7 +71,7 @@ export function Navbar() {
             {/* Logo — dark on light hero and on scroll */}
             <Logo
               className="shrink-0 whitespace-nowrap"
-              iconSize={isFloating ? 22 : 24}
+              isFloating={isFloating}
               theme="dark"
               onClick={() => {
                 setActiveModal(null);
