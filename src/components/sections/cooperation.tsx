@@ -54,7 +54,7 @@ export function Cooperation() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-graphite theme-card-ambient-tr text-white rounded-[14px] md:rounded-[18px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-5 sm:p-7 md:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[440px_1fr] xl:grid-cols-[480px_1fr] gap-8 items-stretch relative"
+            className="bg-graphite theme-card-ambient-tr text-white rounded-[14px] md:rounded-[18px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-3 sm:p-5 md:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[440px_1fr] xl:grid-cols-[480px_1fr] gap-6 lg:gap-8 items-stretch relative"
           >
           {/* Ambient Lighting */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl pointer-events-none" />
@@ -73,8 +73,8 @@ export function Cooperation() {
             />
           </div>
 
-          {/* Left Column: Elevated Feedback Form (order-2 on mobile, order-1 on desktop) */}
-          <div className="relative z-20 p-5 sm:p-7 md:p-8 bg-[#EAEEF2] rounded-[14px] shadow-[0_16px_40px_-8px_rgba(0,0,0,0.30)] flex flex-col justify-center border border-white/60 text-graphite order-2 lg:order-1">
+          {/* Left Column: Elevated Feedback Form (order-3 on mobile, order-1 on desktop) */}
+          <div className="relative z-20 p-5 sm:p-7 md:p-8 bg-[#EAEEF2] rounded-[14px] shadow-[0_16px_40px_-8px_rgba(0,0,0,0.30)] flex flex-col justify-center border border-white/60 text-graphite order-3 lg:order-1">
             <AnimatePresence mode="wait">
               {isSubmitted ? (
                 /* Success View */
@@ -219,38 +219,41 @@ export function Cooperation() {
             </AnimatePresence>
           </div>
 
-          {/* Right Column: Heading top right, Description bottom right (order-1 on mobile, order-2 on desktop) */}
-          <div className="relative z-20 flex flex-col justify-between items-end text-right py-2 sm:py-4 lg:py-6 pl-0 lg:pl-6 xl:pl-10 order-1 lg:order-2 min-h-[200px] lg:min-h-[460px]">
-            {/* Top Right: Heading */}
-            <div className="max-w-md ml-auto">
-              <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.5rem)] font-bold leading-[1.12] tracking-tight text-right">
+          {/* Right Column: Heading & Description (order-1 on mobile, order-2 on desktop) */}
+          <div className="p-4 sm:p-6 md:p-8 xl:p-10 flex flex-col lg:justify-between relative z-20 min-h-0 lg:min-h-[460px] order-1 lg:order-2">
+            {/* Top: Heading */}
+            <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[400px] lg:ml-auto">
+              <h2 className="text-white text-[clamp(1.75rem,2.8vw,2.5rem)] font-bold leading-[1.12] tracking-tight text-left lg:text-right">
                 Предложить
                 <br />
                 сотрудничество
               </h2>
             </div>
 
-            {/* Mobile 3D Folder Overlap Render */}
-            <div className="lg:hidden relative w-full flex justify-center my-4 z-10 pointer-events-none select-none">
-              <motion.img
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55 }}
-                src="/cooperation_briefcase.png?v=3"
-                alt="Документация АСУТП"
-                className="w-48 sm:w-56 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
-                draggable={false}
-              />
-            </div>
-
-            {/* Bottom Right: Description */}
-            <div className="mt-4 lg:mt-auto pt-2 lg:pt-8 max-w-md ml-auto">
-              <p className="text-white/70 text-[14px] sm:text-[15px] leading-relaxed text-right">
+            {/* Bottom: Description right under heading on mobile, at bottom on desktop */}
+            <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[400px] mt-4 sm:mt-5 lg:mt-auto lg:pt-10 lg:ml-auto">
+              <p className="text-white/60 text-[12.5px] sm:text-[13px] leading-[1.65] text-left lg:text-right">
                 Инжиниринговый центр «Т3 Автоматизация» открыт к партнёрству с{"\u00A0"}генподрядчиками,
                 проектными институтами, системными интеграторами и{"\u00A0"}поставщиками технологического оборудования.
               </p>
             </div>
+          </div>
+
+          {/* Mobile 3D Folder Overlap Render (matches Lead-Magnet layout exactly) */}
+          <div className="lg:hidden order-2 relative w-full flex justify-center -mt-2 -mb-14 sm:-mb-18 z-10 pointer-events-none select-none">
+            {/* Ambient specular glow */}
+            <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl scale-75 pointer-events-none" />
+
+            <motion.img
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: 0.15 }}
+              src="/cooperation_briefcase.png?v=3"
+              alt="Документация АСУТП"
+              className="w-56 sm:w-68 h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)]"
+              draggable={false}
+            />
           </div>
         </motion.div>
         </div>

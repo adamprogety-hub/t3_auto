@@ -22,6 +22,7 @@ const services: ServiceCard[] = [
     title: "Собственное производство шкафов и\u00A0систем (Самара, 19 км)",
     description: "Шкафы АСУТП, АСУЭ (энергораспределение и\u00A0учёт), аналитика газов и\u00A0жидкостей, ПТК и\u00A0робототехнические комплексы (РТК). Цифровое производство: электронный техпаспорт по\u00A0QR-коду, сборка и\u00A0ОТК на\u00A0защищённых планшетах, сертифицированные электротехническая и\u00A0метрологическая лаборатории.",
     colSpan: "lg:col-span-7",
+    renderSrc: "/images/services/01_cabinet_production.png",
     specs: [
       { label: "Номенклатура", value: "ШУ АСУТП, АСУЭ, шкафы телемеханики ШГРП, газоаналитика, РТК" },
       { label: "Контроль качества", value: "QR-код техпаспорта, фотофиксация узлов, ЭТЛ и\u00A0метрология (150+ приборов)" },
@@ -34,6 +35,7 @@ const services: ServiceCard[] = [
     title: "Проектирование и\u00A0предпроектный аудит",
     description: "Комплексная разработка проектной и\u00A0рабочей документации по\u00A0разделам АТХ, АСУТП, ПАЗ. Выездное обследование объектов, устранение коллизий до\u00A0закупки оборудования, разработка спецификаций на\u00A0отечественную базу для\u00A0прохождения государственной экспертизы.",
     colSpan: "lg:col-span-5",
+    renderSrc: "/images/services/02_engineering_audit.png",
     specs: [
       { label: "Разделы проекта", value: "АТХ, АСУТП, ПАЗ, схемы Э3, кабельные журналы по\u00A0ГОСТ\u00A034/21" },
       { label: "Предпроект", value: "Аудит действующей автоматики, сбор исходных данных, подготовка ТЗ" },
@@ -46,6 +48,7 @@ const services: ServiceCard[] = [
     title: "Системы РСУ и\u00A0ПАЗ на\u00A0отечественных ПТК",
     description: "Разработка прикладного ПО для\u00A0распределённых систем управления и\u00A0систем противоаварийной защиты (SIL2/SIL3). Бесшовная замена Yokogawa, Foxboro, Siemens, Honeywell, ABB, DeltaV на\u00A0доверенные отечественные комплексы.",
     colSpan: "lg:col-span-4",
+    renderSrc: "/images/services/03_dcs_sil3_rack.png",
     specs: [
       { label: "ПТК РСУ и ПАЗ", value: "«БАЗИС» (Экоресурс), «СУРА» (ЭЛАРА), TREI-5B, АБАК" },
       { label: "Отрасли", value: "Химия, нефтехимия, взрывоопасные зоны, энергетика, металлургия" },
@@ -57,6 +60,7 @@ const services: ServiceCard[] = [
     title: "Enterprise SCADA & MES («КАСКАД Цифра»)",
     description: "Построение ситуационно-аналитических центров и\u00A0единых диспетчерских на\u00A0платформе «КАСКАД Цифра» (реестр Минцифры №678216). Обработка миллионов сигналов, базы данных реального времени (БДРВ), независимый аудит ФСТЭК по\u00A0Приказу №\u00A0239 (КИИ 2 и\u00A03 кат.).",
     colSpan: "lg:col-span-4",
+    renderSrc: "/images/services/04_scada_enterprise.png",
     specs: [
       { label: "Платформы", value: "«КАСКАД Цифра», MasterSCADA 4.0, протокол OPC UA" },
       { label: "Масштаб", value: "Миллионы сигналов, единая экосистема холдинга, работа на\u00A0Linux микро-ПК" },
@@ -68,6 +72,7 @@ const services: ServiceCard[] = [
     title: "Шефмонтаж, ПНР и\u00A0сервисное сопровождение",
     description: "Выезд инженерных бригад на\u00A0промышленные объекты по\u00A0всей России. Комплексные испытания контуров, параметрирование приводов, сдача объекта Ростехнадзору и\u00A0пожизненный доступ к\u00A0архиву документации проекта в\u00A0Т3.",
     colSpan: "lg:col-span-4",
+    renderSrc: "/images/services/05_field_commissioning.png",
     specs: [
       { label: "Пусконаладка", value: "Наладка контуров регулирования, сквозное тестирование контуров ПАЗ" },
       { label: "Сдача надзору", value: "Помощь во\u00A0взаимодействии с\u00A0надзорными и\u00A0принимающими организациями" },
@@ -78,33 +83,35 @@ const services: ServiceCard[] = [
 
 /**
  * Изометрические чертёжные витрины (Blueprint Stage Viewports)
- * Разработаны как архитектурный подиум для будущей вставки крупных 3D рендеров
+ * Разработаны как архитектурный подиум для вставки реалистичных 3D рендеров
  */
 function RenderStage({ service }: { service: ServiceCard }) {
   return (
-    <div className="relative w-full h-[150px] lg:h-[160px] rounded-[6px] border border-white/10 bg-white/[0.015] flex items-center justify-center p-3 overflow-hidden">
+    <div className="relative w-full h-[155px] lg:h-[165px] rounded-[10px] border border-white/10 bg-white/[0.02] flex items-center justify-center p-2 overflow-visible group">
       {/* Corner calibration ticks */}
-      <div className="absolute top-2 left-2 text-white/20 text-[9px] font-mono leading-none select-none">⌜</div>
-      <div className="absolute top-2 right-2 text-white/20 text-[9px] font-mono leading-none select-none">⌝</div>
-      <div className="absolute bottom-2 left-2 text-white/20 text-[9px] font-mono leading-none select-none">⌞</div>
-      <div className="absolute bottom-2 right-2 text-white/20 text-[9px] font-mono leading-none select-none">⌟</div>
+      <div className="absolute top-2 left-2 z-10 text-white/30 text-[9px] font-mono leading-none select-none pointer-events-none">⌜</div>
+      <div className="absolute top-2 right-2 z-10 text-white/30 text-[9px] font-mono leading-none select-none pointer-events-none">⌝</div>
+      <div className="absolute bottom-2 left-2 z-10 text-white/30 text-[9px] font-mono leading-none select-none pointer-events-none">⌞</div>
+      <div className="absolute bottom-2 right-2 z-10 text-white/30 text-[9px] font-mono leading-none select-none pointer-events-none">⌟</div>
 
-      {/* Blueprint Drawing */}
-      <div className="w-full h-full flex items-center justify-center">
-        {service.id === "cabinet" && <CabinetIsometricBlueprint />}
-        {service.id === "plc_hmi" && <PlcHmiIsometricBlueprint />}
-        {service.id === "pnr_vfd" && <PnrVfdIsometricBlueprint />}
-        {service.id === "scada" && <ScadaIsometricBlueprint />}
-        {service.id === "retrofit" && <RetrofitIsometricBlueprint />}
-      </div>
-
-      {/* Slot for future realistic 3D model render */}
-      {service.renderSrc && (
-        <img
-          src={service.renderSrc}
-          alt={service.title}
-          className="absolute inset-0 w-full h-full object-contain p-3 z-20 pointer-events-none"
-        />
+      {/* Realistic 3D Model Image — protruding slightly over top and side bounds */}
+      {service.renderSrc ? (
+        <div className="relative w-full h-full flex items-center justify-center pointer-events-none select-none">
+          <img
+            src={service.renderSrc}
+            alt={service.title}
+            className="w-auto max-w-none h-[185px] lg:h-[200px] -mt-6 lg:-mt-7 filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.7)] group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-500 ease-out"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div className="w-full h-full flex items-center justify-center">
+          {service.id === "cabinet" && <CabinetIsometricBlueprint />}
+          {service.id === "plc_hmi" && <PlcHmiIsometricBlueprint />}
+          {service.id === "pnr_vfd" && <PnrVfdIsometricBlueprint />}
+          {service.id === "scada" && <ScadaIsometricBlueprint />}
+          {service.id === "retrofit" && <RetrofitIsometricBlueprint />}
+        </div>
       )}
     </div>
   );

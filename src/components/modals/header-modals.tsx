@@ -187,143 +187,167 @@ function RequisitesView({
   onCopy: () => void;
 }) {
   return (
-    <div className="min-h-full w-full flex items-start md:items-center justify-center p-3 pt-14 sm:p-6 lg:p-8">
+    <div className="h-full min-h-full w-full relative flex items-start md:items-center justify-center p-3 pt-14 sm:p-6 lg:p-8 overflow-hidden">
+      {/* Desktop Left Engineer: Grounded at bottom-0, exact 640px scale approved by user */}
+      <div className="hidden lg:block absolute bottom-0 right-[calc(50%+448px-35px)] z-0 pointer-events-none select-none">
+        <motion.img
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          src="/images/modals/engineer-left.png"
+          alt="Инженер Т3 Автоматизация"
+          className="h-[640px] w-auto max-w-none object-contain object-bottom filter drop-shadow-[0_16px_36px_rgba(0,0,0,0.14)]"
+        />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-4xl bg-white border border-divider/60 rounded-2xl p-4 sm:p-8 shadow-sm flex flex-col gap-5 sm:gap-6"
+        className="relative z-10 w-full max-w-4xl bg-white border border-divider/60 rounded-2xl p-4 sm:p-8 shadow-sm flex flex-col gap-5 sm:gap-6 my-auto"
       >
-        {/* Header Intro */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 sm:pb-3">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-bold font-heading text-graphite tracking-tight">
-              ООО «Т3 - Автоматизация»
-            </h3>
-            <p className="text-[13px] text-iron mt-1">
-              Инжиниринговый центр и цифровое производство шкафов автоматики
-            </p>
-          </div>
-
-          <button
-            onClick={onCopy}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-[8px] bg-graphite hover:bg-carbon text-white text-[13px] font-semibold transition-all active:scale-95 shadow-sm cursor-pointer shrink-0"
-          >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span>Скопировано в буфер</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4 text-white" />
-                <span>Скопировать реквизиты</span>
-              </>
-            )}
-          </button>
-        </div>
-
-        {/* Requisites Two-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Left: General & Registration */}
-          <div className="bg-surface/60 border border-divider/50 rounded-xl p-4 sm:p-5 flex flex-col gap-3">
-            <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-pewter">
-              Регистрационные данные
-            </span>
-
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-3 border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter shrink-0">Полное наименование:</span>
-              <span className="text-[13px] font-medium text-graphite sm:text-right">
+          {/* Header Intro */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 sm:pb-3">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold font-heading text-graphite tracking-tight">
                 ООО «Т3 - Автоматизация»
-              </span>
+              </h3>
+              <p className="text-[13px] text-iron mt-1">
+                Инжиниринговый центр и цифровое производство шкафов автоматики
+              </p>
             </div>
 
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">ИНН:</span>
-              <span className="text-[13px] font-mono font-bold text-graphite">
-                9734028824
-              </span>
-            </div>
-
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">КПП:</span>
-              <span className="text-[13px] font-mono font-bold text-graphite">
-                773401001
-              </span>
-            </div>
-
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">ОГРН:</span>
-              <span className="text-[13px] font-mono font-bold text-graphite">
-                1267700304178
-              </span>
-            </div>
-
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">ОКПО:</span>
-              <span className="text-[13px] font-mono text-graphite">
-                98124031
-              </span>
-            </div>
-
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-3">
-              <span className="text-[12px] text-pewter shrink-0">Система налогообложения:</span>
-              <span className="text-[13px] font-medium text-graphite sm:text-right">
-                ОСНО (с НДС 20%)
-              </span>
-            </div>
+            <button
+              onClick={onCopy}
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-[8px] bg-graphite hover:bg-carbon text-white text-[13px] font-semibold transition-all active:scale-95 shadow-sm cursor-pointer shrink-0"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4 text-emerald-400" />
+                  <span>Скопировано в буфер</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4 text-white" />
+                  <span>Скопировать реквизиты</span>
+                </>
+              )}
+            </button>
           </div>
 
-          {/* Right: Banking & Addresses */}
-          <div className="bg-surface/60 border border-divider/50 rounded-xl p-4 sm:p-5 flex flex-col gap-3">
-            <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-pewter">
-              Банковские реквизиты и адреса
-            </span>
-
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">Банк:</span>
-              <span className="text-[13px] font-medium text-graphite">
-                АО «ТБанк»
+          {/* Requisites Two-Column Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Left: General & Registration */}
+            <div className="bg-surface/60 border border-divider/50 rounded-xl p-4 sm:p-5 flex flex-col gap-3">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-pewter">
+                Регистрационные данные
               </span>
+
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-3 border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter shrink-0">Полное наименование:</span>
+                <span className="text-[13px] font-medium text-graphite sm:text-right">
+                  ООО «Т3 - Автоматизация»
+                </span>
+              </div>
+
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">ИНН:</span>
+                <span className="text-[13px] font-mono font-bold text-graphite">
+                  9734028824
+                </span>
+              </div>
+
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">КПП:</span>
+                <span className="text-[13px] font-mono font-bold text-graphite">
+                  773401001
+                </span>
+              </div>
+
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">ОГРН:</span>
+                <span className="text-[13px] font-mono font-bold text-graphite">
+                  1267700304178
+                </span>
+              </div>
+
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">ОКПО:</span>
+                <span className="text-[13px] font-mono text-graphite">
+                  98124031
+                </span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-3">
+                <span className="text-[12px] text-pewter shrink-0">Система налогообложения:</span>
+                <span className="text-[13px] font-medium text-graphite sm:text-right">
+                  ОСНО (с НДС 20%)
+                </span>
+              </div>
             </div>
 
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">БИК:</span>
-              <span className="text-[13px] font-mono font-bold text-graphite">
-                044525974
+            {/* Right: Banking & Addresses */}
+            <div className="bg-surface/60 border border-divider/50 rounded-xl p-4 sm:p-5 flex flex-col gap-3">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-pewter">
+                Банковские реквизиты и адреса
               </span>
-            </div>
 
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">Расчетный счет:</span>
-              <span className="text-[13px] font-mono text-graphite select-all">
-                40702810910001847293
-              </span>
-            </div>
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">Банк:</span>
+                <span className="text-[13px] font-medium text-graphite">
+                  АО «ТБанк»
+                </span>
+              </div>
 
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">Корр. счет:</span>
-              <span className="text-[13px] font-mono text-graphite select-all">
-                30101810145250000974
-              </span>
-            </div>
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">БИК:</span>
+                <span className="text-[13px] font-mono font-bold text-graphite">
+                  044525974
+                </span>
+              </div>
 
-            <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
-              <span className="text-[12px] text-pewter">Юр. адрес:</span>
-              <span className="text-[12px] font-medium text-graphite text-right max-w-[200px]">
-                123060, г. Москва, ул. Расплетина, д. 24
-              </span>
-            </div>
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">Расчетный счет:</span>
+                <span className="text-[13px] font-mono text-graphite select-all">
+                  40702810910001847293
+                </span>
+              </div>
 
-            <div className="flex justify-between items-baseline">
-              <span className="text-[12px] text-pewter">Производство:</span>
-              <span className="text-[12px] font-medium text-graphite text-right max-w-[200px]">
-                Самара, Московское шоссе, 19 км
-              </span>
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">Корр. счет:</span>
+                <span className="text-[13px] font-mono text-graphite select-all">
+                  30101810145250000974
+                </span>
+              </div>
+
+              <div className="flex justify-between items-baseline border-b border-divider/30 pb-2">
+                <span className="text-[12px] text-pewter">Юр. адрес:</span>
+                <span className="text-[12px] font-medium text-graphite text-right max-w-[200px]">
+                  123060, г. Москва, ул. Расплетина, д. 24
+                </span>
+              </div>
+
+              <div className="flex justify-between items-baseline">
+                <span className="text-[12px] text-pewter">Производство:</span>
+                <span className="text-[12px] font-medium text-graphite text-right max-w-[200px]">
+                  Самара, Московское шоссе, 19 км
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+
+      {/* Desktop Right Engineer: Grounded at bottom-0, exact 640px scale approved by user */}
+      <div className="hidden lg:block absolute bottom-0 left-[calc(50%+448px-45px)] z-0 pointer-events-none select-none">
+        <motion.img
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          src="/images/modals/engineer-right.png"
+          alt="Инженер Т3 Автоматизация"
+          className="h-[640px] w-auto max-w-none object-contain object-bottom filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.14)]"
+        />
+      </div>
     </div>
   );
 }
@@ -662,24 +686,46 @@ export function HeaderModals({
 }: HeaderModalsProps) {
   const [headerBottom, setHeaderBottom] = useState(72);
   const [margin, setMargin] = useState(16);
+  const [bottomMargin, setBottomMargin] = useState(16);
   const [copied, setCopied] = useState(false);
 
-  // Track header bottom and responsive margin
+  // Track header bottom, mobile dock height and responsive margin
   useEffect(() => {
     const updateGeometry = () => {
       const isMobile = window.innerWidth < 768;
-      setMargin(isMobile ? 12 : 20);
+      const m = isMobile ? 12 : 20;
+      setMargin(m);
 
       if (headerRef.current) {
         const rect = headerRef.current.getBoundingClientRect();
         setHeaderBottom(rect.bottom);
+      }
+
+      if (isMobile) {
+        // Measure mobile bottom floating dock container if present
+        const dockEl = document.getElementById("mobile-bottom-dock-container");
+        if (dockEl) {
+          const dockRect = dockEl.getBoundingClientRect();
+          // Height of window minus top of dock gives the space occupied by dock from window bottom
+          const dockHeightFromBottom = window.innerHeight - dockRect.top;
+          // Equal distance to dock: space occupied by dock + margin
+          setBottomMargin(dockHeightFromBottom + m);
+        } else {
+          // Standard bottom dock (16px bottom + ~48px dock + 12px margin = ~76px)
+          setBottomMargin(76);
+        }
+      } else {
+        setBottomMargin(m);
       }
     };
 
     updateGeometry();
     window.addEventListener("resize", updateGeometry);
     window.addEventListener("scroll", updateGeometry, { passive: true });
+    // Also re-check on tick after dock renders
+    const timer = setTimeout(updateGeometry, 50);
     return () => {
+      clearTimeout(timer);
       window.removeEventListener("resize", updateGeometry);
       window.removeEventListener("scroll", updateGeometry);
     };
@@ -767,7 +813,7 @@ Email: info@t3-auto.com / aleksey.ivanov@t3-auto.com`;
             aria-hidden="true"
           />
 
-          {/* Modal Container: z-[60], exactly margin distance from left, right, bottom of window and bottom of header */}
+          {/* Modal Container: z-[60], exactly margin distance from left, right, bottom (or bottom dock on mobile) and bottom of header */}
           <motion.div
             key="header-modal-card"
             initial={{ opacity: 0, scale: 0.98, y: 8 }}
@@ -777,7 +823,7 @@ Email: info@t3-auto.com / aleksey.ivanov@t3-auto.com`;
             style={{
               position: "fixed",
               top: `${headerBottom + margin}px`,
-              bottom: `${margin}px`,
+              bottom: `${bottomMargin}px`,
               left: `${margin}px`,
               right: `${margin}px`,
               zIndex: 60,
@@ -785,12 +831,12 @@ Email: info@t3-auto.com / aleksey.ivanov@t3-auto.com`;
             onClick={(e) => e.stopPropagation()}
             className="bg-surface border border-divider/60 rounded-2xl md:rounded-[20px] shadow-2xl overflow-hidden flex flex-col pointer-events-auto relative"
           >
-            {/* Independent Close Button in top right corner */}
+            {/* Desktop Close Button (on mobile the close button is the separate bottom island next to dock) */}
             <button
               type="button"
               onClick={onClose}
               aria-label="Закрыть окно"
-              className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-[8px] bg-white/95 hover:bg-graphite hover:text-white text-graphite border border-divider/60 backdrop-blur-xs transition-all hover:border-graphite active:scale-95 cursor-pointer shadow-2xs"
+              className="hidden md:flex absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 items-center justify-center rounded-[8px] bg-white/95 hover:bg-graphite hover:text-white text-graphite border border-divider/60 backdrop-blur-xs transition-all hover:border-graphite active:scale-95 cursor-pointer shadow-2xs"
             >
               <X strokeWidth={1.5} className="w-4 h-4" />
             </button>
