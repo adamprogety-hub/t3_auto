@@ -47,7 +47,7 @@ export function WhyUs() {
             команда и{"\u00A0"}ресурсы
           </h2>
 
-          <div className="mt-6 grid grid-cols-3 gap-3 border-y border-white/10 py-4 my-2">
+          <div className="mt-6 grid grid-cols-3 gap-3 py-4 my-2">
             <div>
               <div className="text-2xl font-black text-[#E66826]">3 года</div>
               <div className="text-[11px] text-white/50 leading-tight mt-0.5">слаженная работа команды</div>

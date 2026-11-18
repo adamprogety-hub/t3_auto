@@ -124,15 +124,18 @@ export function Problems() {
   const count = problems.length;
 
   return (
-    <section id="problems" className="pt-0 pb-20 md:pb-28 bg-surface overflow-hidden">
+    <section id="problems" className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-10 sm:pb-12 md:pb-14 bg-surface overflow-hidden">
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto mb-12 text-center">
           <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-bold leading-[1.15] tracking-tight">
-            Ключевые вызовы генподряда
+            Критические риски предприятия,
             <br />
-            и{"\u00A0"}промышленной автоматизации
+            которые мы{"\u00A0"}предотвращаем
           </h2>
+          <p className="mt-3.5 text-iron text-[15px] leading-relaxed max-w-2xl mx-auto">
+            Штрафы регуляторов, срыв сроков из-за ухода импортных вендоров и{"\u00A0"}скрытый брак кустарной сборки{"\u00A0"}— что мы{"\u00A0"}предотвращаем на{"\u00A0"}практике.
+          </p>
         </div>
 
         {/* Synchronous 3D Carousel Stage */}

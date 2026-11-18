@@ -106,6 +106,9 @@ export const UI_DICTIONARY: Record<string, string> = {
     "Design of IACS, development of DCS and ESD systems, proprietary digital control cabinet manufacturing in Samara (19 km), and KASKAD Tsifra dispatching. 50 lead engineers, 3 branches, and full compliance with FSTEC requirements for Critical Information Infrastructure protection.",
 
   // Problems Section
+  "Критические риски предприятия, которые мы предотвращаем": "Critical Enterprise Risks We Prevent",
+  "Штрафы регуляторов, срыв сроков из-за ухода импортных вендоров и скрытый брак кустарной сборки — что мы предотвращаем на практике.":
+    "Regulatory fines, schedule overruns from foreign vendor withdrawal, and hidden defects of sub-standard assembly — what we prevent in practice.",
   "Ключевые вызовы генподряда и промышленной автоматизации": "Key Challenges in EPC Contracting & Industrial Automation",
   "Срыв сроков ввода в эксплуатацию": "Commissioning Schedule Delays",
   "Несогласованность проектных решений": "Discrepancies in Engineering Design",
@@ -142,6 +145,10 @@ export const UI_DICTIONARY: Record<string, string> = {
   "Сервисное обслуживание": "Maintenance & 24/7 SLA Support",
 
   // Process Section
+  "Прозрачный путь: контрольные точки от обследования до сдачи":
+    "Transparent Roadmap: Milestones from Audit to Handover",
+  "Понятный регламент с персональной ответственностью ГИПа и измеримым результатом на каждом этапе.":
+    "Clear workflow with personal Lead Engineer accountability and measurable deliverables at every milestone.",
   "Этапы реализации проектов: от ТЗ до сдачи в эксплуатацию": "Project Implementation Stages: From Specs to Handover",
   "Обследование и разработка ТЗ": "Site Survey & Specs Development",
   "Проектирование (стадии П и РД)": "Engineering Design (Concept & Working Docs)",

@@ -55,7 +55,7 @@ export function Contacts() {
                   Пн–Пт, 9:00–18:00 МСК
                 </span>
 
-                <div className="mt-4 pt-4 border-t border-divider flex items-center gap-3">
+                <div className="mt-4 pt-4 flex items-center gap-3">
                   <a
                     href="https://t.me/t3_auto"
                     target="_blank"
@@ -68,7 +68,7 @@ export function Contacts() {
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-divider">
+              <div className="pt-6">
                 <span className="text-pewter text-[11px] font-mono uppercase tracking-wider block">
                   Почта для проектной документации
                 </span>
@@ -83,7 +83,7 @@ export function Contacts() {
                 </span>
               </div>
 
-              <div className="pt-6 border-t border-divider space-y-3">
+              <div className="pt-6 space-y-3">
                 <span className="text-pewter text-[11px] font-mono uppercase tracking-wider block">
                   География и филиалы Т3
                 </span>

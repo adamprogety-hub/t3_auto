@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme, THEMES, Theme } from "@/lib/theme";
 import { useLanguage } from "@/lib/translator";
 
-export function ThemeToggle({ variant = "default" }: { variant?: "default" | "capsule" }) {
+export function ThemeToggle({ variant = "default" }: { variant?: "default" | "capsule" | "ghost" }) {
   const { theme, setTheme } = useTheme();
   const { isEnglish } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +46,10 @@ export function ThemeToggle({ variant = "default" }: { variant?: "default" | "ca
           variant === "capsule"
             ? `border-transparent bg-transparent text-white/90 hover:text-white hover:bg-white/15 shadow-none ${
                 isOpen ? "bg-white/15" : ""
+              }`
+            : variant === "ghost"
+            ? `border-transparent bg-transparent text-graphite/80 hover:text-graphite hover:bg-black/[0.04] shadow-none ${
+                isOpen ? "bg-black/[0.06] text-graphite" : ""
               }`
             : isOpen
             ? "border-graphite bg-white text-graphite shadow-xs"

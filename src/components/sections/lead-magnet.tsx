@@ -145,16 +145,18 @@ export function LeadMagnet() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-graphite text-white rounded-[14px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-3 sm:p-5 md:p-6 lg:p-7 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_450px] gap-6 lg:gap-8 items-stretch relative"
+          className="bg-graphite theme-card-ambient-tl text-white rounded-[14px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(19,18,16,0.30)] border border-white/10 p-3 sm:p-5 md:p-6 lg:p-7 grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_450px] gap-6 lg:gap-8 items-stretch relative"
         >
           {/* Left: Description & Checklist */}
           <div className="p-4 sm:p-6 md:p-8 xl:p-10 flex flex-col lg:justify-between relative z-20 min-h-0 lg:min-h-[460px]">
             {/* Top: Heading */}
             <div className="relative z-20 max-w-none sm:max-w-[360px] xl:max-w-[400px]">
               <h2 className="text-white text-[clamp(1.35rem,2vw,2rem)] font-bold leading-[1.12] tracking-tight">
-                Опросные листы АСУТП
+                Сложно разобраться?
                 <br />
-                и{"\u00A0"}чек-листы аудита КИИ
+                Эти чек-листы
+                <br />
+                помогут
               </h2>
             </div>
 
@@ -439,7 +441,7 @@ export function LeadMagnet() {
                             {item.desc}
                           </span>
                         </div>
-                        <div className="mt-3.5 pt-3 border-t border-white/15 flex items-center justify-between text-[12.5px]">
+                        <div className="mt-3.5 pt-3 flex items-center justify-between text-[12.5px]">
                           <span className="text-white font-semibold group-hover:text-white transition-colors">
                             Нажмите, чтобы скачать
                           </span>
@@ -464,7 +466,7 @@ export function LeadMagnet() {
                           {item.desc}
                         </span>
                       </div>
-                      <div className="mt-3.5 pt-3 border-t border-divider/50 flex items-center justify-between text-[12.5px]">
+                      <div className="mt-3.5 pt-3 flex items-center justify-between text-[12.5px]">
                         <span className="text-graphite font-semibold group-hover:text-black transition-colors">
                           Нажмите, чтобы скачать
                         </span>

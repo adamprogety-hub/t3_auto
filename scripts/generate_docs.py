@@ -40,10 +40,10 @@ HTML_TEMP_PATH = os.path.join(SCRATCH_DIR, "checklist_temp.html")
 # ==============================================================================
 # КОНФИГУРАЦИЯ БРЕНДА И КОНТАКТОВ
 # ==============================================================================
-COMPANY_NAME = "ACEngine"
-COMPANY_SUBTITLE = "Инжиниринговый центр АСУ ТП • Производство шкафов управления в Москве"
-COMPANY_CONTACTS = "info@acengine.ru • +7 (900) 123-45-67 • Москва, ул. Промышленная, д. 12"
-TELEGRAM_CONTACT = "@acengine"
+COMPANY_NAME = "Т3 Автоматизация"
+COMPANY_SUBTITLE = "Инжиниринговый центр АСУТП • Цифровое производство шкафов управления"
+COMPANY_CONTACTS = "aleksey.ivanov@t3-auto.com • +7 (960) 821-81-70 • Москва, ул. Берзарина, д. 28А, к. 2 • Самара (19 км)"
+TELEGRAM_CONTACT = "@t3_auto"
 
 # Фирменная палитра ACEngine
 COLOR_CARBON = "212529"     # Основной темно-графитовый цвет
@@ -386,8 +386,8 @@ def generate_excel():
     curr_row += 1
     ws.merge_cells(start_row=curr_row, start_column=1, end_row=curr_row, end_column=8)
     footer_text = (
-        f"Заполненный опросный лист отправьте на info@acengine.ru или в Telegram {TELEGRAM_CONTACT}.\n"
-        "Инженерный отдел ACEngine подготовит принципиальную схему Э3 и точный расчет стоимости ШУ в течение 24 часов."
+        f"Заполненный опросный лист отправьте на aleksey.ivanov@t3-auto.com или в Telegram {TELEGRAM_CONTACT}.\n"
+        f"Инженерный отдел {COMPANY_NAME} подготовит принципиальную схему Э3 и точный расчет стоимости ШУ в течение 24 часов."
     )
     f_cell = ws.cell(row=curr_row, column=1, value=footer_text)
     f_cell.font = font_data_bold
@@ -492,7 +492,7 @@ def generate_docx():
     passport_data = [
         [("Объект:", True), ("Котельная 8.5 МВт / ВЗУ / ИТП", False), ("Дата проверки:", True), ("18.09.2026", False)],
         [("Проектировщик (Э3):", True), ("Проектный институт «ПромЭнерго»", False), ("Ревизия схем:", True), ("Ревизия 2.1 (стадия Р)", False)],
-        [("Аудитор ACEngine:", True), ("Петров П.С. (Ведущий инженер АСУ)", False), ("Статус аудита:", True), ("НА РАССМОТРЕНИИ", True)],
+        [("Аудитор Т3 Автоматизация:", True), ("Петров П.С. (Ведущий инженер АСУ)", False), ("Статус аудита:", True), ("НА РАССМОТРЕНИИ", True)],
     ]
 
     for r_idx, row in enumerate(p_table.rows):
@@ -568,7 +568,7 @@ def generate_docx():
     doc.add_paragraph().paragraph_format.space_before = Pt(12)
     v_table = doc.add_table(rows=2, cols=2)
     v_table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    v_table.rows[0].cells[0].text = "ИТОГОВОЕ ЗАКЛЮЧЕНИЕ АУДИТА ACEngine:"
+    v_table.rows[0].cells[0].text = "ИТОГОВОЕ ЗАКЛЮЧЕНИЕ АУДИТА Т3 Автоматизация:"
     v_table.rows[0].cells[0].paragraphs[0].runs[0].bold = True
     v_table.rows[0].cells[0].paragraphs[0].runs[0].font.size = Pt(9.5)
     set_cell_background(v_table.rows[0].cells[0], "212529")
@@ -580,7 +580,7 @@ def generate_docx():
     set_cell_background(v_table.rows[0].cells[1], "212529")
     v_table.rows[0].cells[1].paragraphs[0].runs[0].font.color.rgb = RGBColor(255, 255, 255)
 
-    v_table.rows[1].cells[0].text = "Подпись эксперта ACEngine: __________________ / Петров П.С. /\nДата: 18.09.2026"
+    v_table.rows[1].cells[0].text = "Подпись эксперта Т3 Автоматизация: __________________ / Петров П.С. /\nДата: 18.09.2026"
     v_table.rows[1].cells[0].paragraphs[0].runs[0].font.size = Pt(9)
 
     v_table.rows[1].cells[1].text = "Подпись ГИП Заказчика: __________________ / Смирнов А.В. /\nМ.П."
@@ -777,7 +777,7 @@ def generate_pdf():
       </td>
       <td style="border: none; padding: 0; text-align: right; vertical-align: top; font-size: 7.5pt; color: #6C757D;">
         <div>Стендовое тестирование 48 ч • Сертификат ТР ТС 004/020</div>
-        <div>Тел: +7 (900) 123-45-67 • info@acengine.ru • acengine.ru</div>
+        <div>Тел: +7 (960) 821-81-70 • aleksey.ivanov@t3-auto.com • t3-auto.com</div>
       </td>
     </tr>
   </table>
@@ -800,7 +800,7 @@ def generate_pdf():
     <td class="meta-val">Ревизия 2.1 (стадия Р)</td>
   </tr>
   <tr>
-    <td class="meta-label">Аудитор ACEngine:</td>
+    <td class="meta-label">Аудитор Т3 Автоматизация:</td>
     <td class="meta-val">Петров П.С. (Ведущий инженер АСУ)</td>
     <td class="meta-label">Статус аудита:</td>
     <td class="meta-val" style="color: #2B8A3E; font-weight: 700;">✓ СОГЛАСОВАНО БЕЗ ЗАМЕЧАНИЙ</td>
@@ -811,12 +811,12 @@ def generate_pdf():
 
 <div class="verdict-box">
   <div class="verdict-header">
-    <span>ИТОГОВОЕ ЗАКЛЮЧЕНИЕ АУДИТА ACEngine</span>
+    <span>ИТОГОВОЕ ЗАКЛЮЧЕНИЕ АУДИТА Т3 Автоматизация</span>
     <span>РЕЗУЛЬТАТ: [ ✓ ] СХЕМА Э3 РЕКОМЕНДОВАНА К ПРОИЗВОДСТВУ</span>
   </div>
   <div class="verdict-body">
     <div>
-      <strong>Ведущий инженер АСУ ТП ACEngine:</strong><br>
+      <strong>Ведущий инженер АСУ ТП Т3 Автоматизация:</strong><br>
       Петров П. С. &nbsp;&nbsp; ________________ / Подпись /
     </div>
     <div style="text-align: right;">
@@ -870,11 +870,11 @@ def generate_pdf():
 def create_bundle_zip():
     with zipfile.ZipFile(ZIP_PATH, "w", zipfile.ZIP_DEFLATED) as zf:
         if os.path.exists(XLSX_PATH):
-            zf.write(XLSX_PATH, arcname="Опросный_лист_подбора_ШУ_ACEngine.xlsx")
+            zf.write(XLSX_PATH, arcname="Опросный_лист_подбора_ШУ_Т3_Автоматизация.xlsx")
         if os.path.exists(PDF_PATH):
-            zf.write(PDF_PATH, arcname="Чек-лист_аудита_схем_Э3_ACEngine.pdf")
+            zf.write(PDF_PATH, arcname="Чек-лист_аудита_схем_Э3_Т3_Автоматизация.pdf")
         if os.path.exists(DOCX_PATH):
-            zf.write(DOCX_PATH, arcname="Чек-лист_аудита_схем_Э3_ACEngine.docx")
+            zf.write(DOCX_PATH, arcname="Чек-лист_аудита_схем_Э3_Т3_Автоматизация.docx")
     print(f"[OK] ZIP-бандл упакован: {ZIP_PATH} ({os.path.getsize(ZIP_PATH)} байт)")
 
 

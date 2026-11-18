@@ -26,7 +26,7 @@ const TECH_CHIPS = [
 export function Footer() {
   return (
     <div className="bg-surface-warm">
-      <footer className="pt-12 md:pt-16 pb-28 sm:pb-32 md:pb-12 bg-graphite rounded-t-[16px] md:rounded-t-[20px] border-t border-white/5 text-white">
+      <footer className="pt-12 md:pt-16 pb-28 sm:pb-32 md:pb-12 bg-graphite theme-card-ambient-tr rounded-t-[16px] md:rounded-t-[20px] border-t border-white/5 text-white">
         <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
           {/* Bento Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5 mb-8 md:mb-10">
@@ -49,7 +49,7 @@ export function Footer() {
                 </div>
               </div>
 
-              <div className="mt-8 pt-5 border-t border-white/10">
+              <div className="mt-8 pt-5">
                 <div className="text-[11px] text-white/40 mb-2.5">
                   Базовый стек отечественной автоматизации:
                 </div>
@@ -92,7 +92,7 @@ export function Footer() {
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-white/10 text-[11px] text-white/40 flex items-center justify-between">
+              <div className="mt-8 pt-4 text-[11px] text-white/40 flex items-center justify-between">
                 <span>ФСТЭК № 239 • КИИ 2 и 3 кат.</span>
                 <span className="font-mono text-[10px] text-white/30">Цифровое производство</span>
               </div>
@@ -100,7 +100,7 @@ export function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[11px] text-white/40">
+          <div className="pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-[11px] text-white/40">
             <span className="text-white/40">
               © {new Date().getFullYear()} ООО «Т3 - Автоматизация» · ИНН 9734028824 · ОГРН 1267700304178
             </span>

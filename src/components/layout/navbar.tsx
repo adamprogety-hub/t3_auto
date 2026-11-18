@@ -81,14 +81,14 @@ export function Navbar() {
 
             {/* Desktop: Unified navigation group */}
             <div
-              className={`hidden md:flex items-center transition-all duration-500 ease-out rounded-[12px] ${
+              className={`hidden md:flex items-center transition-all duration-500 ease-out ${
                 isFloating
                   ? "gap-1.5 sm:gap-2 p-0 bg-transparent shadow-none"
-                  : "gap-1 p-1.5 bg-graphite/95 backdrop-blur-sm shadow-lg"
+                  : "gap-1 sm:gap-1.5 p-0 bg-transparent shadow-none"
               }`}
             >
-              <ThemeToggle variant={isFloating ? "default" : "capsule"} />
-              <LanguageToggle variant={isFloating ? "default" : "capsule"} />
+              <ThemeToggle variant={isFloating ? "default" : "ghost"} />
+              <LanguageToggle variant={isFloating ? "default" : "ghost"} />
               {NAV_ITEMS.map((item) => {
                 const isActive = activeModal === item.id;
                 return (
@@ -96,9 +96,11 @@ export function Navbar() {
                     key={item.id}
                     type="button"
                     onClick={() => toggleModal(item.id)}
-                    className={`px-3.5 py-1.5 rounded-[8px] text-[13px] font-medium transition-all duration-300 ease-out cursor-pointer active:scale-95 border whitespace-nowrap ${
+                    className={`px-3 py-1.5 rounded-[8px] text-[13px] sm:text-[13.5px] font-medium transition-all duration-300 ease-out cursor-pointer active:scale-95 border whitespace-nowrap ${
                       !isFloating
-                        ? "border-transparent bg-transparent text-white/90 hover:text-white hover:bg-white/15 shadow-none"
+                        ? isActive
+                          ? "bg-graphite text-white shadow-xs border-graphite"
+                          : "border-transparent bg-transparent text-graphite/80 hover:text-graphite hover:bg-black/[0.04] shadow-none"
                         : isActive
                         ? "bg-graphite text-white shadow-xs border-graphite"
                         : "border-divider/70 bg-white/90 text-graphite hover:border-graphite hover:bg-white shadow-2xs"
@@ -119,7 +121,7 @@ export function Navbar() {
                 aria-expanded={isMobileMenuOpen}
                 className={`inline-flex items-center justify-center w-10 h-10 rounded-[10px] transition-all duration-300 cursor-pointer active:scale-95 border ${
                   !isFloating
-                    ? "bg-graphite/95 text-white border-transparent shadow-md"
+                    ? "bg-transparent text-graphite border-transparent hover:bg-black/[0.04] shadow-none"
                     : isMobileMenuOpen
                     ? "bg-graphite text-white border-graphite shadow-xs"
                     : "bg-white/90 text-graphite border-divider/70 shadow-2xs"

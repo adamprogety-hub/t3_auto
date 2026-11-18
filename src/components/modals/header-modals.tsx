@@ -195,7 +195,7 @@ function RequisitesView({
         className="w-full max-w-4xl bg-white border border-divider/60 rounded-2xl p-4 sm:p-8 shadow-sm flex flex-col gap-5 sm:gap-6"
       >
         {/* Header Intro */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-divider/40">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 sm:pb-3">
           <div>
             <h3 className="text-xl sm:text-2xl font-bold font-heading text-graphite tracking-tight">
               ООО «Т3 - Автоматизация»
@@ -350,7 +350,7 @@ function CasesGalleryView() {
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
       {/* Intro Header */}
-      <div className="mb-6 border-b border-divider/40 pb-4 pr-12">
+      <div className="mb-6 pr-12">
         <h3 className="text-xl sm:text-2xl font-bold font-heading text-graphite tracking-tight">
           Реализованные кейсы «Т3 Автоматизация»
         </h3>
@@ -372,14 +372,14 @@ function CasesGalleryView() {
               initial="hidden"
               animate="visible"
               onClick={() => toggleExpand(proj.id)}
-              className={`rounded-xl border transition-all duration-300 cursor-pointer overflow-hidden flex flex-col bg-white select-none ${
+              className={`rounded-[18px] border transition-all duration-300 cursor-pointer overflow-hidden flex flex-col bg-white select-none p-2 pb-2 ${
                 isExpanded
                   ? "border-graphite shadow-lg ring-1 ring-graphite/20"
                   : "border-divider/60 hover:border-graphite/50 hover:shadow-md hover:-translate-y-1"
               }`}
             >
-              {/* Photo Area */}
-              <div className="relative h-44 sm:h-48 w-full bg-surface-warm overflow-hidden group">
+              {/* Photo Area with Concentric Radius: R_card = 18px, Inset = 8px -> R_photo = 10px */}
+              <div className="relative w-full aspect-[4/3] rounded-[10px] overflow-hidden bg-surface border border-black/[0.04] shrink-0 group">
                 <img
                   src={currentImg.src}
                   alt={proj.title}
@@ -389,11 +389,16 @@ function CasesGalleryView() {
               </div>
 
               {/* Title Bar Under Photo */}
-              <div className="p-3.5 flex items-center justify-between gap-2 border-t border-divider/40 bg-white">
+              <div className="px-2 pt-3 pb-1 flex items-center justify-between gap-2 bg-white">
                 <div className="min-w-0">
-                  <h4 className="text-[14px] font-bold text-graphite tracking-tight leading-snug font-heading">
+                  <h4 className="text-[13.5px] sm:text-[14px] font-bold text-graphite tracking-tight leading-snug font-heading">
                     {proj.title}
                   </h4>
+                  {proj.type && (
+                    <span className="text-[11px] text-iron line-clamp-1 mt-0.5">
+                      {proj.type}
+                    </span>
+                  )}
                 </div>
 
                 <div
@@ -415,10 +420,10 @@ function CasesGalleryView() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden border-t border-divider/40 bg-surface/70"
+                    className="overflow-hidden mt-2 rounded-[10px] border border-divider/40 bg-surface/70"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <div className="p-3.5 flex flex-col gap-2.5 text-[12px]">
+                    <div className="p-3 flex flex-col gap-2 text-[12px]">
                       {/* Equipment */}
                       {proj.hardware && (
                         <div className="text-[11px]">
@@ -566,7 +571,7 @@ function CertificatesGalleryView() {
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
       {/* Intro Header */}
-      <div className="mb-6 border-b border-divider/40 pb-4 pr-12">
+      <div className="mb-6 pr-12">
         <h3 className="text-xl sm:text-2xl font-bold font-heading text-graphite tracking-tight">
           Сертификаты «Т3 Автоматизация»
         </h3>

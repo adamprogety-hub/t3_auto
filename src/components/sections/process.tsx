@@ -131,11 +131,13 @@ export function Process() {
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-bold leading-[1.12] tracking-tight">
-            Ваши этапы — наш раздел АСУТП
+          <h2 className="text-graphite text-[clamp(1.6rem,2.6vw,2.4rem)] font-bold leading-[1.15] tracking-tight">
+            Прозрачный путь: контрольные точки
+            <br />
+            от{"\u00A0"}обследования до{"\u00A0"}сдачи
           </h2>
-          <p className="mt-3 text-iron text-[14.5px] leading-relaxed">
-            Работаем субподрядчиком по разделу АСУТП или техническим партнёром уже на этапе тендера и сметы.
+          <p className="mt-3.5 text-iron text-[15px] leading-relaxed max-w-2xl mx-auto">
+            Понятный регламент с{"\u00A0"}персональной ответственностью ГИПа и{"\u00A0"}измеримым результатом на{"\u00A0"}каждом этапе.
           </p>
         </div>
 

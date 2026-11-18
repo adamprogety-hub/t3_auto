@@ -115,7 +115,7 @@ export function Services() {
     <div className="bg-surface">
       <section
         id="services"
-        className="py-20 md:py-28 bg-graphite text-white rounded-t-[16px] md:rounded-t-[20px]"
+        className="py-20 md:py-28 bg-graphite theme-card-ambient-tl text-white rounded-t-[16px] md:rounded-t-[20px]"
       >
         <div className="mx-auto w-full max-w-[1440px] px-6 md:px-12 lg:px-20">
         {/* Header */}
@@ -132,7 +132,7 @@ export function Services() {
         </div>
 
         {/* Swiss Industrial Table — Full Width Architectural Register */}
-        <div className="divide-y divide-white/10 border-b border-white/10">
+        <div className="space-y-6 lg:space-y-8">
           {services.map((service, idx) => {
             return (
               <motion.div
@@ -141,7 +141,7 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className="py-8 lg:py-10"
+                className="py-6 lg:py-8"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
                   {/* Col 1-5: Title & Engineering Description */}

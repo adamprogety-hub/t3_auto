@@ -42,6 +42,9 @@
   --foreground: var(--graphite);
   --muted: var(--pewter);
   --border: var(--divider);
+
+  --theme-card-ambient-tr: var(--graphite);
+  --theme-card-ambient-tl: var(--graphite);
 }
 
 /* ═══════════════════════════════════════
@@ -75,6 +78,9 @@
   --foreground: var(--graphite);
   --muted: var(--pewter);
   --border: var(--divider);
+
+  --theme-card-ambient-tr: radial-gradient(ellipse 65% 75% at 100% 0%, rgba(0, 214, 180, 0.45) 0%, rgba(0, 168, 143, 0.20) 32%, transparent 58%), var(--graphite);
+  --theme-card-ambient-tl: radial-gradient(ellipse 65% 75% at 0% 0%, rgba(0, 214, 180, 0.45) 0%, rgba(0, 168, 143, 0.20) 32%, transparent 58%), var(--graphite);
 }
 
 /* ═══════════════════════════════════════
@@ -109,6 +115,9 @@
   --foreground: var(--graphite);
   --muted: var(--pewter);
   --border: var(--divider);
+
+  --theme-card-ambient-tr: radial-gradient(ellipse 65% 75% at 100% 0%, rgba(139, 92, 246, 0.48) 0%, rgba(124, 58, 237, 0.22) 32%, transparent 58%), var(--graphite);
+  --theme-card-ambient-tl: radial-gradient(ellipse 65% 75% at 0% 0%, rgba(249, 115, 22, 0.46) 0%, rgba(234, 88, 12, 0.20) 32%, transparent 58%), var(--graphite);
 }
 
 @theme inline {
@@ -284,18 +293,6 @@ body {
   background-image: none;
 }
 
-[data-theme="presentation"] .text-graphite {
-  color: #0A1C2E;
-}
-
-[data-theme="presentation"] .text-iron {
-  color: #334155;
-}
-
-[data-theme="presentation"] .text-pewter {
-  color: #64748B;
-}
-
 [data-theme="presentation"] .border-divider,
 [data-theme="presentation"] [class*="border-divider/"] {
   border-color: #CBD5E1;
@@ -315,18 +312,6 @@ body {
   background-image: none;
 }
 
-[data-theme="cyber"] .text-graphite {
-  color: #18172E;
-}
-
-[data-theme="cyber"] .text-iron {
-  color: #3F3D56;
-}
-
-[data-theme="cyber"] .text-pewter {
-  color: #6B7280;
-}
-
 [data-theme="cyber"] .border-divider,
 [data-theme="cyber"] [class*="border-divider/"] {
   border-color: #DDDCEB;
@@ -338,4 +323,13 @@ body {
   border-color: #DDDCEB;
   box-shadow: 0 16px 36px rgba(24, 23, 46, 0.12);
 }
+
+/* ─── Ambient corner glow utility for themed dark cards ─── */
+.theme-card-ambient-tr {
+  background: var(--theme-card-ambient-tr);
+}
+.theme-card-ambient-tl {
+  background: var(--theme-card-ambient-tl);
+}
+
 

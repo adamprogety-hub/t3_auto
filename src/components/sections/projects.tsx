@@ -34,8 +34,8 @@ export const projects: ProjectItem[] = [
     color: "bg-graphite",
     images: [
       {
-        src: "/portfolio/placeholders/sheremetyevo.svg",
-        caption: "Шереметьево: Схема шкафов автоматики и ЧРП (материалы под NDA)",
+        src: "/images/cases/01_sheremetyevo_pumping.jpg",
+        caption: "Шереметьево: Автоматизация КНС и водозабора на базе ПТК РФ и ЧРП",
       },
     ],
   },
@@ -51,8 +51,8 @@ export const projects: ProjectItem[] = [
     color: "bg-gunmetal",
     images: [
       {
-        src: "/portfolio/placeholders/tolyatti_block15.svg",
-        caption: "Тольяттикаучук: Архитектура РСУ и контуров ПАЗ SIL3 (материалы под NDA)",
+        src: "/images/cases/02_tolyatti_block15_gas.jpg",
+        caption: "Тольяттикаучук: Архитектура РСУ и контуров ПАЗ SIL3 блока №15",
       },
     ],
   },
@@ -68,8 +68,8 @@ export const projects: ProjectItem[] = [
     color: "bg-iron",
     images: [
       {
-        src: "/portfolio/placeholders/tolyatti_acid.svg",
-        caption: "Щавелевая кислота: Мнемосхемы HMI и контуры ПТК БАЗИС-100 (материалы под NDA)",
+        src: "/images/cases/03_tolyatti_acid_reactor.jpg",
+        caption: "Щавелевая кислота: Мнемосхемы HMI и контуры ПТК БАЗИС-100",
       },
     ],
   },
@@ -85,8 +85,8 @@ export const projects: ProjectItem[] = [
     color: "bg-gunmetal",
     images: [
       {
-        src: "/portfolio/placeholders/svgk_shgrp.svg",
-        caption: "СВГК: Шкаф телемеханики ШГРП на ОС Astra Linux (материалы под NDA)",
+        src: "/images/cases/04_svgk_shgrp_telemetry.jpg",
+        caption: "СВГК: Шкаф телемеханики ШГРП на ОС Astra Linux",
       },
     ],
   },
@@ -102,8 +102,8 @@ export const projects: ProjectItem[] = [
     color: "bg-carbon",
     images: [
       {
-        src: "/portfolio/placeholders/ural_trucks.svg",
-        caption: "АЗ УРАЛ: Стенд контроля КИП главного конвейера (материалы под NDA)",
+        src: "/images/cases/05_ural_trucks_assembly.jpg",
+        caption: "АЗ УРАЛ: Стенд контроля КИП главного конвейера",
       },
     ],
   },
@@ -119,8 +119,8 @@ export const projects: ProjectItem[] = [
     color: "bg-iron",
     images: [
       {
-        src: "/portfolio/placeholders/rmk_safety.svg",
-        caption: "РМК: Диспетчерский центр промбезопасности 1000 параметров (материалы под NDA)",
+        src: "/images/cases/06_rmk_safety_dispatch.jpg",
+        caption: "РМК: Диспетчерский центр промбезопасности 1000 параметров",
       },
     ],
   },
@@ -136,8 +136,8 @@ export const projects: ProjectItem[] = [
     color: "bg-gunmetal",
     images: [
       {
-        src: "/portfolio/placeholders/kizlyar_brandy.svg",
-        caption: "Кизляр: Автоматизация колонн ректификации спирта (материалы под NDA)",
+        src: "/images/cases/07_kizlyar_brandy_columns.jpg",
+        caption: "Кизляр: Автоматизация колонн ректификации спирта",
       },
     ],
   },
@@ -153,8 +153,8 @@ export const projects: ProjectItem[] = [
     color: "bg-carbon",
     images: [
       {
-        src: "/portfolio/placeholders/auto_cv.svg",
-        caption: "СТЗ: Система компьютерного зрения конвейера (материалы под NDA)",
+        src: "/images/cases/08_auto_cv_robotics.jpg",
+        caption: "СТЗ: Система компьютерного зрения конвейера",
       },
     ],
   },

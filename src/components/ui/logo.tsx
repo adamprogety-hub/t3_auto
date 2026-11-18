@@ -33,95 +33,66 @@ interface LogoProps {
   className?: string;
   theme?: "dark" | "light";
   iconSize?: number;
-  variant?: "badge" | "plain";
+  variant?: "badge" | "plain" | "split";
   href?: string;
   onClick?: () => void;
   isFloating?: boolean;
 }
 
 /**
- * Фирменный модульный шильдик компании «Т3 Автоматизация»:
- * Знак в квадратном скруглённом бейдже, название в прямоугольном бейдже.
- * Монохромный индустриальный дизайн: темно-графитовый и светло-серый (без оранжевого).
- * Масштаб 1:1 согласован по высоте (48px / h-12) и скруглению (rounded-[12px]) с панелью навигации в херо,
- * и компактный гармоничный размер (40px / h-10) в плавающей капсуле навигации с концентрическими отступами.
+ * Фирменный стиль логотипа компании «Т3 Автоматизация»:
+ * Векторный фирменный знак и название компании, разделённые аккуратной тонкой вертикальной линией.
+ * Чистый индустриальный дизайн без фоновых плашек.
  */
 export function Logo({
   className = "",
   theme = "dark",
-  variant = "badge",
   href = "#",
   onClick,
   isFloating = false,
 }: LogoProps) {
   const isLight = theme === "light";
 
-  const content =
-    variant === "badge" ? (
-      <span
-        className={`inline-flex items-center gap-1.5 sm:gap-2 select-none transition-transform duration-200 group-hover:scale-[1.01] ${className}`}
-      >
-        {/* Квадрат со знаком */}
-        <span
-          className={`shrink-0 flex items-center justify-center transition-all duration-300 shadow-sm ${
-            isFloating
-              ? "w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] sm:rounded-[10px]"
-              : "w-10 h-10 sm:w-12 sm:h-12 rounded-[10px] sm:rounded-[12px]"
-          } ${
-            isLight
-              ? "bg-[#F8F9FA] text-graphite"
-              : "bg-graphite/95 text-[#F8F9FA]"
-          }`}
-        >
-          <LogoMark
-            size={isFloating ? 18 : 21}
-            className={`w-auto transition-all duration-300 ${
-              isFloating ? "h-[15px] sm:h-[18px]" : "h-[17px] sm:h-[21px]"
-            }`}
-          />
-        </span>
+  const content = (
+    <span
+      className={`inline-flex items-center gap-2.5 sm:gap-3 select-none transition-opacity duration-200 group-hover:opacity-85 ${className}`}
+    >
+      {/* Фирменный векторный знак Т3 */}
+      <LogoMark
+        size={isFloating ? 18 : 22}
+        className={`w-auto shrink-0 transition-all duration-300 ${
+          isLight ? "text-white" : "text-graphite"
+        } ${isFloating ? "h-[16px] sm:h-[18px]" : "h-[18px] sm:h-[22px]"}`}
+      />
 
-        {/* Прямоугольник с названием компании */}
-        <span
-          className={`flex items-center justify-center transition-all duration-300 shadow-sm font-heading font-bold tracking-tight whitespace-nowrap ${
-            isFloating
-              ? "h-9 sm:h-10 px-2.5 sm:px-3.5 rounded-[8px] sm:rounded-[10px] text-[13px] sm:text-[14px]"
-              : "h-10 sm:h-12 px-3 sm:px-4 rounded-[10px] sm:rounded-[12px] text-[13.5px] sm:text-[15px]"
-          } ${
-            isLight
-              ? "bg-[#F8F9FA] text-graphite"
-              : "bg-graphite/95 text-[#F8F9FA]"
-          }`}
-        >
-          <span className="notranslate font-extrabold mr-1.5">Т3</span>
-          <span>Автоматизация</span>
-        </span>
-      </span>
-    ) : (
+      {/* Аккуратная вертикальная разделительная линия */}
       <span
-        className={`inline-flex items-center gap-2 select-none transition-opacity duration-200 group-hover:opacity-90 ${className}`}
+        className={`w-px shrink-0 transition-all duration-300 ${
+          isFloating ? "h-4 sm:h-4.5" : "h-5 sm:h-5.5"
+        } ${isLight ? "bg-white/25" : "bg-divider"}`}
+        aria-hidden="true"
+      />
+
+      {/* Название компании */}
+      <span
+        className={`font-heading font-bold tracking-tight whitespace-nowrap transition-all duration-300 ${
+          isFloating
+            ? "text-[13.5px] sm:text-[14.5px]"
+            : "text-[15px] sm:text-[16px]"
+        } ${isLight ? "text-white" : "text-graphite"}`}
       >
-        <LogoMark
-          size={18}
-          className={isLight ? "text-white" : "text-graphite"}
-        />
-        <span
-          className={`font-heading tracking-tight leading-none text-[18px] ${
-            isLight ? "text-white" : "text-graphite"
-          }`}
-        >
-          <span className="notranslate font-extrabold mr-1">Т3</span>
-          <span className="font-bold">Автоматизация</span>
-        </span>
+        <span className="notranslate font-extrabold mr-1.5">Т3</span>
+        <span>Автоматизация</span>
       </span>
-    );
+    </span>
+  );
 
   if (href) {
     return (
       <a
         href={href}
         onClick={onClick}
-        className="inline-flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+        className="inline-flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm py-1"
         aria-label="Т3 Автоматизация — главная страница"
       >
         {content}
