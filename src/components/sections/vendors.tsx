@@ -189,28 +189,19 @@ export function Vendors() {
 
               {/* 3 Key Metric Cards */}
               <div className="grid grid-cols-3 gap-2 sm:gap-2.5 mt-5">
-                <div className="p-2 sm:p-2.5 rounded-[10px] bg-surface/70 border border-divider/40">
-                  <div className="text-graphite font-bold font-heading text-[14px] sm:text-[15px] leading-tight">
+                <div className="p-2.5 sm:p-3 rounded-[10px] bg-surface/70 border border-divider/40 flex items-center justify-center text-center">
+                  <div className="text-graphite font-bold font-heading text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-tight">
                     10 млн+
                   </div>
-                  <div className="text-iron text-[11px] leading-snug mt-0.5">
-                    сигналов в БДРВ
-                  </div>
                 </div>
-                <div className="p-2 sm:p-2.5 rounded-[10px] bg-surface/70 border border-divider/40">
-                  <div className="text-graphite font-bold font-heading text-[14px] sm:text-[15px] leading-tight">
+                <div className="p-2.5 sm:p-3 rounded-[10px] bg-surface/70 border border-divider/40 flex items-center justify-center text-center">
+                  <div className="text-graphite font-bold font-heading text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-tight">
                     ФСТЭК № 239
                   </div>
-                  <div className="text-iron text-[11px] leading-snug mt-0.5">
-                    2 и 3 класс КИИ
-                  </div>
                 </div>
-                <div className="p-2 sm:p-2.5 rounded-[10px] bg-surface/70 border border-divider/40">
-                  <div className="text-graphite font-bold font-heading text-[14px] sm:text-[15px] leading-tight">
+                <div className="p-2.5 sm:p-3 rounded-[10px] bg-surface/70 border border-divider/40 flex items-center justify-center text-center">
+                  <div className="text-graphite font-bold font-heading text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-tight">
                     Linux / Эльбрус
-                  </div>
-                  <div className="text-iron text-[11px] leading-snug mt-0.5">
-                    суверенитет
                   </div>
                 </div>
               </div>

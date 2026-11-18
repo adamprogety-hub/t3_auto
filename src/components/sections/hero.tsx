@@ -161,26 +161,46 @@ export function Hero() {
   const [[activeIndex, direction], setSlide] = useState([0, 1]);
   const [isPaused, setIsPaused] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const textContentRef = useRef<HTMLDivElement>(null);
   const calcBtnRef = useRef<HTMLAnchorElement>(null);
   const coopBtnRef = useRef<HTMLAnchorElement>(null);
   const [indicatorStyle, setIndicatorStyle] = useState<{ marginLeft: number; width: number } | null>(null);
 
   useEffect(() => {
     const update = () => {
-      if (!cardRef.current || !calcBtnRef.current || !coopBtnRef.current) return;
-      const cardRect = cardRef.current.getBoundingClientRect();
-      const calcRect = calcBtnRef.current.getBoundingClientRect();
-      const coopRect = coopBtnRef.current.getBoundingClientRect();
+      if (!cardRef.current) return;
+      const isMobile = window.innerWidth < 768;
 
-      const left = Math.max(0, calcRect.left - cardRect.left);
-      const width = Math.max(80, coopRect.right - calcRect.left);
-      setIndicatorStyle({ marginLeft: left, width });
+      if (isMobile) {
+        // На мобиле выравниваем точно по текстовой области контента УТП (внутренний текст без паддингов карточки)
+        if (textContentRef.current) {
+          const cardRect = cardRef.current.getBoundingClientRect();
+          const computedStyle = window.getComputedStyle(textContentRef.current);
+          const paddingLeft = parseFloat(computedStyle.paddingLeft) || 20;
+          const paddingRight = parseFloat(computedStyle.paddingRight) || 20;
+          
+          const textWidth = Math.max(80, textContentRef.current.clientWidth - paddingLeft - paddingRight);
+          setIndicatorStyle({ marginLeft: paddingLeft, width: textWidth });
+        }
+      } else {
+        // На десктопе выравниваем по ширине выступающей плашки с кнопками СТА
+        if (calcBtnRef.current && coopBtnRef.current) {
+          const cardRect = cardRef.current.getBoundingClientRect();
+          const calcRect = calcBtnRef.current.getBoundingClientRect();
+          const coopRect = coopBtnRef.current.getBoundingClientRect();
+
+          const left = Math.max(0, calcRect.left - cardRect.left);
+          const width = Math.max(80, coopRect.right - calcRect.left);
+          setIndicatorStyle({ marginLeft: left, width });
+        }
+      }
     };
 
     update();
     window.addEventListener("resize", update);
     const ro = new ResizeObserver(update);
     if (cardRef.current) ro.observe(cardRef.current);
+    if (textContentRef.current) ro.observe(textContentRef.current);
     if (calcBtnRef.current) ro.observe(calcBtnRef.current);
     if (coopBtnRef.current) ro.observe(coopBtnRef.current);
 
@@ -257,9 +277,12 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent" />
           </div>
 
-          <div className="relative grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-0 lg:min-h-[400px] xl:min-h-[440px]">
+          <div className="relative flex flex-col lg:grid lg:grid-cols-12 items-stretch h-[510px] sm:h-[550px] lg:h-auto min-h-0 lg:min-h-[400px] xl:min-h-[440px]">
             {/* Left side: Animated UTP content with horizontal slide */}
-            <div className="lg:col-span-7 relative z-10 p-6 sm:p-9 lg:px-10 lg:py-8 xl:px-14 xl:py-9 flex flex-col lg:justify-between min-h-[340px] sm:min-h-[360px] lg:min-h-[400px] overflow-hidden">
+            <div
+              ref={textContentRef}
+              className="lg:col-span-7 relative z-10 p-5 sm:p-7 lg:px-10 lg:py-8 xl:px-14 xl:py-9 flex flex-col justify-start lg:justify-between h-[210px] sm:h-[220px] lg:h-full min-h-0 lg:min-h-[400px] overflow-hidden shrink-0"
+            >
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={currentSlide.id}
@@ -270,11 +293,11 @@ export function Hero() {
                   exit="exit"
                   className="flex flex-col lg:justify-between h-full"
                 >
-                  <h1 className="text-white text-[clamp(1.75rem,3.2vw,3.25rem)] font-bold leading-[1.08] tracking-tight font-heading">
+                  <h1 className="text-white text-[clamp(1.4rem,2.8vw,3.25rem)] font-bold leading-[1.12] tracking-tight font-heading">
                     {currentSlide.title}
                   </h1>
 
-                  <p className="mt-4 sm:mt-6 lg:mt-0 text-white/75 text-[14px] sm:text-[16px] lg:text-[17px] leading-[1.65] max-w-lg xl:max-w-xl">
+                  <p className="mt-2.5 sm:mt-3 lg:mt-0 text-white/75 text-[13.5px] sm:text-[15px] lg:text-[17px] leading-[1.48] sm:leading-[1.6] max-w-lg xl:max-w-xl">
                     {currentSlide.description}
                   </p>
                 </motion.div>
@@ -324,10 +347,10 @@ export function Hero() {
               </AnimatePresence>
             </div>
 
-            {/* Mobile & Tablet (< lg) */}
+            {/* Mobile & Tablet (< lg): Fixed flex-1 container so total card height is fixed across all slides */}
             {currentSlide.image ? (
               currentSlide.id === "engineering" ? (
-                <div className="lg:hidden relative w-full h-[250px] sm:h-[320px] overflow-hidden rounded-b-[16px] flex justify-center pointer-events-none select-none">
+                <div className="lg:hidden relative flex-1 w-full overflow-hidden rounded-b-[16px] flex justify-center items-start pointer-events-none select-none">
                   <AnimatePresence mode="wait" custom={direction}>
                     <motion.img
                       key={currentSlide.id + "-mobile-img"}
@@ -338,12 +361,12 @@ export function Hero() {
                       initial="enter"
                       animate="center"
                       exit="exit"
-                      className="h-[430px] sm:h-[540px] w-auto max-w-none object-contain object-top"
+                      className="h-[460px] sm:h-[540px] w-auto max-w-none object-contain object-top"
                     />
                   </AnimatePresence>
                 </div>
               ) : (
-                <div className="lg:hidden relative w-full h-[240px] sm:h-[300px] flex items-center justify-center px-4 py-3 rounded-b-[16px] pointer-events-none select-none">
+                <div className="lg:hidden relative flex-1 w-full flex items-center justify-center px-2 pb-4 pt-0 rounded-b-[16px] pointer-events-none select-none">
                   <AnimatePresence mode="wait" custom={direction}>
                     <motion.img
                       key={currentSlide.id + "-mobile-img"}
@@ -354,9 +377,11 @@ export function Hero() {
                       initial="enter"
                       animate="center"
                       exit="exit"
-                      className={`max-h-full max-w-[90%] w-auto object-contain filter drop-shadow-[0_14px_28px_rgba(0,0,0,0.5)] ${
-                        currentSlide.imageClassName || ""
-                      }`}
+                      className={`w-auto object-contain filter drop-shadow-[0_14px_28px_rgba(0,0,0,0.5)] ${
+                        currentSlide.id === "scada"
+                          ? "max-h-[250px] sm:max-h-[280px] max-w-[98%] scale-110 sm:scale-105"
+                          : "max-h-[220px] sm:max-h-[260px] max-w-[90%] sm:max-w-[85%]"
+                      } ${currentSlide.imageClassName || ""}`}
                     />
                   </AnimatePresence>
                 </div>
