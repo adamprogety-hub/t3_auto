@@ -6,6 +6,7 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import {
   HeaderModals,
+  HeaderModalType,
   openCertificatesModal,
   openCasesModal,
   openRequisitesModal,
@@ -21,9 +22,7 @@ const NAV_ITEMS = [
 ] as const;
 
 export function Navbar() {
-  const [activeModal, setActiveModal] = useState<
-    "certificates" | "cases" | "requisites" | null
-  >(null);
+  const [activeModal, setActiveModal] = useState<HeaderModalType | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [dockBottomMargin, setDockBottomMargin] = useState(76);
@@ -80,7 +79,7 @@ export function Navbar() {
   useEffect(() => {
     const handleOpen = (e: Event) => {
       const customEvent = e as CustomEvent<{
-        modal?: "certificates" | "cases" | "requisites";
+        modal?: HeaderModalType;
       }>;
       if (customEvent.detail?.modal) {
         setActiveModal(customEvent.detail.modal);
@@ -294,12 +293,10 @@ export function Navbar() {
                 }}
                 aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
                 aria-expanded={isMobileMenuOpen}
-                className={`inline-flex items-center justify-center w-10 h-10 rounded-[12px] transition-all duration-300 cursor-pointer active:scale-95 border ${
+                className={`inline-flex items-center justify-center w-10 h-10 rounded-[12px] transition-all duration-200 cursor-pointer active:scale-95 border border-transparent ${
                   isMobileMenuOpen
-                    ? "bg-graphite text-white border-graphite shadow-sm"
-                    : !isFloating
-                    ? "bg-transparent text-graphite border-transparent hover:bg-black/[0.04] shadow-none"
-                    : "bg-white/90 text-graphite border-divider/70 shadow-2xs"
+                    ? "bg-graphite text-white shadow-sm"
+                    : "bg-transparent text-graphite hover:bg-black/[0.04] active:bg-black/[0.08]"
                 }`}
               >
                 {isMobileMenuOpen ? (

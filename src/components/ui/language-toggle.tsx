@@ -19,7 +19,7 @@ export function LanguageToggle({ variant = "default" }: LanguageToggleProps) {
       onClick={toggleLanguage}
       title={isEnglish ? "Переключить на русский" : "Translate website to English"}
       aria-label={isEnglish ? "Переключить на русский" : "Translate website to English"}
-      className={`notranslate inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-[8px] text-[12px] sm:text-[13px] font-medium transition-all duration-300 ease-out cursor-pointer active:scale-95 select-none border ${
+      className={`notranslate inline-flex items-center justify-center gap-1.5 h-8 sm:h-[34px] w-[64px] sm:w-[68px] rounded-[8px] text-[12px] sm:text-[13px] font-medium transition-all duration-300 ease-out cursor-pointer active:scale-95 select-none border ${
         isCapsule
           ? "border-transparent bg-transparent text-white/90 hover:text-white hover:bg-white/15 shadow-none"
           : isGhost
@@ -32,7 +32,7 @@ export function LanguageToggle({ variant = "default" }: LanguageToggleProps) {
       }`}
     >
       <Globe
-        className={`w-3.5 h-3.5 transition-colors duration-300 ${
+        className={`w-3.5 h-3.5 shrink-0 transition-colors duration-300 ${
           isCapsule ? "text-[#E66826]" : isGhost ? "text-graphite/60 group-hover:text-graphite" : isEnglish ? "text-[#E66826]" : "text-graphite/70"
         }`}
       />

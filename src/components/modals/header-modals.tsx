@@ -40,17 +40,27 @@ export function openRequisitesModal() {
   }
 }
 
+export function openPrivacyModal() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("open-header-modal", { detail: { modal: "privacy" } })
+    );
+  }
+}
+
 export function closeHeaderModal() {
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("close-header-modal"));
   }
 }
 
+export type HeaderModalType = "certificates" | "cases" | "requisites" | "privacy";
+
 export interface HeaderModalsProps {
   headerRef: React.RefObject<HTMLElement | null>;
-  activeModal: "certificates" | "cases" | "requisites" | null;
+  activeModal: HeaderModalType | null;
   onClose: () => void;
-  onSelectModal: (modal: "certificates" | "cases" | "requisites") => void;
+  onSelectModal: (modal: HeaderModalType) => void;
 }
 
 // Certificates Data with Full Legal & Engineering Parameters
@@ -676,6 +686,144 @@ function CertificatesGalleryView() {
 }
 
 // =========================================================================
+// 4. PRIVACY POLICY VIEW (ФЗ-152 РФ & NDA Architecture)
+// =========================================================================
+function PrivacyPolicyView() {
+  return (
+    <div className="p-4 sm:p-6 lg:p-8 max-w-5xl mx-auto pb-12">
+      {/* Intro Header */}
+      <div className="mb-6 sm:mb-8 pr-12">
+        <h3 className="text-xl sm:text-2xl font-bold font-heading text-graphite tracking-tight">
+          Политика конфиденциальности и защиты данных
+        </h3>
+        <p className="text-[13px] text-iron mt-1 max-w-2xl leading-relaxed">
+          Порядок обработки информации, защиты коммерческой тайны и режима неразглашения (NDA) при разработке и внедрении систем АСУТП.
+        </p>
+      </div>
+
+      {/* Structured Legal Cards */}
+      <div className="space-y-4">
+        {/* Общие положения и оператор */}
+        <div className="bg-white rounded-xl border border-divider/60 p-5 sm:p-6 shadow-2xs">
+          <h4 className="text-[14px] sm:text-[15px] font-bold font-heading text-graphite tracking-tight mb-3">
+            Общие положения и статус оператора
+          </h4>
+          <div className="space-y-2.5 text-[12.5px] sm:text-[13px] text-iron leading-relaxed">
+            <p>
+              Настоящая Политика определяет порядок обработки и защиты информации пользователей сайта{" "}
+              <strong>ООО «Т3 - Автоматизация»</strong> («Оператор»), оставляющих заявки на расчет стоимости, скачивающих инженерные материалы или передающих технические задания.
+            </p>
+            <p>
+              Оператор ставит важнейшей целью соблюдение прав и свобод человека при обработке его персональных данных, включая защиту прав на неприкосновенность частной жизни, коммерческую тайну и безопасность информации на объектах критической информационной инфраструктуры (КИИ).
+            </p>
+            <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-pewter">
+              <span className="px-2.5 py-1 rounded-[6px] bg-surface border border-divider/50">ИНН: 9734028824</span>
+              <span className="px-2.5 py-1 rounded-[6px] bg-surface border border-divider/50">ОГРН: 1267700304178</span>
+              <span className="px-2.5 py-1 rounded-[6px] bg-surface border border-divider/50">Москва / Самара</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Категории обрабатываемых данных */}
+        <div className="bg-white rounded-xl border border-divider/60 p-5 sm:p-6 shadow-2xs">
+          <h4 className="text-[14px] sm:text-[15px] font-bold font-heading text-graphite tracking-tight mb-3">
+            Категории обрабатываемых данных
+          </h4>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="p-3.5 bg-surface/70 rounded-lg border border-divider/50">
+              <span className="text-[10.5px] font-mono uppercase tracking-wider text-pewter font-semibold block mb-1">
+                Контактные лица
+              </span>
+              <p className="text-[12px] text-graphite leading-relaxed">
+                Номер мобильного или рабочего телефона, адрес электронной почты (e-mail), имя, должность и предприятие.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-surface/70 rounded-lg border border-divider/50">
+              <span className="text-[10.5px] font-mono uppercase tracking-wider text-pewter font-semibold block mb-1">
+                Инженерные данные
+              </span>
+              <p className="text-[12px] text-graphite leading-relaxed">
+                Схемы Э3, опросные листы, спецификации КИПиА, алгоритмы работы оборудования и файлы ТЗ, прикрепляемые к заявке.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-surface/70 rounded-lg border border-divider/50">
+              <span className="text-[10.5px] font-mono uppercase tracking-wider text-pewter font-semibold block mb-1">
+                Реквизиты контрагента
+              </span>
+              <p className="text-[12px] text-graphite leading-relaxed">
+                Карточка предприятия, ИНН, КПП, банковские счета для оформления коммерческих предложений и договоров.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-surface/70 rounded-lg border border-divider/50">
+              <span className="text-[10.5px] font-mono uppercase tracking-wider text-pewter font-semibold block mb-1">
+                Технические Cookie
+              </span>
+              <p className="text-[12px] text-graphite leading-relaxed">
+                Обезличенные данные о сессии для сохранения настроек калькулятора шкафов, выбранного языка и темы оформления.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Цели обработки и соглашение NDA */}
+        <div className="bg-white rounded-xl border border-divider/60 p-5 sm:p-6 shadow-2xs">
+          <h4 className="text-[14px] sm:text-[15px] font-bold font-heading text-graphite tracking-tight mb-3">
+            Цели обработки и защита информации (NDA)
+          </h4>
+
+          <div className="space-y-3 text-[12.5px] sm:text-[13px] text-iron leading-relaxed">
+            <p>
+              Обработка данных осуществляется исключительно для подготовки сметной документации, расчета стоимости шкафов управления, подбора оборудования и выполнения пусконаладочных работ (ПНР).
+            </p>
+
+            <div className="p-4 bg-surface rounded-lg border-l-3 border-accent text-[12px] text-graphite">
+              <strong className="font-semibold block text-graphite mb-1">
+                Соглашение о неразглашении (NDA):
+              </strong>
+              Все передаваемые технологические схемы, алгоритмы работы установок и исходные коды считаются конфиденциальной информацией и защищены от передачи третьим лицам. До передачи рабочей документации по запросу заказчика оформляется двустороннее соглашение NDA.
+            </div>
+          </div>
+        </div>
+
+        {/* Безопасность и порядок отзыва */}
+        <div className="bg-white rounded-xl border border-divider/60 p-5 sm:p-6 shadow-2xs">
+          <h4 className="text-[14px] sm:text-[15px] font-bold font-heading text-graphite tracking-tight mb-3">
+            Хранение данных и отзыв согласия
+          </h4>
+
+          <div className="space-y-2.5 text-[12.5px] sm:text-[13px] text-iron leading-relaxed">
+            <p>
+              Безопасность персональных данных обеспечивается правовыми, организационными и техническими мерами защиты (включая протокол шифрования SSL/TLS). Серверная инфраструктура и базы данных локализованы на территории Российской Федерации.
+            </p>
+            <p>
+              Срок обработки является неограниченным до момента достижения целей обработки или отзыва согласия. Пользователь может в любой момент отозвать свое согласие, направив обращение на контактный email:{" "}
+              <a
+                href="mailto:info@t3-auto.com"
+                className="font-mono font-semibold text-graphite hover:text-accent underline underline-offset-2 transition-colors"
+              >
+                info@t3-auto.com
+              </a>{" "}
+              или{" "}
+              <a
+                href="mailto:aleksey.ivanov@t3-auto.com"
+                className="font-mono font-semibold text-graphite hover:text-accent underline underline-offset-2 transition-colors"
+              >
+                aleksey.ivanov@t3-auto.com
+              </a>{" "}
+              с пометкой «Отзыв согласия на обработку персональных данных».
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// =========================================================================
 // MAIN HEADER MODALS COMPONENT
 // =========================================================================
 export function HeaderModals({
@@ -756,7 +904,7 @@ export function HeaderModals({
   useEffect(() => {
     const handleOpen = (e: Event) => {
       const customEvent = e as CustomEvent<{
-        modal: "certificates" | "cases" | "requisites";
+        modal: HeaderModalType;
       }>;
       if (customEvent.detail?.modal) {
         onSelectModal(customEvent.detail.modal);
@@ -850,6 +998,8 @@ Email: info@t3-auto.com / aleksey.ivanov@t3-auto.com`;
               {activeModal === "cases" && <CasesGalleryView />}
 
               {activeModal === "certificates" && <CertificatesGalleryView />}
+
+              {activeModal === "privacy" && <PrivacyPolicyView />}
             </div>
           </motion.div>
         </>
