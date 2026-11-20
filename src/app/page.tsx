@@ -20,7 +20,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Problems />
-        <StoriesBar />
+        {/* Секция со сторисами временно скрыта */}
+        {/* <StoriesBar /> */}
         <Services />
         <WhyUs />
         <Vendors />

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { openPrivacyModal } from "@/components/ui/privacy-modal";
+import { openPrivacyModal } from "@/components/modals/header-modals";
 
 export function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,57 +39,52 @@ export function CookieConsent() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed bottom-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+        <div className="fixed z-50 pointer-events-none bottom-[84px] left-3 right-3 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-[430px]">
           <motion.aside
-            initial={{ opacity: 0, y: 24, scale: 0.97 }}
+            initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.97 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="pointer-events-auto w-full max-w-[480px] rounded-[14px] bg-white/95 backdrop-blur-md border border-divider/70 p-5 sm:p-6 shadow-[0_20px_50px_-10px_rgba(19,18,16,0.14),0_6px_20px_-4px_rgba(19,18,16,0.06)]"
+            exit={{ opacity: 0, y: 12, scale: 0.98 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-auto rounded-[14px] bg-white/95 backdrop-blur-md border border-divider/70 p-3.5 sm:p-4 shadow-[0_16px_36px_-6px_rgba(19,18,16,0.14),0_4px_12px_rgba(19,18,16,0.04)]"
             role="dialog"
             aria-live="polite"
-            aria-label="Уведомление об использовании файлов cookie"
+            aria-label="Уведомление об использовании файлов cookie и рекомендательных технологий"
           >
-            <div className="flex items-center justify-between gap-3">
-              <h4 className="text-graphite text-[14px] font-bold leading-snug">
-                Файлы cookie
-              </h4>
+            <div className="flex items-start justify-between gap-2.5">
+              <p className="text-graphite text-[13px] leading-snug font-medium pr-1">
+                Используем cookie и рекомендательные технологии для работы сайта.
+              </p>
               <button
                 type="button"
                 onClick={handleDecline}
-                className="text-pewter hover:text-graphite p-1 -mr-1 -mt-1 rounded-[6px] transition-colors"
+                className="text-pewter hover:text-graphite p-1 -mr-1 -mt-1 rounded-[6px] transition-colors shrink-0 cursor-pointer"
                 aria-label="Закрыть уведомление"
               >
                 <X className="w-4 h-4" strokeWidth={1.5} />
               </button>
             </div>
 
-            <p className="mt-2 text-iron text-[12.5px] leading-relaxed">
-              Мы{"\u00A0"}используем файлы cookie для{"\u00A0"}корректной работы калькулятора, сохранения параметров конфигуратора и{"\u00A0"}аналитики. Подробнее в{" "}
-              <button
-                type="button"
-                onClick={openPrivacyModal}
-                className="text-graphite font-semibold underline underline-offset-2 hover:text-accent transition-colors cursor-pointer"
-              >
-                Политике конфиденциальности
-              </button>
-              .
-            </p>
-
-            <div className="mt-4 flex items-center gap-2.5">
+            <div className="mt-3 flex items-center gap-2">
               <button
                 type="button"
                 onClick={handleAccept}
-                className="px-4 py-2 bg-graphite text-white text-[12.5px] font-semibold rounded-[8px] hover:bg-graphite/90 active:scale-[0.98] transition-all shadow-xs"
+                className="px-3.5 py-1.5 bg-graphite text-white text-[12px] font-semibold rounded-[8px] hover:bg-carbon active:scale-[0.98] transition-all cursor-pointer shadow-2xs whitespace-nowrap"
               >
                 Принять
               </button>
               <button
                 type="button"
                 onClick={handleDecline}
-                className="px-3.5 py-2 text-pewter hover:text-graphite text-[12.5px] font-medium transition-colors"
+                className="px-3 py-1.5 text-[12px] font-medium text-iron hover:text-graphite bg-surface/80 hover:bg-surface border border-divider/50 rounded-[8px] transition-all active:scale-[0.98] cursor-pointer whitespace-nowrap"
               >
-                Только обязательные
+                Только базовые
+              </button>
+              <button
+                type="button"
+                onClick={openPrivacyModal}
+                className="px-2 py-1.5 text-[12px] font-medium text-iron hover:text-graphite underline underline-offset-3 transition-colors cursor-pointer ml-auto whitespace-nowrap"
+              >
+                Политика
               </button>
             </div>
           </motion.aside>
@@ -98,4 +93,3 @@ export function CookieConsent() {
     </AnimatePresence>
   );
 }
-

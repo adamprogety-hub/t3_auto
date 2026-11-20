@@ -133,7 +133,8 @@ export const UI_DICTIONARY: Record<string, string> = {
 
   // Vendors Section
   "Отечественный стек и технологические партнёры": "Domestic Technology Stack & Certified Partners",
-  "Платформа «КАСКАД Цифра»: для систем с миллионами сигналов": "KASKAD Tsifra Platform: for systems with millions of signals",
+  "Платформа «КАСКАД Цифра»": "KASKAD Tsifra Platform",
+  "Платформа «КАСКАД Цифра»: для систем с миллионами сигналов": "KASKAD Tsifra Platform",
   "От локальных HMI и SCADA до корпоративных MES и ERP. Единые диспетчерские, ситуационно-аналитические центры, базы данных реального времени (БДРВ). Соответствует требованиям Приказа ФСТЭК № 239, испытания пройдены без уязвимостей и недекларированных возможностей (НДВ). Работает на микро-ПК с Linux.":
     "From local HMI and SCADA to corporate MES and ERP. Unified control rooms, situational analytical centers, real-time databases (RTDB). Fully compliant with FSTEC Order No. 239, tested free of vulnerabilities and undocumented features. Runs reliably on Linux micro-PCs.",
 
@@ -208,10 +209,13 @@ export const UI_DICTIONARY: Record<string, string> = {
   "БИК": "BIC",
   "Генеральный директор": "General Director",
 
-  // Cookie
+  // Cookie & Algorithms
   "Файлы cookie": "Cookie Notice",
-  "Мы используем файлы cookie для корректной работы калькулятора, сохранения параметров конфигуратора и аналитики. Подробнее в": "We use cookies for calculator functionality, configurator settings, and analytics. Read more in",
-  "Политике конфиденциальности": "Privacy Policy",
+  "Используем cookie и рекомендательные технологии для работы сайта.": "We use cookies and recommendation technologies for website operation.",
+  "Только базовые": "Essential only",
+  "Политика": "Policy",
+  "Файлы cookie и рекомендательные технологии": "Cookies & Recommendation Technologies",
+  "Рекомендательные алгоритмы": "Recommendation Algorithms",
 };
 
 // Internal state

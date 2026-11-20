@@ -169,6 +169,7 @@ export function Vendors() {
 
         {/* Featured Enterprise Banner: КАСКАД Цифра & ФСТЭК КИИ */}
         <motion.div
+          id="kaskad-featured-card"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -180,20 +181,15 @@ export function Vendors() {
             <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-between p-5 sm:p-6 lg:p-7 xl:p-8 lg:pr-4 xl:pr-5">
               <div>
                 <h3 className="text-graphite text-[19px] sm:text-[21px] lg:text-[23px] xl:text-[25px] font-bold tracking-tight font-heading leading-[1.2]">
-                  Платформа «КАСКАД Цифра»: для{"\u00A0"}систем с{"\u00A0"}миллионами сигналов
+                  Платформа «КАСКАД Цифра»
                 </h3>
                 <p className="mt-3 text-iron text-[13px] sm:text-[13.5px] lg:text-[14px] leading-[1.6] max-w-xl">
                   От локальных HMI и SCADA до корпоративных ситуационно-аналитических центров и баз данных реального времени (БДРВ). Испытания ФСТЭК пройдены без уязвимостей и недекларированных возможностей (НДВ). Работает на микро-ПК с Linux.
                 </p>
               </div>
 
-              {/* 3 Key Metric Cards */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-2.5 mt-5">
-                <div className="p-2.5 sm:p-3 rounded-[10px] bg-surface/70 border border-divider/40 flex items-center justify-center text-center">
-                  <div className="text-graphite font-bold font-heading text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-tight">
-                    10 млн+
-                  </div>
-                </div>
+              {/* 2 Key Metric Cards */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 mt-5">
                 <div className="p-2.5 sm:p-3 rounded-[10px] bg-surface/70 border border-divider/40 flex items-center justify-center text-center">
                   <div className="text-graphite font-bold font-heading text-[13.5px] sm:text-[14.5px] lg:text-[15px] leading-tight">
                     ФСТЭК № 239

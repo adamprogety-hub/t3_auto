@@ -197,7 +197,7 @@ function RequisitesView({
   onCopy: () => void;
 }) {
   return (
-    <div className="h-full min-h-full w-full relative flex items-start md:items-center justify-center p-3 pt-14 sm:p-6 lg:p-8 overflow-hidden">
+    <div className="min-h-full w-full relative flex flex-col justify-start md:justify-center items-center p-4 sm:p-6 lg:p-8 pb-10 sm:pb-8">
       {/* Desktop Left Engineer: Grounded at bottom-0, exact 640px scale approved by user */}
       <div className="hidden lg:block absolute bottom-0 right-[calc(50%+448px-35px)] z-0 pointer-events-none select-none">
         <motion.img
@@ -214,7 +214,7 @@ function RequisitesView({
         initial={{ opacity: 0, scale: 0.95, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-4xl bg-white border border-divider/60 rounded-2xl p-4 sm:p-8 shadow-sm flex flex-col gap-5 sm:gap-6 my-auto"
+        className="relative z-10 w-full max-w-4xl bg-white border border-divider/60 rounded-2xl p-4 sm:p-8 shadow-sm flex flex-col gap-5 sm:gap-6 md:my-auto"
       >
           {/* Header Intro */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 sm:pb-3">
@@ -760,11 +760,44 @@ function PrivacyPolicyView() {
 
             <div className="p-3.5 bg-surface/70 rounded-lg border border-divider/50">
               <span className="text-[10.5px] font-mono uppercase tracking-wider text-pewter font-semibold block mb-1">
-                Технические Cookie
+                Параметры сессии
               </span>
               <p className="text-[12px] text-graphite leading-relaxed">
-                Обезличенные данные о сессии для сохранения настроек калькулятора шкафов, выбранного языка и темы оформления.
+                Технические данные сессии для сохранения расчётов калькулятора, выбранного языка и темы оформления.
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Файлы cookie и рекомендательные технологии */}
+        <div className="bg-white rounded-xl border border-divider/60 p-5 sm:p-6 shadow-2xs">
+          <h4 className="text-[14px] sm:text-[15px] font-bold font-heading text-graphite tracking-tight mb-3">
+            Файлы cookie и рекомендательные технологии
+          </h4>
+
+          <div className="space-y-3 text-[12.5px] sm:text-[13px] text-iron leading-relaxed">
+            <p>
+              На сайте используются сессионные файлы cookie и алгоритмические модули для обеспечения корректной работы сервисов и инженерных расчетов:
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div className="p-3.5 bg-surface/70 rounded-lg border border-divider/50">
+                <span className="text-[10.5px] font-mono uppercase tracking-wider text-pewter font-semibold block mb-1">
+                  Файлы cookie
+                </span>
+                <p className="text-[12px] text-graphite leading-relaxed">
+                  Используются только технические и сессионные куки (сохранение языка, темы оформления, шагов конфигуратора шкафов). Мы не применяем маркетинговые трекеры и не передаем cookie третьим лицам.
+                </p>
+              </div>
+
+              <div className="p-3.5 bg-surface/70 rounded-lg border border-divider/50">
+                <span className="text-[10.5px] font-mono uppercase tracking-wider text-pewter font-semibold block mb-1">
+                  Рекомендательные алгоритмы
+                </span>
+                <p className="text-[12px] text-graphite leading-relaxed">
+                  Применяются при расчете спецификаций для подбора оптимальных типоразмеров шкафов и совместимых отечественных контроллеров (ПТК) на основе параметров ТЗ. Алгоритмы не используют профилирование, а результаты носят рекомендательный характер и проверяются инженерами Т3.
+                </p>
+              </div>
             </div>
           </div>
         </div>

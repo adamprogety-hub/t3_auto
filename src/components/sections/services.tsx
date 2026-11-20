@@ -139,7 +139,7 @@ export function Services() {
         </div>
 
         {/* Swiss Industrial Table — Full Width Architectural Register */}
-        <div className="space-y-6 lg:space-y-8">
+        <div className="space-y-10 sm:space-y-12 lg:space-y-8">
           {services.map((service, idx) => {
             return (
               <motion.div
@@ -148,7 +148,7 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className="py-6 lg:py-8"
+                className="py-4 sm:py-6 lg:py-8"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
                   {/* Col 1-5: Title & Engineering Description */}
@@ -183,8 +183,8 @@ export function Services() {
                     </div>
                   </div>
 
-                  {/* Col 10-12: CAD Technical Viewport */}
-                  <div className="lg:col-span-3">
+                  {/* Col 10-12: CAD Technical Viewport with mobile breathing room */}
+                  <div className="lg:col-span-3 pt-6 sm:pt-8 lg:pt-0">
                     <RenderStage service={service} />
                   </div>
                 </div>
